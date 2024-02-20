@@ -18,7 +18,6 @@ export class AuthService {
   }
 
   public login(authLogin: any): Observable<any> {
-    console.log(authLogin);
     return this._http.post<any, any>(EndPoints.LOGIN, authLogin, false);
   }
 

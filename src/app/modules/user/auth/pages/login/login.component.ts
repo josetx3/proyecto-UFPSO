@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
         user_name: this.formLogin.get('user_name')?.value,
         password: this.formLogin.get('password')?.value
       }
-      console.log(authLogin)
       this._auth.login(authLogin).subscribe({
         next: (data) => {
           alert(data)
