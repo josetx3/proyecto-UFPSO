@@ -10,6 +10,8 @@ import {SharedModule} from "@app/shared/shared.module";
 import { LoginComponent } from './auth/pages/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { MultiFactorAuthComponent } from './auth/pages/multi-factor-auth/multi-factor-auth.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {CodeInputModule} from "angular-code-input";
 
 
 
@@ -27,7 +29,9 @@ import { MultiFactorAuthComponent } from './auth/pages/multi-factor-auth/multi-f
     CommonModule,
     UserRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    CodeInputModule,
   ]
 })
 export class UserModule { }

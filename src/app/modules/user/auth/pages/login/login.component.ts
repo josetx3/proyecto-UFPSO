@@ -40,11 +40,12 @@ export class LoginComponent implements OnInit {
       }
       this._auth.login(authLogin).subscribe({
         next: (data) => {
-          alert(data)
           this.formLogin.reset();
           this._storage.setItem('user_login', data)
+          this.dialog.closeAll()
           this.dialog.open(MultiFactorAuthComponent, {
-            width: '600px'
+            width: '320px',
+            height: '320px'
           })
         }
       })

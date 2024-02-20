@@ -14,7 +14,6 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     const urlRequest = request.clone({
       url: environment.api + request.url
     });
-    console.log(urlRequest)
     return next.handle(urlRequest);
   }
 

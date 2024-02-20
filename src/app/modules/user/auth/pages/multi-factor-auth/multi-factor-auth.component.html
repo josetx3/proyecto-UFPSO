@@ -1,1 +1,15 @@
-<p>multi-factor-auth works!</p>
+<div class="wrapper-main-multi-factor">
+  <span>Verifica que eres el dueño de esta cuenta</span>
+  <span>Entra a Google uthenticator e ingresa el codigo generado</span>
+  <div class="multi-factor--key">
+    <code-input #codeInput
+                (codeCompleted)="onCodeCompleted($event)"
+                [codeLength]="6"
+                [isCodeHidden]="false">
+    </code-input>
+  </div>
+  <div class="multi-factor--footer">
+    <button (click)="resendCode()" class="btn-reen">Reenviar</button>
+    <button (click)="sendCode()" class="btn-send">Confirmar</button>
+  </div>
+</div>
