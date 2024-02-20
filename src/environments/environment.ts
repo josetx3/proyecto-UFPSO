@@ -4,7 +4,7 @@ export const environment = {
   production: false,
 
   /* --- Url backend ---- */
-  api: 'http://localhost:8002/app/',
+  api: 'https://backendufpso.azurewebsites.net:80/app/',
 
   /* --- Logs ---- */
   logLevel: NgxLoggerLevel.OFF,

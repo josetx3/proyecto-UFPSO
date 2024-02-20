@@ -9,6 +9,7 @@ import {UserRoutingModule} from "@app/modules/user/user-routing.module";
 import {SharedModule} from "@app/shared/shared.module";
 import { LoginComponent } from './auth/pages/login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { MultiFactorAuthComponent } from './auth/pages/multi-factor-auth/multi-factor-auth.component';
 
 
 
@@ -19,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     FoodComponent,
     MovieComponent,
     UpcomingMovieComponent,
-    LoginComponent
+    LoginComponent,
+    MultiFactorAuthComponent
   ],
   imports: [
     CommonModule,
