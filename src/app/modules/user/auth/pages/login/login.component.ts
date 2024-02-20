@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
+import {StorageService} from "@app/core/services/storage.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   public formLogin: FormGroup = new FormGroup<any>({});
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _storage: StorageService
   ) {
   }
 
@@ -28,7 +30,12 @@ export class LoginComponent implements OnInit {
   }
 
   public sendLogin(): void {
-    alert('Hola')
+    if (this.formLogin.valid) {
+      const authLogin: any = {
+        user_name: this.formLogin.get('user_name')?.value,
+        password: this.formLogin.get('user_password')?.value
+      }
+    }
   }
 
 }

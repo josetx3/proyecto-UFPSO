@@ -1,16 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavComponent } from './layouts/nav/nav.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NavComponent} from './layouts/nav/nav.component';
+import {NavbarComponent} from './layouts/navbar/navbar.component';
 import {RouterLink} from "@angular/router";
 
 
-
 @NgModule({
-    declarations: [
-        NavComponent,
-        NavbarComponent
-    ],
+  declarations: [
+    NavComponent,
+    NavbarComponent
+  ],
   exports: [
     NavComponent,
     NavbarComponent
@@ -20,4 +19,5 @@ import {RouterLink} from "@angular/router";
     RouterLink
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

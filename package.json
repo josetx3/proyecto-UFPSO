@@ -20,13 +20,17 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "rxjs": "~7.8.0",
+    "secure-ls": "^1.2.6",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.13.0",
+    "crypto-js": "^4.1.1",
+    "ngx-logger": "^5.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.12",
     "@angular/cli": "^16.2.12",
     "@angular/compiler-cli": "^16.2.0",
+    "@types/crypto-js": "^3.1.47",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
