@@ -1,0 +1,20 @@
+<div class="wrapper-main-login">
+  <span>Cine Leonelda</span>
+  <form class="form-login" [formGroup]="formLogin">
+    <div class="group-login">
+      <label>Usuario</label>
+      <input type="text" formControlName="user_name"
+             placeholder="Ingresa tu nombre de usuario">
+    </div>
+    <div class="group-login">
+      <label>Contraseña</label>
+      <input type="password" formControlName="user_password"
+             placeholder="Ingresa tu contraseña">
+    </div>
+    <div class="group-login">
+      <button (click)="sendLogin()">Ingresar</button>
+    </div>
+  </form>
+  <span class="span-recovery-password">¿Olvidaste tu contraseña?</span>
+  <span class="span-create-account">¿No tienes cuenta? <strong>Registrate</strong></span>
+</div>

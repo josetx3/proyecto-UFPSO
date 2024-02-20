@@ -1,0 +1,50 @@
+/*** Colores transparentes ***/
+
+$white-transparent-two: rgba(255, 255, 255, 0.1);
+$white-transparent: rgba(255, 255, 255, 0.3);
+$white-transparent-text: rgba(255, 255, 255, 0.6);
+
+/*** fin de configuration de colores ***/
+
+//colores para alertas
+$success-color: #3BC279;
+$success-color-light: #E7F9F1;
+$error-color: #FF040E;
+$error-color-light: #FAEDED;
+$warning-color: #FFBF01;
+$warning-color-light: #FFF8E3;
+$info-color: #37CCEA;
+$info-color-light: #D9F5FF;
+$reversed-color: #0909b6;
+
+//border radius
+$border-radius-default: 4px;
+$border-radius-24: 24px;
+
+//padding
+$button-padding: 14px 32px;
+
+//Shadows
+$box-shadow-default: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+
+$font-family: 'Roboto';
+$font-style: normal;
+$font-size: 16px;
+$line-height: 1.2;
+
+/** --- Z-Index --- **/
+$zi-1: 1;
+$zi-2: 2;
+$zi-3: 3;
+$zi-4: 4;
+$zi-5: 5;
+$zi-6: 6;
+$zi-7: 7;
+$zi-8: 8;
+$zi-9: 9;
+
+$z-index-loading: 9999;
+$z-index-content-link: $zi-8;
+$z-index-mat-menu: $zi-2;
+$z-index-animation-register: $zi-7;
+

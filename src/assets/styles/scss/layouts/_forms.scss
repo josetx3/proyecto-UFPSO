@@ -1,0 +1,525 @@
+.form-input-outline {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  order: 1;
+  padding: 14px;
+  border: none;
+  outline: 1px solid theme-palette-color('grays', 300);
+  border-radius: 4px;
+  color: theme-palette-color('font', 'title');
+
+  &:focus {
+    outline: 2px solid theme-palette-color('color', 'primary');
+  }
+}
+
+.mat-datepicker-clear {
+  display: inline-block;
+  position: absolute;
+  right: calc(50% - 32px);
+  margin-top: -2px !important;
+  color: $error-color;
+}
+
+.form-grid {
+  margin: 0 !important;
+
+  [class^="col-"] {
+    padding: 0 6px !important;
+
+    &:first-child {
+      .form-container {
+        .form-title {
+          margin: 0 0 8px !important;
+        }
+      }
+    }
+
+  }
+}
+
+.form-container {
+  width: 100%;
+
+  .form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    color: theme-palette-color('font', 'title');
+    background-color: theme-palette-color('grays', 25);
+  }
+
+  .form-group {
+    position: relative;
+    margin-bottom: 16px;
+    margin-top: 4px;
+    width: 100%;
+
+
+    .datepickerOne {
+      position: relative;
+
+      /* Ajusta la posición del panel flotante */
+      .mat-datepicker-content {
+        position: absolute;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+      }
+    }
+
+
+
+    .form-input {
+      width: 100%;
+      background: none;
+      color: theme-palette-color('font', 'title');
+      font-size: 14px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid theme-palette-color('grays', 600);
+      font-family: $font-family;
+      height: 36px !important;
+      cursor: text;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .text-area-high{
+      resize: none;
+      width: 100%;
+      background: none;
+      color: theme-palette-color('font', 'title');
+      font-size: 14px;
+      padding: 10px;
+      outline: none;
+      border: 1px solid theme-palette-color('grays', 600);
+      font-family: $font-family;
+      cursor: text;
+      border-radius: 4px;
+      height: 100px;
+      min-height: 100px;
+      max-height: 100px;
+    }
+
+    .form-ng-select {
+      width: 100%;
+      color: theme-palette-color('font', 'title');
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid theme-palette-color('grays', 600);
+    }
+
+    .buttons {
+      border-radius: 4px;
+      padding: 12px 16px;
+      width: 100%;
+      background: theme-palette-color('color', 'primary');
+      border: none;
+      cursor: pointer;
+      outline: none;
+      color: #FFF;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: theme-palette-color('color', 'hover');
+      }
+    }
+
+
+    .form-image {
+      display: flex;
+      align-items: center;
+
+      .form-upload-image {
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        height: 60px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 10px 0 10px 0;
+        color: theme-palette-color('grays', 400);
+        border: 1px dashed theme-palette-color('grays', 300);
+
+        &:hover {
+          border: 1px dashed theme-palette-color('color', 'primary');
+        }
+
+        a {
+          color: deepskyblue;
+        }
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+    }
+
+    .form-control-image {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 60px;
+      padding: 4px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid theme-palette-color('grays', 200);
+
+      img {
+        width: 20%;
+        height: 50px;
+        max-width: 60px;
+        border-radius: 4px;
+      }
+
+      span {
+        width: 70%;
+        font-size: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      em {
+        width: 10%;
+        font-size: 24px;
+        text-align: center;
+        color: theme-palette-color('grays', 200);
+
+        &:hover {
+          color: red;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .form-label {
+      display: inline-block;
+      color: theme-palette-color('font', 'title');
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .form-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: theme-palette-color('color', 'primary');
+      transform: scale(0);
+      transform-origin: left bottom;
+      transition: transform .4s;
+    }
+
+    .form-input:focus ~ .form-line {
+      transform: scale(1);
+    }
+
+    .input-img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 38px;
+      width: 32px;
+      padding: 10px 10px 10px 4px;
+      cursor: none;
+    }
+
+    .input-error {
+      outline: 1px solid $error-color !important;
+      border-color: $error-color !important;
+    }
+
+    .input-error ~ .form-line {
+      background: $error-color !important;
+    }
+
+
+    .input-error ~ .input-img {
+      display: block !important;
+    }
+
+    .input-error-custom {
+      outline: 1px solid $error-color !important;
+      border-bottom-color: $error-color !important;
+    }
+
+    .input-error-custom ~ .form-line {
+      background: $error-color !important;
+    }
+
+
+    .input-error-custom ~ .input-img {
+      display: block !important;
+    }
+
+    .input-icon {
+      color: theme-palette-color('grays', 600);
+      position: absolute;
+      right: 0;
+      height: 37.1px;
+      width: 32px;
+      cursor: pointer;
+
+      em {
+        font-size: 18px;
+      }
+    }
+
+  }
+
+  .form-sub-variants-added{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: auto;
+    margin-top: 12px;
+
+    .sub_variant{
+      position: relative;
+      color: theme-palette-color('font', title);
+      border: 1px solid theme-palette-color('grays', 200);
+      border-radius: 6px;
+      padding: 10px;
+
+      em{
+        position: absolute;
+        top: 10px;
+        right: 6px;
+        font-size: 18px;
+        color: $error-color;
+        cursor: pointer;
+        &:hover{
+          color: theme-palette-color('color', 'primary');
+        }
+      }
+    }
+  }
+
+  .form-group-secondary {
+    position: relative;
+    margin-bottom: 8px;
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+
+    .form-group-phone {
+      display: flex;
+      gap: 10px;
+
+      .phone {
+        width: 90px;
+        background: white;
+        outline: .5px solid theme-palette-color('grays', 300);
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 30px;
+        }
+
+        span {
+          font-size: 14px;
+          color: inherit;
+        }
+      }
+
+      input {
+        flex: 1;
+      }
+    }
+
+    .form-input-secondary {
+      width: 100%;
+      background: none;
+      color: theme-palette-color('font', 'title');
+      font-size: 14px;
+      padding: 10px;
+      border: none;
+      outline: .5px solid theme-palette-color('grays', 300);
+      font-family: $font-family;
+      cursor: text;
+      border-radius: 4px;
+
+      &:focus {
+        outline: 2px solid theme-palette-color('color', 'primary');
+
+        &:not(.input-error) {
+          outline-color: theme-palette-color('color', 'primary');
+          color: theme-palette-color('color', 'primary');
+
+          ~ .form-label-secondary {
+            color: theme-palette-color('color', 'primary');
+          }
+        }
+      }
+    }
+
+    .form-label-secondary {
+      order: -1;
+      display: inline-block;
+      color: theme-palette-color('font', 'title');
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 0 4px 4px;
+    }
+  }
+
+  .form-group-checkbox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+}
+
+.form-update{
+  display: flex;
+  flex-direction: column;
+}
+
+.datepicker {
+  .form-group {
+    .form-input {
+      margin-top: 0 !important;
+      height: 20px !important;
+      box-sizing: content-box;
+      width: 262px !important;
+    }
+  }
+
+  .mat-icon-button {
+    margin-top: 2px;
+  }
+
+  .button {
+    position: absolute;
+    right: 0;
+    top: 22px;
+  }
+}
+
+.datepicker-line {
+  .form-input {
+    height: 36px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  .mat-icon-button {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+  }
+}
+
+.form-rounded {
+  .form-group {
+    .form-input {
+      border: 1px solid theme-palette-color('grays', 600);
+      border-radius: 4px;
+
+      &:focus {
+        border-color: theme-palette-color('color', 'primary');
+        outline: 1px solid theme-palette-color('color', 'primary');
+      }
+    }
+
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.form-check {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-height{
+  height: auto !important;
+  overflow: unset !important;
+}
+
+input {
+  font-family: $font-family;
+}
+
+.datepicker-primary {
+
+  .form-input {
+    margin-top: 0 !important;
+    width: -webkit-fill-available !important;
+    height: auto !important;
+  }
+
+  .button {
+    position: absolute;
+    right: 0;
+    top: 22px;
+  }
+}
+
+mat-checkbox {
+  font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+.characters {
+  color: theme-palette-color('color', 'secondary');
+  font-weight: bolder !important;
+}
+
+.input-select-mix {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+
+  .input-iso {
+    flex: 1;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+    margin-top: 0;
+    flex: 3;
+  }
+}
+
+.ng-dropdown-panel.ng-select-bottom {
+  margin-top: 1px !important;
+}
+
+
+.ngx-mat-timepicker-meridian {
+  button {
+    font-size: 14px;
+    font-weight: 600;
+
+    &:hover {
+      color: white;
+      background-color: theme-palette-color('color', 'primary');
+    }
+  }
+}
+

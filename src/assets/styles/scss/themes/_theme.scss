@@ -1,0 +1,66 @@
+@use "sass:map";
+
+$theme-palette: (
+  material:(
+    50: #DDFBFFl,
+    100: #BBF6FF,
+    200: #9AF2FF,
+    300: #78EEFF,
+    400: #56E9FF,
+    500: #34E5FF,
+    600: #12E1FF,
+    700: #00D1F0,
+    800: #00B3CE,
+    900: #0096AC,
+    contrast: (
+      50: rgba(black, 0.87),
+      100: rgba(black, 0.87),
+      200: rgba(black, 0.87),
+      300: #FAEDED,
+    )
+  ),
+  //    Paleta de colores:
+  //    https://paletadecolores.com.mx/paleta/f62913/da1f0e/bd1509/a10a05/840000/
+  color:(
+    'primary': #f62913,
+    'secondary': #da1f0e,
+    'tertiary':#bd1509,
+    'cuaternario': #a10a05,
+    'quinario': #840000,
+  ),
+  background: (
+    'translucid': rgba(0, 0, 0, 0.1),
+    'translucidWhite': rgba(157, 157, 157, 0.1),
+    'translucidBorder': rgba(143, 143, 143, 0.15),
+    'primary': #EBEBEB,
+    'secondary': #FFFFFF,
+    'pardo': #212121,
+  ),
+  grays:(
+    25: #F7F7F7,
+    50: #F1F1F1,
+    100: #EAEAEA,
+    200: #D5D5D5,
+    300: #C0C0C0,
+    400: #AAAAAA,
+    500: #959595,
+    600: #808080,
+    700: #666666,
+    800: #5C5C5C,
+    900: #3E3E3E,
+  ),
+  font:(
+    'title': #384461,
+    'subtitle': #091e42
+  ),
+);
+
+@function theme-palette-color($palette,$scale) {
+  @return map.get(get-pallete($palette), $scale)
+}
+
+@function get-pallete($palette) {
+  @return map.get($theme-palette, $palette)
+}
+
+@import "material";

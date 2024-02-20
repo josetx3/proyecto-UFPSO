@@ -1,0 +1,28 @@
+/*** 1. Configurations and helpers ***/
+@import "abstracts/variables";
+
+/*** 2. Vendors ***/
+@import "vendors/normalize";
+
+/*** 4. Themes ***/
+@import "themes/theme";
+
+/*** 3. Base ***/
+@import "base/base";
+@import "base/shame";
+
+/*** 4. Layouts ***/
+@import "layouts/forms";
+@import "layouts/nav";
+@import "layouts/navbar";
+
+/*** 5. Components ***/
+@import "components/modals";
+
+/*** 6. Pages ***/
+@import "pages/main-user";
+@import "pages/home";
+@import "pages/food";
+@import "pages/movie";
+@import "pages/upcoming-movies";
+@import "pages/login";
