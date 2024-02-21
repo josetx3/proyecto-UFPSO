@@ -22,11 +22,16 @@ $theme-palette: (
   //    Paleta de colores:
   //    https://paletadecolores.com.mx/paleta/f62913/da1f0e/bd1509/a10a05/840000/
   color:(
-    'primary': #f62913,
-    'secondary': #da1f0e,
-    'tertiary':#bd1509,
-    'cuaternario': #a10a05,
-    'quinario': #840000,
+    //'primary': #f62913,
+    //'secondary': #da1f0e,
+    //'tertiary':#bd1509,
+    //'cuaternario': #a10a05,
+    //'quinario': #840000,
+    'primary': #ffff00,
+    'secondary': #d3d700,
+    'tertiary':#a7af00,
+    'cuaternario': #7c8600,
+    'quinario': #505e00,
   ),
   background: (
     'translucid': rgba(0, 0, 0, 0.1),
@@ -35,6 +40,7 @@ $theme-palette: (
     'primary': #EBEBEB,
     'secondary': #FFFFFF,
     'pardo': #212121,
+    'negro':#101010
   ),
   grays:(
     25: #F7F7F7,
