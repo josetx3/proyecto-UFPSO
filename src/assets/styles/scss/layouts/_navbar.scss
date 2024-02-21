@@ -15,8 +15,7 @@
     height: 160px;
     padding: 12px;
     border-radius: 8px;
-    background-color: theme-palette-color('background', 'translucid');
-    //border: 1px solid theme-palette-color('background', 'translucidBorder');
+    background-color: theme-palette-color('background', 'translucidWhite');
     display: flex;
     gap: 12px;
     align-items: center;
@@ -34,7 +33,6 @@
         width: 64px;
         height: 64px;
         border-radius: 50%;
-        border: 1px solid theme-palette-color('background', 'translucidBorder');
       }
     }
 
@@ -60,8 +58,6 @@
     height: calc(100% - 160px);
     padding: 12px 0;
     border-radius: 8px;
-    //background-color: theme-palette-color('background', 'translucid');
-    //border: 1px solid theme-palette-color('background', 'translucidBorder');
 
     .navbar-routes-top {
       width: 100%;
@@ -84,7 +80,7 @@
         border-radius: 8px;
         padding: 6px 24px;
         background-color: theme-palette-color('background', 'translucid');
-        //border: 1px solid theme-palette-color('background', 'translucidBorder');
+        border: 1px solid theme-palette-color('background', 'translucidWhite');
         cursor: default;
         transition: all linear .25s;
 
@@ -96,14 +92,15 @@
 
         &:hover {
           cursor: pointer;
+          color: black;
           background-color: theme-palette-color('color', 'secondary');
-          //border: 1px solid theme-palette-color('background', 'translucid');
           transition: all linear .25s;
 
           em {
-            color: whitesmoke;
+            color: black;
           }
         }
+
 
       }
     }
@@ -128,7 +125,7 @@
         border-radius: 8px;
         padding: 6px 24px;
         background-color: theme-palette-color('background', 'translucid');
-        //border: 1px solid theme-palette-color('background', 'translucidBorder');
+        border: 1px solid theme-palette-color('background', 'translucidWhite');
         cursor: default;
 
         em {
@@ -139,12 +136,12 @@
 
         &:hover {
           cursor: pointer;
+          color: black;
           background-color: theme-palette-color('color', 'secondary');
-          //border: 1px solid theme-palette-color('background', 'translucid');
           transition: all linear .25s;
 
           em {
-            color: whitesmoke;
+            color: black;
           }
         }
 

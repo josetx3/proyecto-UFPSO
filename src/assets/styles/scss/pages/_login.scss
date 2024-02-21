@@ -67,6 +67,7 @@
         transition: all linear .25s;
 
         &:hover {
+          color: black;
           cursor: pointer;
           background-color: theme-palette-color('color', 'secondary');
           transition: all linear .25s;
