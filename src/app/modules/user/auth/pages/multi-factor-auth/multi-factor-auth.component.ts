@@ -23,14 +23,16 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
   email: string = '';
   setTimeout: any;
   private code: string = '';
+  private pathCommerce: string | null = '';
 
   constructor(
     public dialog: MatDialog,
-    private _alert: AlertService,
     private _auth: AuthService,
+    private _alert: AlertService,
     private _loader: LoadingService,
     private _storage: StorageService
   ) {
+    this.pathCommerce = this._storage.getItem('path_commerce');
   }
 
   ngOnInit() {
@@ -55,22 +57,18 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
     this.codeValid = true;
   }
 
-
-  resendCode(): void {
-
-  }
-
   public sendCode(): void {
     this._loader.show();
     this.codeInput.reset();
     this.codeInput.focusOnField(0);
     const data: any = {
       user_id: this.user?.user_id,
-      user_code: this.code
+      code: this.code
     }
 
     this._auth.sendMultiFactorAuthentication(data).subscribe({
       next: (data) => {
+        console.log(data)
         this.destroyModal();
         this._auth.signedInSuccessfully(data);
         this._loader.hide();
@@ -78,6 +76,10 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
         this.codeValid = false;
       }
     });
+  }
+
+  resendCode(): void {
+
   }
 
   destroyModal(): void {
