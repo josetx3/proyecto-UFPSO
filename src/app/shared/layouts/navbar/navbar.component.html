@@ -1,11 +1,11 @@
 <div class="wrapper-main-navbar">
-  <div class="main-navbar--card">
+  <div class="main-navbar--card" *ngIf="user">
     <div class="navbar-card--profile">
       <img src="assets/img/profile-user.png" alt="Perfil del usuario">
     </div>
     <div class="navbar-card--info">
-      <span>Jose Leonardo Quintero Leon</span>
-      <span>318 384 3124</span>
+      <span> {{ user.user_name }} {{ user.user_lastname }}</span>
+      <span>3183843124</span>
     </div>
   </div>
   <div class="main-navbar--routes">
@@ -28,7 +28,10 @@
       </span>
     </div>
     <div class="navbar-routes-bottom">
-      <span (click)="loginModal()" ><em class="icon-power"></em>Ingresa</span>
+      <span (click)="loginModal()" *ngIf="!user"><em class="icon-power"></em> Ingresar</span>
+      <ng-container *ngIf="user">
+        <span (click)="Logout()"><em class="icon-power"></em>Cerrar sesión</span>
+      </ng-container>
     </div>
   </div>
 </div>
