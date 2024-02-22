@@ -1,5 +1,5 @@
 export interface TokenRefreshRequest {
-  refresh_token_id: string,
+  refresh_token: string,
 }
 
 export interface TokenRefreshResponse {

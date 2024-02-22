@@ -1,13 +1,60 @@
 .wrapper-main-multi-factor {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
   width: 100%;
   height: 100%;
   padding: 12px;
+  background-color: theme-palette-color('background', 'negro');
 
-  span {
+  .span-multi-factor--title {
+    width: 100%;
+    font-size: 22px;
+    font-weight: 500;
+    color: whitesmoke;
+    text-align: center;
+  }
+
+  .span-multi-factor--subtitle {
     width: 100%;
     font-size: 16px;
     font-weight: 500;
     color: whitesmoke;
     text-align: center;
   }
+  .multi-factor--key{
+    color: whitesmoke;
+    code-input{
+      color: whitesmoke;
+    }
+  }
+
+  .multi-factor--footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    button {
+      width: 140px;
+      height: 40px;
+      border: none;
+      outline: none;
+      font-weight: 500;
+      color: whitesmoke;
+      border-radius: 12px;
+      background-color: theme-palette-color('background', 'translucidTwo');
+      transition: all linear .25s;
+
+      &:hover {
+        color: black;
+        cursor: pointer;
+        background-color: theme-palette-color('color', 'secondary');
+        transition: all linear .25s;
+      }
+    }
+  }
+
 }

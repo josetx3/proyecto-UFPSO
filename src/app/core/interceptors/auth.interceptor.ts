@@ -49,7 +49,7 @@ export class AuthInterceptor implements HttpInterceptor {
         const token: string = this._storage.getItem('refresh_token');
         if (token) {
             const data: TokenRefreshRequest = {
-                refresh_token_id: token,
+                refresh_token: token,
             }
             return this._tokenService.refresh(data).pipe(
                 tap((data: TokenRefreshResponse) => {
