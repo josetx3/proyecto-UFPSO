@@ -4,6 +4,11 @@ body {
   background-image: url("assets/img/Fondo-2.png");
 }
 
+body, *{
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+}
+
 .mat-mdc-dialog-container .mdc-dialog__surface {
   background: transparent !important;
   border-radius: 24px !important;

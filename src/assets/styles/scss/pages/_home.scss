@@ -15,7 +15,7 @@
     padding: 12px;
     overflow: scroll;
     border-radius: 8px;
-    background-color: theme-palette-color('background', 'translucidTwo');
+    //background-color: theme-palette-color('background', 'translucidTwo');
 
     .content-left--top {
       width: 100%;
@@ -216,7 +216,6 @@
     height: 100%;
     padding: 12px;
     border-radius: 8px;
-    background-color: theme-palette-color('background', 'translucidTwo');
 
     .content-right--carrousel {
       display: flex;
@@ -245,7 +244,7 @@
         padding: 12px;
         min-height: 280px;
         border-radius: 12px;
-        background-color: theme-palette-color('background', 'translucidTwo');
+        //background-color: theme-palette-color('background', 'translucidTwo');
 
         .content-right--bottom__coupon {
           display: flex;
