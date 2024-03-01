@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "@app/modules/user/auth/pages/login/login.component";
 import {StorageService} from "@app/core/services/storage.service";
+import {AuthService} from "@app/core/services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,8 @@ export class NavbarComponent {
 
   constructor(
     private dialog: MatDialog,
-    private _storage: StorageService
+    private _storage: StorageService,
+    private _auth: AuthService
   ) {
     this.user = this._storage.getItem('user_data')
   }
@@ -27,7 +29,7 @@ export class NavbarComponent {
   }
 
   Logout(): void {
-    alert('ASd')
+    this._auth.logout();
   }
 
 }
