@@ -1,10 +1,12 @@
 @import "assets/styles/scss/main";
 
 body {
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: url("assets/img/Fondo-2.png");
 }
 
-body, *{
+body, * {
   font-family: "Roboto", sans-serif;
   font-style: normal;
 }
