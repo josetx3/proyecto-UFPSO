@@ -1,137 +1,21 @@
 <div class="wrapper-main-home">
   <div class="home-content--left">
     <div class="content-left--top">
-      <img src="assets/img/kunfu-panda.jpg" alt="Kunfu panda">
+      <img src="{{trailer}}" alt="Kunfu panda">
       <span>Mira el Trailer <em class="icon-play-circle-f"></em></span>
     </div>
     <div class="content-left--center">
-      <div class="left-center--card">
-        <div class="left-center--card__img">
-          <img src="assets/img/shazam.png" alt="shazam">
-        </div>
-        <div class="left-center--card__text">
-          <span class="card-text--title">Shazam Fury</span>
-          <span class="card-text--category">Action/Adventure</span>
-          <div>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star"></em>
-            <em class="icon-star"></em>
-          </div>
-        </div>
-      </div>
-      <!--      EJEMPLO CON OTRAS CARDS-->
-      <div class="left-center--card">
-        <div class="left-center--card__img">
-          <img src="assets/img/jhon.webp" alt="jhon">
-        </div>
-        <div class="left-center--card__text">
-          <span class="card-text--title">Jhon wick 3</span>
-          <span class="card-text--category">Accion/drama</span>
-          <div>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-          </div>
-        </div>
-      </div>
-      <div class="left-center--card">
-        <div class="left-center--card__img">
-          <img src="assets/img/scream-VI.webp" alt="scream VI">
-        </div>
-        <div class="left-center--card__text">
-          <span class="card-text--title">SCREAM VI</span>
-          <span class="card-text--category">comedia/aventura</span>
-          <div>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em></div>
-        </div>
-      </div>
-      <div class="left-center--card">
-        <div class="left-center--card__img">
-          <img src="assets/img/kunfu-panda.jpg" alt="Kunfu panda">
-        </div>
-        <div class="left-center--card__text">
-          <span class="card-text--title">Kunfu Panda</span>
-          <span class="card-text--category">comedia/infantil</span>
-          <div>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em></div>
-        </div>
-      </div>
-      <div class="left-center--card">
-        <div class="left-center--card__img">
-          <img src="assets/img/scream-VI.webp" alt="scream VI">
-        </div>
-        <div class="left-center--card__text">
-          <span class="card-text--title">SCREAM VI</span>
-          <span class="card-text--category">comedia/aventura</span>
-          <div>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em></div>
-        </div>
-      </div>
-      <div class="left-center--card">
-        <div class="left-center--card__img">
-          <img src="assets/img/jhon.webp" alt="jhon">
-        </div>
-        <div class="left-center--card__text">
-          <span class="card-text--title">Jhon wick 3</span>
-          <span class="card-text--category">Accion/drama</span>
-          <div>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-            <em class="icon-star-full"></em>
-          </div>
-        </div>
-      </div>
-      <!--      EJEMPLO CON OTRAS CARDS-->
+      <app-card-movie></app-card-movie>
     </div>
     <div class="content-left--bottom">
-      <div class="left-bottom--card">
+      <div class="left-bottom--card" *ngFor="let food of Foods">
         <div class="left-bottom--card__left">
-          <img src="assets/img/palomitas.png" alt="Imagen de comida">
+          <img src="{{food.food_img}}" alt="{{food.food_name}}">
         </div>
         <div class="left-bottom--card__right">
-          <span class="left-card--title">Palomitas grandes</span>
-          <span class="left-card--info">Con mantequilla</span>
-          <span class="left-card--price">$12.800</span>
-          <button>Ordenar</button>
-        </div>
-      </div>
-      <div class="left-bottom--card">
-        <div class="left-bottom--card__left">
-          <img src="assets/img/palomitas.png" alt="Imagen de comida">
-        </div>
-        <div class="left-bottom--card__right">
-          <span class="left-card--title">Palomitas medianas</span>
-          <span class="left-card--info">Con mantequilla</span>
-          <span class="left-card--price">$9.800</span>
-          <button>Ordenar</button>
-        </div>
-      </div>
-      <div class="left-bottom--card">
-        <div class="left-bottom--card__left">
-          <img src="assets/img/palomitas.png" alt="Imagen de comida">
-        </div>
-        <div class="left-bottom--card__right">
-          <span class="left-card--title">Palomitas pequeñas</span>
-          <span class="left-card--info">Con mantequilla</span>
-          <span class="left-card--price">$5.500</span>
+          <span class="left-card--title">{{ food.food_name }}</span>
+          <span class="left-card--info">{{ food.food_additional }}</span>
+          <span class="left-card--price">{{ food.food_price }}</span>
           <button>Ordenar</button>
         </div>
       </div>
@@ -139,7 +23,11 @@
   </div>
   <div class="home-content--right">
     <div class="content-right--carrousel">
-      <div class="content-right--top"></div>
+      <div class="content-right--top">
+        <img src="assets/img/Sillas/Silla-normal.png" alt="Silla normal">
+        <img src="assets/img/Sillas/Silla-ocupada.png" alt="Silla ocupada">
+        <img src="assets/img/Sillas/Silla-seleccionada.png" alt="Silla seleccionada">
+      </div>
       <div class="content-right--bottom">
         <div class="content-right--bottom__coupon">
           <div class="right-bottom-coupon-left">
