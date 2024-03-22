@@ -1,3 +1,20 @@
 <div class="wrapper-main-food">
-  <span>Food</span>
+  <div class="wrapper-main-food--info">
+    <span>Estos son nuestros restaurantes asociados</span>
+  </div>
+  <div class="wrapper-main-food--content">
+    <div class="main-restaurant-info" *ngFor="let restaurant of restaurants">
+      <span>{{ restaurant.name_restaurant }}</span>
+      <div class="main-restaurant-info--food">
+        <div class="restaurant-info-food-card" *ngFor="let food of restaurant.dishes">
+          <img src="{{food.img}}" alt="{{food.name}}">
+          <div class="content-info">
+            <span class="food">{{ food.name }}</span>
+            <span class="price">{{ food.price | currency }}</span>
+            <button (click)="addToCart(restaurant.name_restaurant, food)">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

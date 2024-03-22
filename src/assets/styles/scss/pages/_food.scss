@@ -5,7 +5,113 @@
   padding: 12px;
   background-color: theme-palette-color('background', 'translucid');
 
-  span {
-    color: whitesmoke;
+  .wrapper-main-food--info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+
+    span {
+      font-size: 26px;
+      font-weight: 500;
+      color: theme-palette-color('font', 'span');
+    }
   }
+
+  .wrapper-main-food--content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-height: 90%;
+    overflow: scroll;
+
+    .main-restaurant-info {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 6px;
+      width: 100%;
+      height: 350px;
+      font-size: 18px;
+      padding: 12px;
+      color: theme-palette-color('font', 'span');
+
+      .main-restaurant-info--food {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+        width: 100%;
+        height: 300px;
+        padding: 6px 12px;
+        overflow: scroll;
+
+        .restaurant-info-food-card {
+          width: 180px;
+          height: 280px;
+          padding: 8px;
+          min-width: 180px;
+          border-radius: 12px;
+          box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
+          transition: all ease-out .25s;
+
+          &:hover {
+            cursor: pointer;
+            background-color: theme-palette-color('background', 'negro');
+            box-shadow: 0 0 6px 3px rgba(255, 255, 0, .75);
+            transition: all ease-out .25s;
+          }
+
+          img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 150px;
+            margin-bottom: 2px;
+            border-radius: 12px 12px 0 0;
+            object-fit: cover;
+          }
+
+          .content-info {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            width: 100%;
+            height: 110px;
+
+            .food {
+              font-size: 16px;
+            }
+
+            .price {
+              width: 100%;
+              font-size: 14px;
+              text-align: center;
+            }
+
+            button {
+              width: 100%;
+              height: 30px;
+              outline: none;
+              border: none;
+              border-radius: 4px;
+              background-color: theme-palette-color('color', 'tertiary');
+              transition: all linear .25s;
+
+              &:hover {
+                cursor: pointer;
+                background-color: theme-palette-color('color', 'primary');
+                transition: all linear .25s;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
