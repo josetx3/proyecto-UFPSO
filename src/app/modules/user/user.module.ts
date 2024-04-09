@@ -12,6 +12,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { MultiFactorAuthComponent } from './auth/pages/multi-factor-auth/multi-factor-auth.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {CodeInputModule} from "angular-code-input";
+import { RegisterComponent } from './auth/pages/register/register.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -23,15 +26,18 @@ import {CodeInputModule} from "angular-code-input";
     MovieComponent,
     UpcomingMovieComponent,
     LoginComponent,
-    MultiFactorAuthComponent
+    MultiFactorAuthComponent,
+    RegisterComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    CodeInputModule,
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        CodeInputModule,
+        MatDatepickerModule,
+        MatInputModule,
+    ]
 })
 export class UserModule { }

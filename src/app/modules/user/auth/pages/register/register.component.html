@@ -1,0 +1,117 @@
+<div class="wrapper-main-register">
+  <div class="content-register">
+    <div class="content-register--left">
+      <img src="assets/img/Register/register.jpg" alt="Img de register">
+    </div>
+    <div class="content-register--right">
+      <span class="span-title">Registrate</span>
+      <form [formGroup]="formRegisterUser" class="form-grid grid">
+        <div formGroupName="data_person" class="form-grid grid">
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Nombre</label>
+                <input formControlName="person_name" type="text" class="form-input"
+                       placeholder="Digite el nombre" appValidateErrors appInputMask="words">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Apellido</label>
+                <input formControlName="lastname" type="text" class="form-input"
+                       placeholder="Digite el nombre" appValidateErrors appInputMask="words">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Email</label>
+                <input formControlName="email" type="text" class="form-input"
+                       placeholder="Digite su email" appValidateErrors>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Direccion</label>
+                <input formControlName="direction" type="text" class="form-input"
+                       placeholder="Digite su direccion" appValidateErrors appInputMask="words">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Celular de contacto</label>
+                <input formControlName="phone" type="text" class="form-input" appInputMask="integer"
+                       placeholder="Ingrese su celular" appValidateErrors>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Numero de documento</label>
+                <input formControlName="document_number" type="text" class="form-input" appInputMask="integer"
+                       placeholder="Ingrese su documento" appValidateErrors>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded datepicker-line">
+              <div class="form-group">
+                <label class="form-label" style="font-weight:500 ; font-size: 13px">Fecha de nacimiento</label>
+                <input [matDatepicker]="personBirthdate"
+                       [max]="dateNow" appValidateErrors class="form-input"
+                       formControlName="birthdate" matInput
+                       placeholder="DD/MM/YYYY">
+                <mat-datepicker-toggle [for]="personBirthdate" class="button" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker panelClass="datepickerOne" #personBirthdate></mat-datepicker>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div formGroupName="data_user" class="form-grid grid">
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Nombre de usuario</label>
+                <input formControlName="user_name" type="text" class="form-input"
+                       placeholder="Digite su usuario" appValidateErrors appInputMask="words">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Contraseña</label>
+                <input formControlName="password" type="text" class="form-input"
+                       placeholder="Ingresa una contraseña" appValidateErrors appInputMask="words">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Confirma tu contraseña</label>
+                <input formControlName="confirmation_password" type="text" class="form-input"
+                       placeholder="Ingresa tu contraseña de nuevo" appValidateErrors appInputMask="words">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-12">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <button class="btn-register"  (click)="sendRegistrate()"> Registrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

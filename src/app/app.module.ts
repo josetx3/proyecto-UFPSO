@@ -9,6 +9,7 @@ import {AuthInterceptor} from "@app/core/interceptors/auth.interceptor";
 import {ToastrModule} from "ngx-toastr";
 import {CodeInputModule} from "angular-code-input";
 import {SharedModule} from "@app/shared/shared.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {SharedModule} from "@app/shared/shared.module";
       timeOut: 2000
     }),
     SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

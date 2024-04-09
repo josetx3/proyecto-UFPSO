@@ -1,0 +1,63 @@
+//Global styles for alerts
+
+.toast-container {
+
+  .ngx-toastr {
+    width: 300px !important;
+    border-radius: 4px 4px 4px 4px !important;
+    box-shadow: $box-shadow-default !important;
+  }
+
+  .toast-close-button {
+    text-shadow: $box-shadow-default !important;
+  }
+
+  .toast-success {
+    border-left: 8px solid $success-color !important;
+    background-color: $success-color-light !important;
+    background-image: url("../../../img/alerts/success.svg") !important;
+
+    .toast-message, .toast-title, .toast-close-button {
+      color: $success-color !important;
+    }
+  }
+
+  .toast-error {
+    border-left: 10px solid $error-color !important;
+    background-color: $error-color-light !important;
+    background-image: url("../../../img/alerts/error.svg") !important;
+
+    .toast-message, .toast-title, .toast-close-button {
+      color: $error-color !important;
+    }
+
+  }
+
+  .toast-info {
+    border-left: 10px solid $info-color !important;
+    background-color: $info-color-light !important;
+    background-image: url("../../../img/alerts/info.svg") !important;
+
+    .toast-message, .toast-title, .toast-close-button {
+      color: $info-color !important;
+    }
+
+    .toast-close-button {
+      color: $info-color !important;
+    }
+  }
+
+  .toast-warning {
+    border-left: 10px solid $warning-color !important;
+    background-color: $warning-color-light !important;
+    background-image: url("../../../img/alerts/warning.svg") !important;
+
+    .toast-message, .toast-title, .toast-close-button {
+      color: $warning-color !important;
+    }
+
+    .toast-close-button {
+      color: $warning-color !important;
+    }
+  }
+}

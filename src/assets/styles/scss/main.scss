@@ -19,6 +19,7 @@
 @import "layouts/card-movie";
 
 /*** 5. Components ***/
+@import "components/alerts";
 @import "components/modals";
 
 /*** 6. Pages ***/
@@ -29,3 +30,4 @@
 @import "pages/movie";
 @import "pages/upcoming-movies";
 @import "pages/login";
+@import "pages/register";

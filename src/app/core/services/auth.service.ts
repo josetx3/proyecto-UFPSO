@@ -50,4 +50,9 @@ export class AuthService {
     // }, 500)
   }
 
+  public sigIn(userRequest: any): Observable<any> {
+    console.log(userRequest)
+    return this._http.post<any, any>(EndPoints.SIG_IN, userRequest, true)
+  }
+
 }
