@@ -8,51 +8,15 @@
       <app-card-movie></app-card-movie>
     </div>
     <div class="content-left--bottom">
-      <div class="left-bottom--card" *ngFor="let food of Foods">
-        <div class="left-bottom--card__left">
-          <img src="{{food.food_img}}" alt="{{food.food_name}}">
-        </div>
-        <div class="left-bottom--card__right">
-          <span class="left-card--title">{{ food.food_name }}</span>
-          <span class="left-card--info">{{ food.food_additional }}</span>
-          <span class="left-card--price">{{ food.food_price }}</span>
-          <button>Ordenar</button>
-        </div>
-      </div>
+      <app-card-food></app-card-food>
     </div>
   </div>
   <div class="home-content--right">
     <div class="content-right--carrousel">
-      <div class="content-right--top">
+      <div class="content-right--main">
         <img src="assets/img/Sillas/Silla-normal.png" alt="Silla normal">
         <img src="assets/img/Sillas/Silla-ocupada.png" alt="Silla ocupada">
         <img src="assets/img/Sillas/Silla-seleccionada.png" alt="Silla seleccionada">
-      </div>
-      <div class="content-right--bottom">
-        <div class="content-right--bottom__coupon">
-          <div class="right-bottom-coupon-left">
-            <div class="bottom-coupon-left--title">
-              <span>Scream VI</span>
-            </div>
-            <div class="bottom-coupon-left--center">
-              <div class="bottom-coupon-left--center__content">
-                <span>Horario</span>
-                <span>Nocturno</span>
-              </div>
-              <div class="bottom-coupon-left--center__content">
-                <span>Puestos</span>
-                <span>4</span>
-              </div>
-            </div>
-            <div class="bottom-coupon-left--bottom">
-              <span>$120.000</span>
-              <button>Comprar</button>
-            </div>
-          </div>
-          <div class="right-bottom-coupon-right">
-            <img src="assets/img/scream-VI.webp" alt="">
-          </div>
-        </div>
       </div>
     </div>
   </div>

@@ -15,14 +15,15 @@
     padding: 12px;
     overflow: scroll;
     border-radius: 8px;
-    //background-color: theme-palette-color('background', 'translucidTwo');
 
     .content-left--top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       position: relative;
       height: auto;
-      min-height: 300px;
-      max-height: 330px;
+      min-height: 270px;
       border-radius: 12px;
 
       img {
@@ -64,95 +65,19 @@
     }
 
     .content-left--center {
-      display: flex;
-      justify-content: flex-start;
       width: 100%;
       padding: 12px;
-      height: 280px;
-      overflow: scroll;
-      min-height: 280px;
+      height: 340px;
+      min-height: 340px;
+      //border: 1px solid red;
     }
 
     .content-left--bottom {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
       width: 100%;
       padding: 12px;
-      height: 185px;
-      overflow: scroll;
-      min-height: 185px;
-
-      .left-bottom--card {
-        display: flex;
-        gap: 10px;
-        width: 300px;
-        height: 160px;
-        padding: 12px;
-        border-radius: 12px;
-        background-color: theme-palette-color('background', 'negro');
-
-        .left-bottom--card__left {
-          width: 130px;
-          height: 100%;
-
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-          }
-        }
-
-        .left-bottom--card__right {
-          display: flex;
-          align-items: center;
-          flex-direction: column;
-          justify-content: flex-start;
-          gap: 6px;
-          width: 170px;
-          height: 100%;
-
-          .left-card--title {
-            width: 100%;
-            height: 45px;
-            font-size: 20px;
-            color: whitesmoke;
-          }
-
-          .left-card--info {
-            width: 100%;
-            font-size: 14px;
-            color: theme-palette-color('grays', 600);
-          }
-
-          .left-card--price {
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
-            color: theme-palette-color('color', 'primary');
-          }
-
-          button {
-            width: 120px;
-            height: 30px;
-            border: none;
-            outline: none;
-            font-weight: 600;
-            border-radius: 12px;
-            background-color: theme-palette-color('color', 'secondary');
-            transition: all linear .25s;
-
-            &:hover {
-              cursor: pointer;
-              font-weight: 700;
-              box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
-              background-color: theme-palette-color('color', 'primary');
-              transition: all linear .25s;
-            }
-          }
-        }
-      }
+      height: 150px;
+      min-height: 150px;
+      //border: 1px solid red;
     }
   }
 
@@ -172,13 +97,13 @@
       padding: 4px 6px;
       overflow: scroll;
 
-      .content-right--top {
+      .content-right--main {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 12px;
         width: 100%;
-        height: 360px;
+        height: 100%;
         min-height: 360px;
         border-radius: 12px;
         background-color: theme-palette-color('background', 'translucidTwo');
@@ -186,115 +111,9 @@
         img {
           width: 26px;
           height: 26px;
+          rotate: (180deg);
         }
       }
-
-      .content-right--bottom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 280px;
-        padding: 12px;
-        min-height: 280px;
-        border-radius: 12px;
-        //background-color: theme-palette-color('background', 'translucidTwo');
-
-        .content-right--bottom__coupon {
-          display: flex;
-          width: 380px;
-          height: 200px;
-          min-width: 380px;
-          min-height: 200px;
-          border-radius: 12px;
-
-          .right-bottom-coupon-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 280px;
-            height: 100%;
-            padding: 12px;
-            border-radius: 12px 0 0 12px;
-            background-color: theme-palette-color('background', 'negro');
-
-            .bottom-coupon-left--title {
-              width: 100%;
-              height: 40px;
-              font-size: 26px;
-              font-weight: 600;
-              color: theme-palette-color('font', 'span');
-            }
-
-            .bottom-coupon-left--center {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              gap: 12px;
-              width: 100%;
-              height: 120px;
-
-              .bottom-coupon-left--center__content {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                font-size: 18px;
-                font-weight: 400;
-                color: theme-palette-color('font', 'span');
-              }
-            }
-
-            .bottom-coupon-left--bottom {
-              display: flex;
-              justify-content: space-between;
-              width: 100%;
-              height: 40px;
-
-              span {
-                font-size: 24px;
-                font-weight: 600;
-                color: theme-palette-color('font', 'span');
-              }
-
-              button {
-                width: 120px;
-                height: 30px;
-                border: none;
-                outline: none;
-                font-weight: 600;
-                border-radius: 12px;
-                background-color: theme-palette-color('color', 'secondary');
-                transition: all linear .25s;
-
-                &:hover {
-                  cursor: pointer;
-                  font-weight: 700;
-                  box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
-                  background-color: theme-palette-color('color', 'primary');
-                  transition: all linear .25s;
-                }
-              }
-            }
-          }
-
-          .right-bottom-coupon-right {
-            width: 120px;
-            height: 100%;
-            border-left: 4px dashed theme-palette-color('background', 'translucidBorder');
-            border-radius: 0 12px 12px 0;
-
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              border-radius: 0 12px 12px 0;
-            }
-          }
-
-        }
-      }
-
     }
-
   }
 }

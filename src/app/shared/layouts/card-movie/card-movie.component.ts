@@ -57,54 +57,54 @@ export class CardMovieComponent {
       movie_times: '18:00 PM - 20:28 PM',
       movie_status: 'Activa'
     },
-    {
-      movie_id: 5,
-      movie_name: 'The Matrix',
-      movie_category: 'Ciencia ficción / Acción',
-      movie_rating: 3,
-      movie_img: 'assets/img/movies/the-matrix.jpg',
-      movie_date: '1999',
-      movie_duration: '2h 16m',
-      movie_text: 'The Matrix is a 1999 science fiction action film written and directed by the Wachowskis. It stars Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano and is the first installment in the Matrix franchise.',
-      movie_times: '12:00 PM - 14:16 PM',
-      movie_status: 'Activa'
-    },
-    {
-      movie_id: 6,
-      movie_name: 'Avengers: Endgame',
-      movie_category: 'Acción / Fantasía',
-      movie_rating: 2,
-      movie_img: 'assets/img/movies/avenger-end-games.webp',
-      movie_date: '2019',
-      movie_duration: '3h 2m',
-      movie_text: 'Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the direct sequel to Avengers: Infinity War (2018) and the 22nd film in the Marvel Cinematic Universe (MCU).',
-      movie_times: '15:00 PM - 18:02 PM',
-      movie_status: 'Activa'
-    },
-    {
-      movie_id: 7,
-      movie_name: 'Interstellar',
-      movie_category: 'Ciencia ficción / Drama',
-      movie_rating: 4,
-      movie_img: 'assets/img/movies/interstellar.jpg',
-      movie_date: '2014',
-      movie_duration: '2h 49m',
-      movie_text: 'Interstellar is a 2014 epic science fiction film directed and produced by Christopher Nolan. It stars Matthew McConaughey, Anne Hathaway, Jessica Chastain, Bill Irwin, Ellen Burstyn, John Lithgow, Michael Caine, and Matt Damon.',
-      movie_times: '17:30 PM - 20:19 PM',
-      movie_status: 'Activa'
-    },
-    {
-      movie_id: 8,
-      movie_name: 'The Shawshank Redemption',
-      movie_category: 'Drama / Crimen',
-      movie_rating: 1,
-      movie_img: 'assets/img/movies/the-shawshank-redemption.jpg',
-      movie_date: '1994',
-      movie_duration: '2h 22m',
-      movie_text: 'The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont, based on the 1982 Stephen King novella Rita Hayworth and Shawshank Redemption. It tells the story of banker Andy Dufresne (Tim Robbins), who is sentenced to life in Shawshank State Penitentiary for the murders of his wife and her lover, despite his claims of innocence.',
-      movie_times: '20:30 PM - 22:52 PM',
-      movie_status: 'Activa'
-    }
+    // {
+    //   movie_id: 5,
+    //   movie_name: 'The Matrix',
+    //   movie_category: 'Ciencia ficción / Acción',
+    //   movie_rating: 3,
+    //   movie_img: 'assets/img/movies/the-matrix.jpg',
+    //   movie_date: '1999',
+    //   movie_duration: '2h 16m',
+    //   movie_text: 'The Matrix is a 1999 science fiction action film written and directed by the Wachowskis. It stars Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving, and Joe Pantoliano and is the first installment in the Matrix franchise.',
+    //   movie_times: '12:00 PM - 14:16 PM',
+    //   movie_status: 'Activa'
+    // },
+    // {
+    //   movie_id: 6,
+    //   movie_name: 'Avengers: Endgame',
+    //   movie_category: 'Acción / Fantasía',
+    //   movie_rating: 2,
+    //   movie_img: 'assets/img/movies/avenger-end-games.webp',
+    //   movie_date: '2019',
+    //   movie_duration: '3h 2m',
+    //   movie_text: 'Avengers: Endgame is a 2019 American superhero film based on the Marvel Comics superhero team the Avengers. Produced by Marvel Studios and distributed by Walt Disney Studios Motion Pictures, it is the direct sequel to Avengers: Infinity War (2018) and the 22nd film in the Marvel Cinematic Universe (MCU).',
+    //   movie_times: '15:00 PM - 18:02 PM',
+    //   movie_status: 'Activa'
+    // },
+    // {
+    //   movie_id: 7,
+    //   movie_name: 'Interstellar',
+    //   movie_category: 'Ciencia ficción / Drama',
+    //   movie_rating: 4,
+    //   movie_img: 'assets/img/movies/interstellar.jpg',
+    //   movie_date: '2014',
+    //   movie_duration: '2h 49m',
+    //   movie_text: 'Interstellar is a 2014 epic science fiction film directed and produced by Christopher Nolan. It stars Matthew McConaughey, Anne Hathaway, Jessica Chastain, Bill Irwin, Ellen Burstyn, John Lithgow, Michael Caine, and Matt Damon.',
+    //   movie_times: '17:30 PM - 20:19 PM',
+    //   movie_status: 'Activa'
+    // },
+    // {
+    //   movie_id: 8,
+    //   movie_name: 'The Shawshank Redemption',
+    //   movie_category: 'Drama / Crimen',
+    //   movie_rating: 1,
+    //   movie_img: 'assets/img/movies/the-shawshank-redemption.jpg',
+    //   movie_date: '1994',
+    //   movie_duration: '2h 22m',
+    //   movie_text: 'The Shawshank Redemption is a 1994 American drama film written and directed by Frank Darabont, based on the 1982 Stephen King novella Rita Hayworth and Shawshank Redemption. It tells the story of banker Andy Dufresne (Tim Robbins), who is sentenced to life in Shawshank State Penitentiary for the murders of his wife and her lover, despite his claims of innocence.',
+    //   movie_times: '20:30 PM - 22:52 PM',
+    //   movie_status: 'Activa'
+    // }
   ]
 
   countStartMovie(rating: number): string[] {
