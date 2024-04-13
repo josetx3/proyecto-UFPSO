@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 10px;
     width: 60%;
     min-width: 320px;
     height: 100%;
@@ -23,7 +23,7 @@
       width: 100%;
       position: relative;
       height: auto;
-      min-height: 270px;
+      min-height: 320px;
       border-radius: 12px;
 
       img {
@@ -74,7 +74,7 @@
 
     .content-left--bottom {
       width: 100%;
-      padding: 12px;
+      //padding: 12px;
       height: 150px;
       min-height: 150px;
       //border: 1px solid red;
