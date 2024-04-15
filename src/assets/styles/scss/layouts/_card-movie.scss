@@ -1,14 +1,4 @@
-.wrapper-main-card-movie {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  height: 100%;
-  padding: 0 6px;
-  overflow: auto;
-
-  .content-card-movie {
+ .content-card-movie {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -76,5 +66,3 @@
     }
   }
 
-
-}

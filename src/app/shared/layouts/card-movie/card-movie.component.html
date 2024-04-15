@@ -1,14 +1,12 @@
-<div class="wrapper-main-card-movie">
-  <div class="content-card-movie" *ngFor="let movie of Movies">
-    <div class="left-center--card__img">
-      <img src="{{movie.movie_img}}" alt="{{movie.movie_name}}">
-    </div>
-    <div class="left-center--card__text">
-      <span class="card-text--title">{{ movie.movie_name }}</span>
-      <span class="card-text--category">{{ movie.movie_category }}</span>
-      <div>
-        <em *ngFor="let starClass of countStartMovie(movie.movie_rating)" class="{{ starClass }}"></em>
-      </div>
+<div class="content-card-movie" *ngFor="let movie of Movies">
+  <div class="left-center--card__img">
+    <img src="{{movie.movie_img}}" alt="{{movie.movie_name}}">
+  </div>
+  <div class="left-center--card__text">
+    <span class="card-text--title">{{ movie.movie_name }}</span>
+    <span class="card-text--category">{{ movie.movie_category }}</span>
+    <div>
+      <em *ngFor="let starClass of countStartMovie(movie.movie_rating)" class="{{ starClass }}"></em>
     </div>
   </div>
 </div>

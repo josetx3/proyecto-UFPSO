@@ -9,6 +9,7 @@ export interface Movie {
   movie_text: string,
   movie_times: string,
   movie_status: string,
+  movie_home: boolean
 }
 
 export interface Food {
