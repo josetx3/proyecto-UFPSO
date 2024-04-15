@@ -73,11 +73,22 @@
     }
 
     .content-left--bottom {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
       width: 100%;
-      //padding: 12px;
       height: 150px;
       min-height: 150px;
-      //border: 1px solid red;
+
+      app-card-food {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        overflow: auto;
+        padding: 0 12px;
+      }
     }
   }
 

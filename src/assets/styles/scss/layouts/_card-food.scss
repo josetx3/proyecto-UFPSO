@@ -1,75 +1,72 @@
-.wrapper-main-card-food {
+.content-card-food {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 64px;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
+  width: 310px;
+  padding: 8px;
+  height: 140px;
+  min-width: 310px;
+  border-radius: 16px;
+  box-shadow: 0 0 2px 2px rgba(255, 255, 0, .2);
+  background-color: theme-palette-color('background', 'negro');
+  transition: all ease-out .25s;
 
-  .content-card-food {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px;
-    width: 310px;
-    height: 140px;
-    border-radius: 16px;
-    box-shadow: 0 0 2px 2px rgba(255, 255, 0, .2);
-    background-color: theme-palette-color('background', 'negro');
-    transition: all ease-out .25s;
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: 0 0 5px 3px rgba(255, 255, 0, .6);
-      transition: all ease-out .25s;
-
-      .content-card-food--info {
-        .food-restaurant {
-          color: theme-palette-color('color', 'primary');
-        }
-      }
-
-    }
-
-    .content-card-food--img {
-      width: 40%;
-      height: 100%;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 16px 0 0 16px;
-      }
-    }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 3px rgba(255, 255, 0, .6);
 
     .content-card-food--info {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: 10px;
-      width: 60%;
-      height: 100%;
-      padding: 0 8px;
-
       .food-restaurant {
-        width: 100%;
-        font-size: 14px;
-        text-align: right;
-        color: theme-palette-color('color', 'cuaternario');
+        color: theme-palette-color('color', 'primary');
       }
+    }
 
-      .food-name {
-        font-size: 18px;
-        font-weight: 700;
-        color: whitesmoke;
-      }
+    transition: all ease-out .25s;
+  }
 
-      .food_flavor {
-        font-size: 14px;
-        color: theme-palette-color('grays', 600);
-      }
+  .content-card-food--img {
+    width: 40%;
+    height: 100%;
 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px 0 0 16px;
+    }
+  }
+
+  .content-card-food--info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 60%;
+    height: 100%;
+    padding: 0 8px;
+
+    .food-restaurant {
+      width: 100%;
+      font-size: 14px;
+      text-align: right;
+      color: theme-palette-color('color', 'cuaternario');
+    }
+
+    .food-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: whitesmoke;
+    }
+
+    .food_flavor {
+      font-size: 14px;
+      color: theme-palette-color('grays', 600);
+    }
+
+    .food_price {
+      font-size: 16px;
+      color: theme-palette-color('color', 'primary');
     }
   }
 }
+
