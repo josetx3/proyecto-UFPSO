@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, signal, WritableSignal} from '@angular/core';
 
 @Component({
   selector: 'app-main-user',
@@ -7,8 +7,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MainUserComponent implements OnInit {
 
+  handlerMenu: WritableSignal<boolean> = signal(false);
 
   ngOnInit(): void {
+  }
+
+  handler() {
+    this.handlerMenu.update(() => !this.handlerMenu());
   }
 
 }

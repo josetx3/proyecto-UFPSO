@@ -1,8 +1,11 @@
 <section class="wrapper-main-user">
-  <nav class="main-user--nav">
+  <nav class="main-user--nav" >
+    <div class="main-icon-menu" >
+      <em class="icon-menu" (click)="handler()"></em>
+    </div>
     <app-nav></app-nav>
   </nav>
-  <section class="main-user--navbar">
+  <section class="main-user--navbar" [ngClass]="{ 'show-menu': handlerMenu()}">
     <app-navbar></app-navbar>
   </section>
   <section class="main-user--content">
