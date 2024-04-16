@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Movie} from "@app/modules/user/interfaces/home.interface";
+import {MatDialog} from "@angular/material/dialog";
+import {ModalMovieInfoComponent} from "@app/shared/layouts/modal-movie-info/modal-movie-info.component";
 
 @Component({
   selector: 'app-card-movie',
@@ -114,6 +116,19 @@ export class CardMovieComponent {
       movie_home: false
     }
   ]
+
+  constructor(
+    public dialog: MatDialog,
+  ) {
+  }
+
+
+  openModalInfoMovie() {
+    this.dialog.open(ModalMovieInfoComponent, {
+      data: this.Movies
+    })
+  }
+
 
   countStartMovie(rating: number): string[] {
     const starClasses = [];
