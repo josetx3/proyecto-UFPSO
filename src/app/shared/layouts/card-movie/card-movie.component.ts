@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Movie} from "@app/modules/user/interfaces/home.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalMovieInfoComponent} from "@app/shared/layouts/modal-movie-info/modal-movie-info.component";
+import {MovieService} from "@app/modules/user/services/movie.service";
 
 @Component({
   selector: 'app-card-movie',
@@ -315,10 +316,10 @@ export class CardMovieComponent {
   }
 
 
-  openModalInfoMovie() {
+  openModalInfoMovie(selectedMovie: Movie) {
     this.dialog.open(ModalMovieInfoComponent, {
-      data: this.Movies
-    })
+      data: selectedMovie
+    });
   }
 
 

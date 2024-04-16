@@ -1,4 +1,4 @@
-<div class="content-card-movie" (click)="openModalInfoMovie()" *ngFor="let movie of Movies">
+<div class="content-card-movie" (click)="openModalInfoMovie(movie)" *ngFor="let movie of Movies">
   <div class="left-center--card__img">
     <img src="{{movie.movie_img}}" alt="{{movie.movie_name}}">
   </div>

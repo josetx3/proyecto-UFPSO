@@ -1,7 +1,7 @@
 export interface Movie {
   movie_id: string,
   movie_name: string,
-  movie_category: MovieCategory[],
+  movie_category?: MovieCategory[],
   movie_rating: number,
   movie_img: string,
   movie_trailer: string,
@@ -9,7 +9,7 @@ export interface Movie {
   movie_duration: string,
   movie_animation: string,
   movie_text: string,
-  movie_times: MovieTimes[],
+  movie_times?: MovieTimes[],
   movie_status: string,
   movie_home: boolean,
 }

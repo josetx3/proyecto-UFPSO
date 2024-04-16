@@ -1,6 +1,4 @@
-import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs";
-import {Movie} from "@app/modules/user/interfaces/home.interface";
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
