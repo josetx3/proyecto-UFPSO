@@ -169,3 +169,35 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .wrapper-main-modal-movie-info {
+    width: 100%;
+    max-width: 420px;
+    min-width: 280px;
+    overflow-y: auto;
+
+    .modal-movie-top {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+
+      .modal-movie-top--left {
+        width: 100%;
+
+        .movie-top-left--info {
+          justify-content: center;
+        }
+
+      }
+
+      .modal-movie-top--right {
+        width: 100%;
+
+      }
+
+    }
+
+  }
+}
