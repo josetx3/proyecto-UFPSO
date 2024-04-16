@@ -23,3 +23,26 @@
     padding: 6px 12px 12px 6px;
   }
 }
+
+@media (max-width: 500px) {
+  .wrapper-main-user {
+    height: 100%;
+
+    .main-user--nav {
+      height: 180px;
+    }
+
+    .main-user--navbar {
+      position: absolute;
+      height: 100%;
+      left: -250px; //CAMBIAR PARA QUE SE MUESTRE O NO.
+      z-index: 10;
+      background-color: theme-palette-color('background', 'pardo');
+      border-radius: 0 16px 16px 0;
+    }
+
+    .main-user--content {
+      width: 100%;
+    }
+  }
+}
