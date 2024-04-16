@@ -7,6 +7,7 @@ export interface Movie {
   movie_trailer: string,
   movie_date: string,
   movie_duration: string,
+  movie_animation: string,
   movie_text: string,
   movie_times: MovieTimes[],
   movie_status: string,

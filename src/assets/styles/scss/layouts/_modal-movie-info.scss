@@ -1,6 +1,171 @@
 .wrapper-main-modal-movie-info {
-  width: 1400px;
+  display: flex;
+  flex-direction: column;
+  width: 1250px;
   height: 600px;
-  padding: 16px;
+  padding: 12px;
   background-color: theme-palette-color('background', 'pardo');
+
+  .modal-movie-top {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+
+    .modal-movie-top--left {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 35%;
+      height: 100%;
+
+      .movie-top-left--img {
+        width: 200px;
+        height: 280px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 12px;
+        }
+      }
+
+      .movie-top-left--info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        height: 200px;
+        padding: 6px;
+
+        .movie-top-left--info__content {
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          width: 100%;
+          font-size: 18px;
+          color: theme-palette-color('font', 'span');
+
+          .movie-stars {
+            color: theme-palette-color('color', 'primary');
+          }
+
+          .movie-category {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 30px;
+            padding: 4px;
+            border-radius: 12px;
+            box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
+            transition: all linear .25s;
+
+            &:hover {
+              cursor: pointer;
+              box-shadow: 0 0 4px 2px rgba(255, 255, 0, .8);
+              transition: all linear .25s;
+            }
+          }
+
+          .movie-text {
+            overflow-y: auto;
+            max-height: 110px;
+            text-align: justify;
+          }
+        }
+      }
+    }
+
+    .modal-movie-top--right {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      width: 65%;
+      height: 100%;
+
+      .movie-top-right--trailer {
+        width: 90%;
+        height: 340px;
+
+        iframe {
+          width: 100%;
+          height: 340px;
+          border-radius: 12px;
+        }
+      }
+
+      .movie-top-right--date {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        height: 170px;
+
+        .right-date--content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          width: 100%;
+          height: 60px;
+
+          .title {
+            font-size: 24px;
+            font-weight: 500;
+            color: theme-palette-color('font', 'span');
+          }
+
+          .hour {
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 12px;
+            color: theme-palette-color('font', 'span');
+            background-color: theme-palette-color('background', 'negro');
+            transition: all linear .25s;
+
+            &:hover {
+              cursor: pointer;
+              box-shadow: 0 0 4px 2px rgba(255, 255, 0, .8);
+              transition: all linear .25s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modal-movie-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 180px;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      color: theme-palette-color('background', 'negro');
+      background-color: theme-palette-color('color', 'tertiary');
+      transition: all linear .25s;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
+        background-color: theme-palette-color('color', 'primary');
+        transition: all linear .25s;
+      }
+    }
+  }
 }

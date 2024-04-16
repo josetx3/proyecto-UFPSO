@@ -26,7 +26,7 @@ export class CardMovieComponent {
       ],
       movie_rating: 1,
       movie_img: 'assets/img/movies/shazam.png',
-      movie_trailer: '',
+      movie_trailer: '<iframe src="https://www.youtube.com/embed/AU1L6TdRPK0?si=PRMeau450zT4DHEF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
       movie_date: '2023',
       movie_duration: '2h 10m',
       movie_text: 'Shazam! Fury of the Gods is a 2023 American superhero film based on the DC character Shazam. Produced by New Line Cinema, DC Studios, and the Safran Company, and distributed by Warner Bros. Pictures, it is the sequel to Shazam! (2019) and the 12th installment in the DC Extended Universe (DCEU).',
@@ -45,6 +45,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '3D',
       movie_home: true,           // Este campo es para ver si se muestra en la parte del inicio o no
     },
     {
@@ -81,6 +82,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Inactive',
+      movie_animation: '3D',
       movie_home: true,
     },
     {
@@ -117,6 +119,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '2D',
       movie_home: true,
     },
     {
@@ -153,6 +156,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '2D',
       movie_home: true,
     },
     {
@@ -189,6 +193,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '2D',
       movie_home: true,
     },
     {
@@ -225,6 +230,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '2D',
       movie_home: false,
     },
     {
@@ -261,6 +267,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '3D',
       movie_home: false,
     },
     {
@@ -297,6 +304,7 @@ export class CardMovieComponent {
         },
       ],
       movie_status: 'Active',
+      movie_animation: '3D',
       movie_home: false,
     }
   ]
