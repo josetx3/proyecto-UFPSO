@@ -14,10 +14,9 @@
           <span>{{ data.movie_animation }}</span>
         </div>
         <div class="movie-top-left--info__content">
-          <span class="movie-category">Drama</span>
-          <span class="movie-category">Accion</span>
-          <span class="movie-category">Comedia</span>
+          <span *ngFor="let category of data.movie_category" class="movie-category">{{ category.category_name }}</span>
         </div>
+
         <div class="movie-top-left--info__content">
           <span class="movie-text">{{ data.movie_text }}</span>
         </div>
@@ -35,9 +34,7 @@
           <span class="title">Estos son nuestros horarios</span>
         </div>
         <div class="right-date--content">
-          <span class="hour">12:30</span>
-          <span class="hour">04:30</span>
-          <span class="hour">07:30</span>
+          <span class="hour" *ngFor="let hour of data.movie_times">{{ hour.movie_time_hour }}</span>
         </div>
       </div>
     </div>

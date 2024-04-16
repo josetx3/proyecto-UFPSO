@@ -22,7 +22,7 @@ export class CardMovieComponent {
         },
         {
           category_id: 'C2',
-          category_name: 'Drama'
+          category_name: 'Comedia'
         }
       ],
       movie_rating: 1,
@@ -34,7 +34,7 @@ export class CardMovieComponent {
       movie_times: [
         {
           movie_time_id: 'T1',
-          movie_time_hour: '12:30',
+          movie_time_hour: '10:30',
         },
         {
           movie_time_id: 'T2',
@@ -92,11 +92,11 @@ export class CardMovieComponent {
       movie_category: [
         {
           category_id: 'C1',
-          category_name: 'Accion'
+          category_name: 'Drama'
         },
         {
           category_id: 'C2',
-          category_name: 'Drama'
+          category_name: 'Accion'
         }
       ],
       movie_rating: 3,
