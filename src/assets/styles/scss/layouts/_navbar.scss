@@ -94,7 +94,7 @@
         &:hover {
           color: black;
           cursor: pointer;
-          box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
+          box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-h');
           background-color: theme-palette-color('color', 'secondary');
           transition: all linear .25s;
 
@@ -139,7 +139,7 @@
         &:hover {
           color: black;
           cursor: pointer;
-          box-shadow: 0 0 4px 2px rgba(255, 255, 0, .5);
+          box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-h');
           background-color: theme-palette-color('color', 'secondary');
           transition: all linear .25s;
 

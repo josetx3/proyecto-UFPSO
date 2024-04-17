@@ -39,7 +39,7 @@
               <div class="form-group">
                 <label class="form-label" style="font-size: 13px">Direccion</label>
                 <input formControlName="direction" type="text" class="form-input"
-                       placeholder="Digite su direccion" appValidateErrors appInputMask="words">
+                       placeholder="Digite su direccion" appValidateErrors>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
               <div class="form-group">
                 <label class="form-label" style="font-size: 13px">Nombre de usuario</label>
                 <input formControlName="user_name" type="text" class="form-input"
-                       placeholder="Digite su usuario" appValidateErrors appInputMask="words">
+                       placeholder="Digite su usuario" appValidateErrors>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@
               <div class="form-group">
                 <label class="form-label" style="font-size: 13px">Contraseña</label>
                 <input formControlName="password" type="text" class="form-input"
-                       placeholder="Ingresa una contraseña" appValidateErrors appInputMask="words">
+                       placeholder="Ingresa una contraseña" appValidateErrors>
               </div>
             </div>
           </div>
@@ -99,14 +99,14 @@
               <div class="form-group">
                 <label class="form-label" style="font-size: 13px">Confirma tu contraseña</label>
                 <input formControlName="confirmation_password" type="text" class="form-input"
-                       placeholder="Ingresa tu contraseña de nuevo" appValidateErrors appInputMask="words">
+                       placeholder="Ingresa tu contraseña de nuevo" appValidateErrors>
               </div>
             </div>
           </div>
           <div class="col-12 md:col-12 lg:col-12">
             <div class="form-container form-rounded">
               <div class="form-group">
-                <button class="btn-register"  (click)="sendRegistrate()"> Registrar</button>
+                <button class="btn-register" (click)="sendRegistrate()"> Registrar</button>
               </div>
             </div>
           </div>

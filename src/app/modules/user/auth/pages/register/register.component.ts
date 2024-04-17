@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
   }
 
   sendRegistrate(): void {
-    // if (this.formRegisterUser.valid) {
+    if (this.formRegisterUser.valid) {
     this._loader.show();
     const dataRegister: any = {
       user_name: this.formRegisterUser?.get('data_user')?.get('user_name')?.value,
@@ -66,30 +66,14 @@ export class RegisterComponent implements OnInit {
         lastname: this.formRegisterUser?.get('data_person')?.get('lastname')?.value,
         email: this.formRegisterUser?.get('data_person')?.get('email')?.value,
         direction: this.formRegisterUser?.get('data_person')?.get('direction')?.value,
-        document_type: this.formRegisterUser?.get('data_person')?.get('document_type')?.value,
+        // document_type: this.formRegisterUser?.get('data_person')?.get('document_type')?.value,
+        document_type: '78f8805e-4000-4e9e-a770-4e3704d27b72',
         document_number: this.formRegisterUser?.get('data_person')?.get('document_number')?.value,
         phone: this.formRegisterUser?.get('data_person')?.get('phone')?.value,
         birthdate: this.formRegisterUser?.get('data_person')?.get('birthdate')?.value,
       }
     }
-    const testData: any = {
-      user_name: 'JoseTx3',
-      img_profile: 'asdasddadasd',
-      password: 'Admin.$12345',
-      confirmation_password: 'Admin.$12345',
-      person: {
-        person_name: 'Jose Leon',
-        lastname: 'Quintero',
-        email: 'joseleoquintero123@gmail.com',
-        direction: 'cra 16 # 6a - 63',
-        document_type: '78f8805e-4000-4e9e-a770-4e3704d27b72',
-        document_number: '1004945021',
-        phone: '3183843128',
-        birthdate: '2001-10-11'
-      }
-    };
-
-    this._auth.sigIn(testData).subscribe({
+    this._auth.sigIn(dataRegister).subscribe({
       next: () => {
         this._loader.hide();
         this._alert.success('Usuario registrado exitosamente');
@@ -102,7 +86,7 @@ export class RegisterComponent implements OnInit {
         this._router.navigate(['/'])
       }
     })
-    // }
+    }
   }
 
 

@@ -6,13 +6,13 @@
   height: 140px;
   min-width: 310px;
   border-radius: 16px;
-  box-shadow: 0 0 2px 2px rgba(255, 255, 0, .2);
   background-color: theme-palette-color('background', 'negro');
+  box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-p');
   transition: all ease-out .25s;
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 5px 3px rgba(255, 255, 0, .6);
+    box-shadow: 0 0 5px 3px theme-palette-color('color', 'box-shadow-h');
 
     .content-card-food--info {
       .food-restaurant {
