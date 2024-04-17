@@ -1,20 +1,25 @@
 <div class="wrapper-main-login">
-  <span>Cine Leonelda</span>
-  <form class="form-login" [formGroup]="formLogin">
-    <div class="group-login">
-      <label>Usuario</label>
-      <input type="text" formControlName="user_name"
-             placeholder="Ingresa tu nombre de usuario">
-    </div>
-    <div class="group-login">
-      <label>Contraseña</label>
-      <input type="password" formControlName="password"
-             placeholder="Ingresa tu contraseña">
-    </div>
-    <div class="group-login">
-      <button (click)="sendLogin()">Ingresar</button>
-    </div>
-  </form>
-  <span class="span-recovery-password">¿Olvidaste tu contraseña?</span>
-  <span class="span-create-account">¿No tienes cuenta? <strong routerLink="register" >Registrate</strong></span>
+  <div class="main-login--left">
+    <img src="assets/img/Register/register.jpg" alt="Imagen de register">
+  </div>
+  <div class="main-login--right">
+    <span>Cine Leonelda</span>
+    <form class="form-login" [formGroup]="formLogin">
+      <div class="group-login">
+        <label>Usuario</label>
+        <input type="text" formControlName="user_name"
+               placeholder="Ingresa tu nombre de usuario">
+      </div>
+      <div class="group-login">
+        <label>Contraseña</label>
+        <input type="password" formControlName="password"
+               placeholder="Ingresa tu contraseña">
+      </div>
+      <div class="group-login">
+        <button (click)="sendLogin()">Ingresar</button>
+      </div>
+    </form>
+    <span class="span-recovery-password">¿Olvidaste tu contraseña?</span>
+    <span class="span-create-account">¿No tienes cuenta? <strong routerLink="register">Registrate</strong></span>
+  </div>
 </div>

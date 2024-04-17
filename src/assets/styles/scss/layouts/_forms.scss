@@ -76,7 +76,6 @@
     }
 
 
-
     .form-input {
       width: 100%;
       background: none;
@@ -92,7 +91,7 @@
       border-radius: 4px 4px 0 0;
     }
 
-    .text-area-high{
+    .text-area-high {
       resize: none;
       width: 100%;
       background: none;
@@ -284,28 +283,29 @@
 
   }
 
-  .form-sub-variants-added{
+  .form-sub-variants-added {
     display: flex;
     flex-direction: column;
     gap: 12px;
     overflow: auto;
     margin-top: 12px;
 
-    .sub_variant{
+    .sub_variant {
       position: relative;
       color: theme-palette-color('font', title);
       border: 1px solid theme-palette-color('grays', 200);
       border-radius: 6px;
       padding: 10px;
 
-      em{
+      em {
         position: absolute;
         top: 10px;
         right: 6px;
         font-size: 18px;
         color: $error-color;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
           color: theme-palette-color('color', 'primary');
         }
       }
@@ -393,7 +393,7 @@
   }
 }
 
-.form-update{
+.form-update {
   display: flex;
   flex-direction: column;
 }
@@ -457,7 +457,7 @@
   margin-bottom: 10px;
 }
 
-.form-height{
+.form-height {
   height: auto !important;
   overflow: unset !important;
 }
