@@ -23,8 +23,6 @@ export class NavbarComponent {
 
   loginModal(): void {
     this.dialog.open(LoginComponent, {
-      width: '320px',
-      height: '520px',
     })
   }
 
