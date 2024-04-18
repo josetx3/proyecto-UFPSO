@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
   }
 
   sendRegistrate(): void {
-    if (this.formRegisterUser.valid) {
+    // if (this.formRegisterUser.valid) {
     this._loader.show();
     const dataRegister: any = {
       user_name: this.formRegisterUser?.get('data_user')?.get('user_name')?.value,
@@ -86,7 +86,7 @@ export class RegisterComponent implements OnInit {
         this._router.navigate(['/'])
       }
     })
-    }
+    // }
   }
 
 
