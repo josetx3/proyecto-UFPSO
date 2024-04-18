@@ -1,84 +1,94 @@
 <div class="wrapper-main-purchase">
   <div class="wrapper-main-purchase--content">
-    <div class="main-purchase-top">
-      <div class="main-purchase-top--screen">
-        <img src="assets/img/video-pantalla.gif" alt="">
+    <div class="chair-screen" *ngIf="screen == 1">
+      <div class="main-purchase-top">
+        <div class="main-purchase-top--screen">
+          <img src="assets/img/video-pantalla.gif" alt="">
+        </div>
+        <div class="main-purchase-top--chair">
+          <!-- Recorriendo las sillas de la fila A -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsA">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+          <!-- Recorriendo las sillas de la fila B -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsB">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+          <!-- Recorriendo las sillas de la fila C -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsC">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+          <!-- Recorriendo las sillas de la fila D -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsD">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+          <!-- Recorriendo las sillas de la fila E -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsE">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+          <!-- Recorriendo las sillas de la fila F -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsF">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+          <!-- Recorriendo las sillas de la fila G -->
+          <div class="chair-row">
+            <ng-container *ngFor="let chair of chairsG">
+              <div class="main-chair">
+                <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+              </div>
+            </ng-container>
+          </div>
+        </div>
       </div>
-      <div class="main-purchase-top--chair">
-        <!-- Recorriendo las sillas de la fila A -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsA">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
+      <div class="main-purchase-bottom">
+        <div class="info-chair">
+          <div class="chair">
+            <img src="assets/img/Sillas/silla-normal.svg" alt="Silla normal">
+            <span>Disponible</span>
+          </div>
+          <div class="chair">
+            <img src="assets/img/Sillas/silla-ocupada.svg" alt="Silla ocupada">
+            <span>Ocupada</span>
+          </div>
+          <div class="chair">
+            <img src="assets/img/Sillas/silla-seleccionada.svg" alt="Silla seleccionada">
+            <span>Seleccionada</span>
+          </div>
+          <div class="chair">
+            <img src="assets/img/Sillas/silla-desactivada.svg" alt="Silla desactivada">
+            <span>Fuera de servicio</span>
+          </div>
         </div>
-        <!-- Recorriendo las sillas de la fila B -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsB">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
-        </div>
-        <!-- Recorriendo las sillas de la fila C -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsC">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
-        </div>
-        <!-- Recorriendo las sillas de la fila D -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsD">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
-        </div>
-        <!-- Recorriendo las sillas de la fila E -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsE">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
-        </div>
-        <!-- Recorriendo las sillas de la fila F -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsF">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
-        </div>
-        <!-- Recorriendo las sillas de la fila G -->
-        <div class="chair-row">
-          <ng-container *ngFor="let chair of chairsG">
-            <div class="main-chair">
-              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
-            </div>
-          </ng-container>
-        </div>
+        <button (click)="nextScreen(2)" >Agregar comida</button>
       </div>
     </div>
-    <div class="main-purchase-bottom">
-      <div class="info-chair">
-        <div class="chair">
-          <img src="assets/img/Sillas/Silla-normal.png" alt="Silla normal">
-          <span>Silla libre</span>
-        </div>
-        <div class="chair">
-          <img src="assets/img/Sillas/Silla-ocupada.png" alt="Silla ocupada">
-          <span>Silla ocupada</span>
-        </div>
-        <div class="chair">
-          <img src="assets/img/Sillas/Silla-seleccionada.png" alt="Silla seleccionada">
-          <span>Silla seleccionada</span>
-        </div>
-      </div>
-      <button>Agregar comida</button>
+    <div class="food-screen" *ngIf="screen == 2">
+      <span>JOSE</span>
+      <button (click)="nextScreen(1)" >Regresar</button>
     </div>
   </div>
   <div class="wrapper-main-purchase--checkout">

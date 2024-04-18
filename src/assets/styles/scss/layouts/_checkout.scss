@@ -1,0 +1,187 @@
+.wrapper-main-checkout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .main-checkout--top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 90px;
+    color: theme-palette-color('font', 'span');
+
+    .movie-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .movie-info {
+      font-size: 16px;
+    }
+
+  }
+
+  .main-checkout--content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 8px;
+    overflow-y: auto;
+
+    .content-main-info--chair {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 60px;
+      min-height: 60px;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-p');
+
+
+      .content-main-info-chair--left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        height: 100%;
+
+        img {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+        }
+      }
+
+      .content-main-info-chair--right {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 70%;
+        height: 100%;
+        padding: 6px;
+
+        span {
+          font-size: 18px;
+          color: theme-palette-color('font', 'span');
+        }
+
+        .chair-cost {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+          font-size: 16px;
+          color: theme-palette-color('color', 'primary');
+        }
+      }
+    }
+
+    .content-main-info--food {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 100px;
+      min-height: 100px;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-p');
+
+      .content-main-info-food--left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        height: 100%;
+
+        img {
+          width: 62px;
+          height: 62px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+
+      .content-main-info-food--right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 70%;
+        height: 100%;
+        padding: 6px;
+
+        .food-name {
+          color: theme-palette-color('font', 'span');
+        }
+
+        .food-amount {
+          width: 100%;
+          display: flex;
+          font-size: 15px;
+          justify-content: flex-start;
+          color: theme-palette-color('font', 'span');
+
+          em {
+            margin-left: 4px;
+            font-size: 15px;
+          }
+        }
+
+        .food-price {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+          color: theme-palette-color('color', 'primary');
+        }
+      }
+    }
+  }
+
+  .main-checkout--bottom {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 150px;
+
+    .total-checkout {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      height: 30px;
+      font-size: 18px;
+      font-weight: 500;
+      color: theme-palette-color('font', 'span');
+
+      em {
+        color: theme-palette-color('color', 'primary');
+      }
+
+    }
+
+    button {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      background-color: transparent;
+      color: theme-palette-color('font', 'span');
+      box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-p');
+      transition: all linear .25s;
+
+      &:hover {
+        cursor: pointer;
+        background-color: theme-palette-color('background', 'pardo');
+        box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-h');
+        transition: all linear .25s;
+      }
+    }
+  }
+}
