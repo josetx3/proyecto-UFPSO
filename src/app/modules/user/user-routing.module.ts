@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {MainUserComponent} from "@app/modules/user/pages/main-user/main-user.component";
 import {HomeComponent} from "@app/modules/user/pages/home/home.component";
 import {FoodComponent} from "@app/modules/user/pages/food/food.component";
 import {MovieComponent} from "@app/modules/user/pages/movie/movie.component";
 import {UpcomingMovieComponent} from "@app/modules/user/pages/upcoming-movie/upcoming-movie.component";
+import {ModalMovieInfoComponent} from "@app/shared/layouts/modal-movie-info/modal-movie-info.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'upcoming-movies',
         component: UpcomingMovieComponent
+      },
+      {
+        path: 'movie/:movie_id',
+        component: ModalMovieInfoComponent
       }
     ]
   }
@@ -35,4 +40,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {
+}

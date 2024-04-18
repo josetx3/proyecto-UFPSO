@@ -3,6 +3,7 @@ import {Movie} from "@app/modules/user/interfaces/home.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalMovieInfoComponent} from "@app/shared/layouts/modal-movie-info/modal-movie-info.component";
 import {MovieService} from "@app/modules/user/services/movie.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-card-movie',
@@ -312,14 +313,13 @@ export class CardMovieComponent {
 
   constructor(
     public dialog: MatDialog,
+    private router: Router
   ) {
   }
 
 
-  openModalInfoMovie(selectedMovie: Movie) {
-    this.dialog.open(ModalMovieInfoComponent, {
-      data: selectedMovie
-    });
+  openModalInfoMovie(movie: Movie) {
+    this.router.navigateByUrl('movie/' + movie.movie_id);
   }
 
 

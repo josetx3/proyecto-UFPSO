@@ -4,7 +4,7 @@
   </div>
   <div class="left-center--card__text">
     <span class="card-text--title">{{ movie.movie_name }}</span>
-    <span class="card-text--category">{{ movie.movie_category }}</span>
+    <span class="card-text--category" *ngFor="let category of movie.movie_category">{{ category.category_name }}</span>
     <div>
       <em *ngFor="let starClass of countStartMovie(movie.movie_rating)" class="{{ starClass }}"></em>
     </div>
