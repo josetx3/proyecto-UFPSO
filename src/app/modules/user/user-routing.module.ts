@@ -6,6 +6,7 @@ import {FoodComponent} from "@app/modules/user/pages/food/food.component";
 import {MovieComponent} from "@app/modules/user/pages/movie/movie.component";
 import {UpcomingMovieComponent} from "@app/modules/user/pages/upcoming-movie/upcoming-movie.component";
 import {ModalMovieInfoComponent} from "@app/shared/layouts/modal-movie-info/modal-movie-info.component";
+import {PurchaseComponent} from "@app/modules/user/pages/purchase/purchase.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'movie/:movie_id',
         component: ModalMovieInfoComponent
+      },
+      {
+        path: 'purchase',
+        component: PurchaseComponent
       }
     ]
   }

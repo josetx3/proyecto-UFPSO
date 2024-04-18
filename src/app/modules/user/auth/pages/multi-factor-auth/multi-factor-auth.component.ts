@@ -68,7 +68,6 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
 
     this._auth.sendMultiFactorAuthentication(data).subscribe({
       next: (data) => {
-        console.log(data)
         this.destroyModal();
         this._auth.signedInSuccessfully(data);
         this._loader.hide();

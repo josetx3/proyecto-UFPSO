@@ -19,6 +19,7 @@
 @import "layouts/card-movie";
 @import "layouts/card-food";
 @import "layouts/modal-movie-info";
+@import "layouts/checkout";
 
 /*** 5. Components ***/
 @import "components/alerts";
@@ -33,3 +34,4 @@
 @import "pages/upcoming-movies";
 @import "pages/login";
 @import "pages/register";
+@import "pages/purchase";

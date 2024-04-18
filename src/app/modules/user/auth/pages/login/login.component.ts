@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       }
       this._auth.login(authLogin).subscribe({
         next: (data): void => {
-          console.log(data);
           this._loader.hide();
           this.formLogin.reset();
           this._storage.setItem('user_login', data)

@@ -15,6 +15,7 @@ import {CodeInputModule} from "angular-code-input";
 import { RegisterComponent } from './auth/pages/register/register.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
+import { PurchaseComponent } from './pages/purchase/purchase.component';
 
 
 
@@ -27,7 +28,8 @@ import {MatInputModule} from "@angular/material/input";
     UpcomingMovieComponent,
     LoginComponent,
     MultiFactorAuthComponent,
-    RegisterComponent
+    RegisterComponent,
+    PurchaseComponent
   ],
     imports: [
         CommonModule,

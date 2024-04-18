@@ -79,7 +79,6 @@ export class FoodComponent {
 
   addToCart(restaurantName: string, plate: any) {
     this.selectedPlates.push({restaurant: restaurantName, plate: plate});
-    console.table(this.selectedPlates);
   }
 
 

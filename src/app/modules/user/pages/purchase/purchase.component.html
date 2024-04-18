@@ -1,0 +1,91 @@
+<div class="wrapper-main-purchase">
+  <div class="wrapper-main-purchase--content">
+    <div class="main-purchase-top">
+      <span>Shazam</span>
+      <span>18/04 14:40</span>
+    </div>
+    <div class="main-purchase-center">
+      <div class="main-purchase-center--screen">
+        <img src="assets/img/video-pantalla.gif" alt="">
+      </div>
+      <div class="main-purchase-center--chair">
+        <!-- Recorriendo las sillas de la fila A -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsA">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Recorriendo las sillas de la fila B -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsB">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Recorriendo las sillas de la fila C -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsC">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Recorriendo las sillas de la fila D -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsD">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Recorriendo las sillas de la fila E -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsE">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Recorriendo las sillas de la fila F -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsF">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Recorriendo las sillas de la fila G -->
+        <div class="chair-row">
+          <ng-container *ngFor="let chair of chairsG">
+            <div class="main-chair">
+              <img src="{{chair.chair_img}}" alt="{{chair.chair_id}}">
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="main-purchase-bottom">
+      <div class="info-chair">
+        <div class="chair">
+          <img src="assets/img/Sillas/Silla-normal.png" alt="Silla normal">
+          <span>Silla libre</span>
+        </div>
+        <div class="chair">
+          <img src="assets/img/Sillas/Silla-ocupada.png" alt="Silla ocupada">
+          <span>Silla ocupada</span>
+        </div>
+        <div class="chair">
+          <img src="assets/img/Sillas/Silla-seleccionada.png" alt="Silla seleccionada">
+          <span>Silla seleccionada</span>
+        </div>
+      </div>
+      <button>Agregar comida</button>
+    </div>
+  </div>
+  <div class="wrapper-main-purchase--checkout">
+    <app-checkout></app-checkout>
+  </div>
+</div>

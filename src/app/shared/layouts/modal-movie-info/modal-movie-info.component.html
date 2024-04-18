@@ -14,7 +14,8 @@
           <span>{{ dataMovie.movie_animation }}</span>
         </div>
         <div class="movie-top-left--info__content">
-          <span *ngFor="let category of dataMovie.movie_category" class="movie-category">{{ category.category_name }}</span>
+          <span *ngFor="let category of dataMovie.movie_category"
+                class="movie-category">{{ category.category_name }}</span>
         </div>
 
         <div class="movie-top-left--info__content">
@@ -41,6 +42,6 @@
     </div>
   </div>
   <div class="modal-movie-bottom">
-    <button>Comprar ticket <em class="icon-ticket"></em></button>
+    <button routerLink="/purchase">Comprar ticket <em class="icon-ticket"></em></button>
   </div>
 </div>
