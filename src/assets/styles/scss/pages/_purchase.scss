@@ -253,5 +253,35 @@
     border-radius: 12px;
     background-color: theme-palette-color('background', 'translucidTwo');
   }
+}
 
+@media (max-width: 500px) {
+  .wrapper-main-purchase {
+    flex-direction: column;
+    height: auto;
+
+    .wrapper-main-purchase--content {
+      width: 100%;
+      height: auto;
+
+      .chair-screen {
+        height: auto;
+
+        .main-purchase-bottom--chair {
+          height: 170px;
+
+          .info-chair {
+            flex-direction: column;
+            gap: 12px;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    .wrapper-main-purchase--checkout {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
