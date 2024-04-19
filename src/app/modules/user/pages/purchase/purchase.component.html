@@ -1,7 +1,7 @@
 <div class="wrapper-main-purchase">
   <div class="wrapper-main-purchase--content">
     <div class="chair-screen" *ngIf="screen == 1">
-      <div class="main-purchase-top">
+      <div class="main-purchase-top--chair">
         <div class="main-purchase-top--screen">
           <img src="assets/img/video-pantalla.gif" alt="">
         </div>
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div class="main-purchase-bottom">
+      <div class="main-purchase-bottom--chair">
         <div class="info-chair">
           <div class="chair">
             <img src="assets/img/Sillas/silla-normal.svg" alt="Silla normal">
@@ -83,12 +83,16 @@
             <span>Fuera de servicio</span>
           </div>
         </div>
-        <button (click)="nextScreen(2)" >Agregar comida</button>
+        <button (click)="nextScreen(2)">Agregar comida</button>
       </div>
     </div>
     <div class="food-screen" *ngIf="screen == 2">
-      <span>JOSE</span>
-      <button (click)="nextScreen(1)" >Regresar</button>
+      <div class="main-purchase-btn-return">
+        <button (click)="nextScreen(1)"><em class="icon-arrow-circle-left"></em></button>
+      </div>
+      <div class="main-purchase-content--food">
+        <app-card-food></app-card-food>
+      </div>
     </div>
   </div>
   <div class="wrapper-main-purchase--checkout">

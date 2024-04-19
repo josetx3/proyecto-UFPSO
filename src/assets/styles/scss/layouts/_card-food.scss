@@ -13,13 +13,6 @@
   &:hover {
     cursor: pointer;
     box-shadow: 0 0 5px 3px theme-palette-color('color', 'box-shadow-h');
-
-    .content-card-food--info {
-      .food-restaurant {
-        color: theme-palette-color('color', 'primary');
-      }
-    }
-
     transition: all ease-out .25s;
   }
 
@@ -39,18 +32,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 8px;
     width: 60%;
     height: 100%;
     padding: 0 8px;
-
-    .food-restaurant {
-      width: 100%;
-      font-size: 14px;
-      text-align: right;
-      color: theme-palette-color('color', 'cuaternario');
-    }
 
     .food-name {
       font-size: 16px;
@@ -63,8 +49,15 @@
       color: theme-palette-color('grays', 600);
     }
 
+    .food_cant {
+      font-size: 14px;
+      color: theme-palette-color('grays', 500);
+    }
+
     .food_price {
+      width: 100%;
       font-size: 16px;
+      text-align: right;
       color: theme-palette-color('color', 'primary');
     }
   }
