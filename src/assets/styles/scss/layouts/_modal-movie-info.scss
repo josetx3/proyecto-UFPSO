@@ -189,6 +189,13 @@
 
         .movie-top-left--info {
           justify-content: center;
+
+          .movie-top-left--info__content {
+            .movie-text {
+              max-height: 320px;
+              text-align: justify;
+            }
+          }
         }
 
       }

@@ -1,0 +1,50 @@
+.wrapper-main-administration {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+
+  .main-administration--top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    border-radius: 12px;
+    padding: 0 12px;
+    background-color: theme-palette-color('background', 'translucidWhite');
+
+    img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+  }
+
+  .main-administration--bottom {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 12px;
+    width: 100%;
+    height: calc(100dvh - 96px);
+
+    .main-administration--bottom__navbar {
+      height: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      background-color: theme-palette-color('background', 'translucidWhite');
+    }
+
+    .main-administration--bottom__content {
+      display: flex;
+      flex: 1 1 auto;
+      width: 100%;
+      height: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      background-color: theme-palette-color('background', 'translucidWhite');
+    }
+  }
+}

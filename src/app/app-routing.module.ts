@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'administration',
+    loadChildren: () => import('@app/modules/administration/administration.module').then(m => m.AdministrationModule)
   }
 ];
 

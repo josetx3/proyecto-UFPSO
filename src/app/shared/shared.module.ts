@@ -14,6 +14,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import { CardFoodComponent } from './layouts/card-food/card-food.component';
 import { ModalMovieInfoComponent } from './layouts/modal-movie-info/modal-movie-info.component';
 import { CheckoutComponent } from './layouts/checkout/checkout.component';
+import { NavbarAdmComponent } from './layouts/navbar-adm/navbar-adm.component';
 
 
 @NgModule({
@@ -26,18 +27,20 @@ import { CheckoutComponent } from './layouts/checkout/checkout.component';
     MessageErrorsDirective,
     CardFoodComponent,
     ModalMovieInfoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    NavbarAdmComponent
   ],
-  exports: [
-    NavComponent,
-    NavbarComponent,
-    LoadingComponent,
-    CardMovieComponent,
-    InputMaskDirective,
-    MessageErrorsDirective,
-    CardFoodComponent,
-    CheckoutComponent
-  ],
+    exports: [
+        NavComponent,
+        NavbarComponent,
+        LoadingComponent,
+        CardMovieComponent,
+        InputMaskDirective,
+        MessageErrorsDirective,
+        CardFoodComponent,
+        CheckoutComponent,
+        NavbarAdmComponent
+    ],
   imports: [
     CommonModule,
     RouterLink,

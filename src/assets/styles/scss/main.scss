@@ -12,26 +12,31 @@
 @import "base/shame";
 
 /*** 4. Layouts ***/
-@import "layouts/forms";
 @import "layouts/nav";
+@import "layouts/forms";
 @import "layouts/navbar";
 @import "layouts/loading";
-@import "layouts/card-movie";
-@import "layouts/card-food";
-@import "layouts/modal-movie-info";
 @import "layouts/checkout";
+@import "layouts/card-food";
+@import "layouts/card-movie";
+@import "layouts/modal-movie-info";
+// Administration
+@import "layouts/navbar-adm";
 
 /*** 5. Components ***/
 @import "components/alerts";
 @import "components/modals";
 
 /*** 6. Pages ***/
-@import "pages/multi-factor-auth";
-@import "pages/main-user";
 @import "pages/home";
 @import "pages/food";
 @import "pages/movie";
-@import "pages/upcoming-movies";
 @import "pages/login";
 @import "pages/register";
 @import "pages/purchase";
+@import "pages/main-user";
+@import "pages/upcoming-movies";
+@import "pages/multi-factor-auth";
+
+// Administration
+@import "pages/main-administration";
