@@ -15,6 +15,7 @@ import { CardFoodComponent } from './layouts/card-food/card-food.component';
 import { ModalMovieInfoComponent } from './layouts/modal-movie-info/modal-movie-info.component';
 import { CheckoutComponent } from './layouts/checkout/checkout.component';
 import { NavbarAdmComponent } from './layouts/navbar-adm/navbar-adm.component';
+import { TableComponent } from './layouts/table/table.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NavbarAdmComponent } from './layouts/navbar-adm/navbar-adm.component';
     CardFoodComponent,
     ModalMovieInfoComponent,
     CheckoutComponent,
-    NavbarAdmComponent
+    NavbarAdmComponent,
+    TableComponent
   ],
     exports: [
         NavComponent,
