@@ -16,6 +16,13 @@ import { ModalMovieInfoComponent } from './layouts/modal-movie-info/modal-movie-
 import { CheckoutComponent } from './layouts/checkout/checkout.component';
 import { NavbarAdmComponent } from './layouts/navbar-adm/navbar-adm.component';
 import { TableComponent } from './layouts/table/table.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {DataTypeTablePipe} from "@app/shared/pipes/data-type-table.pipe";
+import {GetterPropertyPipe} from "@app/shared/pipes/getter-property.pipe";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {CustomIsoPipe} from "@app/shared/pipes/custom-iso.pipe";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -30,25 +37,37 @@ import { TableComponent } from './layouts/table/table.component';
     ModalMovieInfoComponent,
     CheckoutComponent,
     NavbarAdmComponent,
+    TableComponent,
+    DataTypeTablePipe,
+    GetterPropertyPipe,
+    CustomIsoPipe
+  ],
+  exports: [
+    NavComponent,
+    NavbarComponent,
+    LoadingComponent,
+    CardMovieComponent,
+    InputMaskDirective,
+    MessageErrorsDirective,
+    CardFoodComponent,
+    CheckoutComponent,
+    NavbarAdmComponent,
     TableComponent
   ],
-    exports: [
-        NavComponent,
-        NavbarComponent,
-        LoadingComponent,
-        CardMovieComponent,
-        InputMaskDirective,
-        MessageErrorsDirective,
-        CardFoodComponent,
-        CheckoutComponent,
-        NavbarAdmComponent
-    ],
   imports: [
     CommonModule,
     RouterLink,
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+  ],
+  providers: [
+    DataTypeTablePipe,
+    CustomIsoPipe
   ]
 })
 export class SharedModule {

@@ -1,1 +1,108 @@
-<p>table works!</p>
+<div class="table-container">
+  <div *ngIf="loadingTable | async"
+       class="loading-shade">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="table-header">
+    <div class="content-left">
+      <div class="search-group">
+        <input #search autocomplete="off" class="search-input" (keyup.enter)="applyFilterSearch(search.value)"
+               placeholder="Búsqueda rápida">
+        <label (click)="applyFilterSearch(search.value)"><em class="icon-search"></em></label>
+      </div>
+    </div>
+    <div class="actions-group">
+      <button (click)="addItem()" *ngIf="action.add" class="button-header">
+        <em class="icon-plus"></em> <span>{{ addActionName }}</span>
+      </button>
+    </div>
+  </div>
+  <div class="table-content">
+    <table aria-describedby="Table generic" [dataSource]="tableDataSource"
+           [ngClass]="tableDataSource.data.length===0?'h-full':''"
+           mat-table matSort multiTemplateDataRows
+           (matSortChange)="sortChange($event)">
+      <ng-container *ngIf="rowActionName?.length && rowActionName !== ''" [matColumnDef]="rowActionName">
+        <th *matHeaderCellDef mat-header-cell id="mat-header-cell">{{ rowActionName }}</th>
+        <td *matCellDef="let element" [id]="rowActionName" class="action-table" mat-cell>
+          <button (click)="viewItem(element); $event.stopPropagation();"
+                  *ngIf="action.view.can && ((action.view.can_when_status) ? validateOptionByStatus(element, action.view) : true)"
+                  class="btn-actions">
+            <em class="icon-eye-f"></em>
+          </button>
+          <button (click)="editItem(element); $event.stopPropagation();"
+                  *ngIf="action.edit.can && ((action.edit.can_when_status) ? validateOptionByStatus(element, action.edit) : true)"
+                  class="btn-actions">
+            <em class="icon-pencil-f"></em>
+          </button>
+          <button (click)="unlockItem(element); $event.stopPropagation();"
+                  *ngIf="action.unlock && element.user_status == 'Bloqueado'"
+                  class="tooltip-c btn-actions">
+            <em class="icon-padlock-open"></em>
+          </button>
+          <button (click)="activeItem(element);  $event.stopPropagation();"
+                  *ngIf="action.active && (element.commerce_status == 'SUSPENDED' || element.commerce_status == 'CANCELED')"
+                  class="tooltip-c btn-actions">
+            <em class="icon-padlock-open-f"></em>
+          </button>
+          <button (click)="blockedItem(element);  $event.stopPropagation();"
+                  *ngIf="action.active && (element.user_status == 'LOCKED' )"
+                  class="tooltip-c btn-actions">
+            <em class="icon-unlock"></em>
+          </button>
+          <button (click)="suspendedItem(element);  $event.stopPropagation();"
+                  *ngIf="action.suspended && (element.commerce_status == 'ACTIVE')"
+                  class="tooltip-c btn-actions">
+            <em class="icon-padlock-f"></em>
+          </button>
+          <button (click)="deleteItem(element); $event.stopPropagation();"
+                  [disabled]="(element.variant_type?element.variant_type == 'color': false)"
+                  *ngIf="action.delete.can && ((action.delete.can_when_status) ? validateOptionByStatus(element, action.delete) : true)"
+                  class="btn-actions">
+            <em class="icon-trash-f"></em>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container *ngFor="let tableColumn of tableColumns" [matColumnDef]="tableColumn.name">
+        <ng-container>
+          <th class="header-column" *matHeaderCellDef mat-header-cell scope="col">
+            <div class="colum-item" [ngClass]="isSearchQuick?'justify-content-start':''">
+              <em *ngIf="isSearchQuick && tableColumn.isFilterable" class="icon-search mr-1"></em>
+              <div *ngIf="tableColumn.isSortable; else notSortable" class="title_column"
+                   [mat-sort-header]="tableColumn.key" arrowPosition="after">
+                <span>{{ tableColumn.name }}</span>
+              </div>
+              <ng-template #notSortable>
+                <div class="title_column">
+                  <span>{{ tableColumn.name }}</span>
+                </div>
+              </ng-template>
+            </div>
+          </th>
+        </ng-container>
+        <td *matCellDef="let element">
+          <span class="table-text">
+            {{ element | getterProperty: tableColumn.key | dataTypeTable: tableColumn.type }}
+          </span>
+        </td>
+      </ng-container>
+      <tr *matHeaderRowDef="displayedColumns; sticky:true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" class="tr-custom" mat-row>
+      </tr>
+      <tr *matNoDataRow class="mat-row relative">
+        <div class="data-not-found">
+          <img alt="data-empty" [src]="image">
+          <span>¡No hay datos que mostrar!</span>
+        </div>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator
+    *ngIf="isPageable"
+    (page)="nextPage($event)"
+    [length]="totalElements"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    aria-label="Selecciona el tamaño por pagina">
+  </mat-paginator>
+</div>
