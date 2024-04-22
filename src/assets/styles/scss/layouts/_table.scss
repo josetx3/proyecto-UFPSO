@@ -134,8 +134,13 @@ tr.mat-row {
         background: transparent;
       }
 
+      tr {
+        color: theme-palette-color('font', 'span');
+      }
+
       td {
         padding: 2px 10px;
+        color: theme-palette-color('font', 'span');
 
         .btn-row-expanded {
           text-align: center;
@@ -328,7 +333,7 @@ tr.mat-row, tr.mat-footer-row {
     .search-group {
       position: relative;
       flex: 12;
-      background-color: #FFF;
+      background-color: theme-palette-color('background', 'translucidWhite');
       border-radius: 4px;
 
       .search-input {
