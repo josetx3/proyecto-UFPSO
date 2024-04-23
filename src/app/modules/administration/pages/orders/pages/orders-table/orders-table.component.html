@@ -1,1 +1,18 @@
-<p>orders-table works!</p>
+<div class="wrapper-module">
+  <span class="title-module">Ordenes de compra</span>
+  <app-table
+    (filter)="getOrderTable()"
+    [pageIndex]="pageIndex"
+    [pageSize]="size"
+    [action]="tableActions"
+    [totalElements]="totalElements"
+    [tableColumns]="columnsTable"
+    [tableData]="dataTable"
+    [isSearchQuick]="true"
+    [isPageable]="isPageable"
+    addActionName="Nueva pelicula"
+    rowActionName="Opciones"
+    [image]="image">
+  </app-table>
+</div>
+

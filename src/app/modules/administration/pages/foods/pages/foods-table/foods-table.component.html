@@ -1,1 +1,31 @@
-<p>foods-table works!</p>
+<div class="wrapper-module">
+  <span class="title-module">Administra tus usuarios</span>
+  <app-table
+    (add)="createFood()"
+    (edit)="edit($event)"
+    (unlock)="unlockFood($event)"
+    (filter)="getFoodTable()"
+    [pageIndex]="pageIndex"
+    [pageSize]="size"
+    [action]="tableActions"
+    [totalElements]="totalElements"
+    [tableColumns]="columnsTable"
+    [tableData]="dataTable"
+    [isSearchQuick]="true"
+    [isPageable]="isPageable"
+    addActionName="Nueva comida"
+    rowActionName="Opciones"
+    [image]="image">
+  </app-table>
+  <div class="screen-gray" *ngIf="menuEditFood"></div>
+</div>
+<section class="sidebar-form" [ngClass]="menuEditFood ? 'sidebar-form-show' : ''">
+  <!--  <div class="header-sidebar">-->
+  <!--    <span>{{title}}</span>-->
+  <!--    <em class="icon-log-in" (click)="menuEditUser = false"></em>-->
+  <!--  </div>-->
+  <div class="body-sidebar">
+    <!--    <app-user-edit (editing)="editUser($event)" class="content-sidebar-overflow"></app-user-edit>-->
+  </div>
+</section>
+
