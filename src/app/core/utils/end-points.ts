@@ -7,5 +7,8 @@ export const enum EndPoints {
   SIG_IN= 'security/user/',
   TOKEN_REFRESH = 'security/authentication/refresh_token',
   VALIDATE_CODE = 'security/authentication/mfa',
-  CSRF_TOKEN = ''
+  CSRF_TOKEN = '',
+
+  //SILLAS
+  GET_CHAIRS = 'security/place_to_sit/',
 }
