@@ -12,7 +12,7 @@ export interface Dimension {
 /*---- Document type ---*/
 export interface DocumentType {
   document_type_id: string;
-  document_code: string;
+  code: string;
   document_name: string;
 }
 

@@ -1,13 +1,13 @@
 <div class="wrapper-main-register">
   <div class="content-register">
     <div class="content-register--left">
+      <div class="main-return-home">
+        <span class="btn-return-home" routerLink=""><em class="icon-arrow-circle-left"></em> Regresar</span>
+      </div>
       <img src="assets/img/Register/register.jpg" alt="Img de register">
     </div>
     <div class="content-register--right">
-      <div class="main-return-home">
-        <span class="btn-return-home" routerLink=""><em class="icon-arrow-circle-left"></em> Regresar</span>
-        <span class="span-title">Registrate</span>
-      </div>
+
       <form [formGroup]="formRegisterUser" class="form-grid grid">
         <div formGroupName="data_person" class="form-grid grid">
           <div class="col-12 md:col-12 lg:col-6">
@@ -52,6 +52,25 @@
                 <label class="form-label" style="font-size: 13px">Celular de contacto</label>
                 <input formControlName="phone" type="text" class="form-input" appInputMask="integer"
                        placeholder="Ingrese su celular" appValidateErrors>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 md:col-12 lg:col-6">
+            <div class="form-container form-rounded">
+              <div class="form-group">
+                <label class="form-label" style="font-size: 13px">Tipo de documento</label>
+                <ng-select (change)="changeDocument($event)"
+                           [items]="documentType"
+                           bindLabel="label"
+                           bindValue="value"
+                           [clearable]="false"
+                           [searchable]="false"
+                           appValidateErrors
+                           class="custom-two form-ng-select"
+                           formControlName="document_type"
+                           appInputMask="integer"
+                           placeholder="Seleccione una opción">
+                </ng-select>
               </div>
             </div>
           </div>

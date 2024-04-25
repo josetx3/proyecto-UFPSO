@@ -40,6 +40,7 @@ import { PurchaseComponent } from './pages/purchase/purchase.component';
         CodeInputModule,
         MatDatepickerModule,
         MatInputModule,
+
     ]
 })
 export class UserModule { }

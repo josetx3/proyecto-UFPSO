@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         user_name: this.formLogin.get('user_name')?.value,
         password: this.formLogin.get('password')?.value,
       }
+
       this._auth.login(authLogin).subscribe({
         next: (data): void => {
           this._loader.hide();
@@ -53,8 +54,13 @@ export class LoginComponent implements OnInit {
             width: '320px',
             height: '320px'
           })
+        },
+        error: (e): void => {
+          console.log(e)
+          this._loader.hide();
+          this._alert.error('Error al intentar ingresar');
         }
-      })
+      });
     } else {
       this.formLogin.markAllAsTouched();
       this._loader.hide();

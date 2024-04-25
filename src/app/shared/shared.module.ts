@@ -23,6 +23,7 @@ import {GetterPropertyPipe} from "@app/shared/pipes/getter-property.pipe";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {CustomIsoPipe} from "@app/shared/pipes/custom-iso.pipe";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     CardFoodComponent,
     CheckoutComponent,
     NavbarAdmComponent,
-    TableComponent
+    TableComponent,
+    NgSelectModule
   ],
   imports: [
     CommonModule,
@@ -64,6 +66,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    NgSelectModule,
   ],
   providers: [
     DataTypeTablePipe,
