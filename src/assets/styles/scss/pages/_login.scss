@@ -6,7 +6,8 @@
   width: 900px;
   height: 500px;
   padding: 24px;
-  background-color: theme-palette-color('background', 'negro');
+  backdrop-filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.5);
 
   .main-login--left {
     width: 45%;
