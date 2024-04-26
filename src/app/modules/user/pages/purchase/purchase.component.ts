@@ -30,7 +30,6 @@ export class PurchaseComponent implements OnInit {
 
   ngOnInit() {
     this.getDataChair();
-    console.log(this.chairsA)
   }
 
   getDataChair() {
@@ -44,8 +43,6 @@ export class PurchaseComponent implements OnInit {
         this.chairsE = this.chairs.filter(chair => chair.row.charAt(0) === 'E');
         this.chairsF = this.chairs.filter(chair => chair.row.charAt(0) === 'F');
         this.chairsG = this.chairs.filter(chair => chair.row.charAt(0) === 'G');
-        console.log(this.chairs)
-        console.log(this.chairsA)
       }
     })
   }

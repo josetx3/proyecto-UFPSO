@@ -71,7 +71,7 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
         this.destroyModal();
         this._auth.signedInSuccessfully(data);
         this._loader.hide();
-        location.reload();
+        // location.reload();
       }, error: () => {
         this.codeValid = false;
       }

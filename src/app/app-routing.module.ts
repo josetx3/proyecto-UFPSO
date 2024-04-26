@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RegisterComponent} from "@app/modules/user/auth/pages/register/register.component";
+import {noAuthGuard} from "@app/core/guards/no-auth.guard";
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'administration',
-    loadChildren: () => import('@app/modules/administration/administration.module').then(m => m.AdministrationModule)
+    loadChildren: () => import('@app/modules/administration/administration.module').then(m => m.AdministrationModule),
+    canActivate: [noAuthGuard]
   }
 ];
 
