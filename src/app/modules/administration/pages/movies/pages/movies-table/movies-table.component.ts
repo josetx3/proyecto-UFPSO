@@ -1,7 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableActions, TableColumn} from "@app/core/interfaces/table.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {DatePipe} from "@angular/common";
+import {HttpParams} from "@angular/common/http";
+import {LoadingService} from "@app/core/services/loading.service";
+import {MovieService} from "@app/modules/user/services/movie.service";
+import {MatDialog} from "@angular/material/dialog";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 
 @Component({
   selector: 'app-movies-table',
@@ -9,7 +15,11 @@ import {DatePipe} from "@angular/common";
   styleUrls: ['./movies-table.component.scss'],
   providers: [DatePipe]
 })
-export class MoviesTableComponent {
+export class MoviesTableComponent implements OnInit {
+
+  public formMovie: FormGroup = new FormGroup<any>({});
+
+
   movies: any[] = [
     {
       movie_id: '1',
@@ -34,6 +44,8 @@ export class MoviesTableComponent {
     },
 
   ]
+
+  showRegisterMovie: boolean = false;
 
   menuEditMovie: boolean = false;
   title: string = 'Nueva pelicula';
@@ -70,16 +82,19 @@ export class MoviesTableComponent {
   dataTable: any[] = [];
 
   constructor(
-    private _alert: AlertService
+    private dialog: MatDialog,
+    private _alert: AlertService,
+    private _movie: MovieService,
+    private _loader: LoadingService,
   ) {
   }
 
   ngOnInit(): void {
-    this.getMovieTable();
+    // this.getMovieTable(new HttpParams());
   }
 
-  createMovie(): void {
-
+  showCreateMovie(): void {
+    this.showRegisterMovie = !this.showRegisterMovie;
   }
 
   edit(data: any): void {
@@ -89,8 +104,65 @@ export class MoviesTableComponent {
   unlockMovie(user: any): void {
   }
 
-  getMovieTable(): void {
-    this.dataTable = this.movies;
+  getMovieTable(params: HttpParams): void {
+    this._loader.show();
+    this._movie.getMovieTable(params).subscribe({
+      next: (data) => {
+        this.dataTable = data;
+        this._loader.hide();
+        console.log(data);
+      }
+    })
+  }
+
+  initFormMovie(): void {
+    this.formMovie = new FormGroup({
+      movie_name_spanish: new FormControl('', [Validators.required]),
+      movie_name_english: new FormControl('', [Validators.required]),
+      movie_description: new FormControl('', [Validators.required]),
+      movie_trailer: new FormControl('', [Validators.required]),
+      movie_actors: new FormControl('', [Validators.required]),
+      movie_release_date: new FormControl('', [Validators.required]),
+      movie_duration: new FormControl('', [Validators.required]),
+      movie_classification: new FormControl('', [Validators.required]),
+      movie_availability: new FormControl('', [Validators.required]),
+      movie_director: new FormControl('', [Validators.required]),
+      origin_country: new FormControl('', [Validators.required]),
+      gender_movies: new FormControl('', [Validators.required]),
+      language_movie: new FormControl('', [Validators.required]),
+    })
+  }
+
+  sendRegisterMovie(): void {
+    if (this.formMovie.valid) {
+      this._loader.show();
+      const dataMovieRegister: RegisterMovie = {
+        movie_name_spanish: this.formMovie.get('movie_name_spanish')?.value,
+        movie_name_english: this.formMovie.get('movie_name_english')?.value,
+        movie_description: this.formMovie.get('movie_description')?.value,
+        movie_trailer: this.formMovie.get('movie_trailer')?.value,
+        movie_actors: this.formMovie.get('movie_actors')?.value,
+        movie_release_date: this.formMovie.get('movie_release_date')?.value,
+        movie_duration: this.formMovie.get('movie_duration')?.value,
+        movie_classification: this.formMovie.get('movie_classification')?.value,
+        movie_availability: this.formMovie.get('movie_availability')?.value,
+        movie_director: this.formMovie.get('movie_director')?.value,
+        origin_country: this.formMovie.get('origin_country')?.value,
+        gender_movies: this.formMovie.get('gender_movies')?.value,
+        language_movie: this.formMovie.get('language_movie')?.value,
+      }
+      this._movie.registerMovie(dataMovieRegister).subscribe({
+        next: () => {
+          this._loader.hide();
+          this._alert.success('Pelicula registrada con exito')
+          this.getMovieTable(new HttpParams());
+        }
+      })
+
+    } else {
+      this._loader.hide();
+      this._alert.warning('Faltan campos por llenar')
+    }
   }
 
 }
