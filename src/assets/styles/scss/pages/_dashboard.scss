@@ -1,0 +1,19 @@
+.wrapper-main-dashboard {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .wrapper-main-dashboard--left {
+    width: 60%;
+    height: 100%;
+    padding: 6px;
+    border: 1px solid red;
+  }
+
+  .wrapper-main-dashboard--right {
+    width: 40%;
+    height: 100%;
+    padding: 6px;
+    border: 1px solid red;
+  }
+}

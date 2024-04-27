@@ -18,6 +18,7 @@ import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces
 export class MoviesTableComponent implements OnInit {
 
   public formMovie: FormGroup = new FormGroup<any>({});
+  dateRelease: Date = new Date();
 
 
   movies: any[] = [
@@ -91,6 +92,7 @@ export class MoviesTableComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getMovieTable(new HttpParams());
+    this.initFormMovie();
   }
 
   showCreateMovie(): void {
@@ -147,7 +149,8 @@ export class MoviesTableComponent implements OnInit {
         movie_classification: this.formMovie.get('movie_classification')?.value,
         movie_availability: this.formMovie.get('movie_availability')?.value,
         movie_director: this.formMovie.get('movie_director')?.value,
-        origin_country: this.formMovie.get('origin_country')?.value,
+        // origin_country: this.formMovie.get('origin_country')?.value,
+        origin_country: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
         gender_movies: this.formMovie.get('gender_movies')?.value,
         language_movie: this.formMovie.get('language_movie')?.value,
       }
@@ -156,6 +159,11 @@ export class MoviesTableComponent implements OnInit {
           this._loader.hide();
           this._alert.success('Pelicula registrada con exito')
           this.getMovieTable(new HttpParams());
+        },
+        error: (error) => {
+          console.error(error.error.message)
+          this._alert.error('¡Oops! Parece que hubo un problema al intentar registrar la pelicula.');
+          this._loader.hide();
         }
       })
 

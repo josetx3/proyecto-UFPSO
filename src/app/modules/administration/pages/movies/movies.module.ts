@@ -4,6 +4,9 @@ import { MoviesTableComponent } from './pages/movies-table/movies-table.componen
 import {MoviesRoutingModule} from "@app/modules/administration/pages/movies/movies-routing.module";
 import {SharedModule} from "@app/shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 
@@ -16,7 +19,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     MoviesRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class MoviesModule { }

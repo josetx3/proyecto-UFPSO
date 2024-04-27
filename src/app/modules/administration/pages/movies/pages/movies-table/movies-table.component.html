@@ -21,7 +21,132 @@
 </div>
 
 <ng-container *ngIf="showRegisterMovie">
-<div class="wrapper-main-movie-create">
-  <form [formGroup]="formMovie"></form>
-</div>
+  <div class="wrapper-main-movie-create">
+    <form [formGroup]="formMovie" class="form-grid grid">
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_name_spanish">Nombre en español</label>
+            <input type="text" id="movie_name_spanish" formControlName="movie_name_spanish" class="form-input"
+                   placeholder="Ingrese el nombre en español" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_name_english">Nombre en ingles</label>
+            <input type="text" id="movie_name_english" formControlName="movie_name_english" class="form-input"
+                   placeholder="Ingrese el nombre en ingles" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_description">Ingresa una descripcion</label>
+            <input type="text" id="movie_description" formControlName="movie_description" class="form-input"
+                   placeholder="Ingresa una descripcion" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_trailer">Trailer</label>
+            <input type="text" id="movie_trailer" formControlName="movie_trailer" class="form-input"
+                   placeholder="Ingresa el link del trailer" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_actors">Actores</label>
+            <input type="text" id="movie_actors" formControlName="movie_actors" class="form-input"
+                   placeholder="Ingresa los actores separados por ," appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="form-container form-rounded datepicker-line">
+          <div class="form-group">
+            <label class="form-label" style="font-weight:500 ; font-size: 13px">Fecha de esttreno</label>
+            <input [matDatepicker]="movieRelease"
+                   [max]="dateRelease" appValidateErrors class="form-input"
+                   formControlName="movie_release_date" matInput
+                   placeholder="DD/MM/YYYY">
+            <mat-datepicker-toggle [for]="movieRelease" class="button" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker panelClass="datepickerOne" #movieRelease></mat-datepicker>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_duration">Duracion</label>
+            <input type="text" id="movie_duration" formControlName="movie_duration" class="form-input"
+                   placeholder="Ingresa la duracion" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_classification">Clasificacion</label>
+            <input type="text" id="movie_classification" formControlName="movie_classification" class="form-input"
+                   placeholder="Ingresa la clasificacion" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_availability">Disponibilidad</label>
+            <input type="text" id="movie_availability" formControlName="movie_availability" class="form-input"
+                   placeholder="Inglresa la disponibilidad" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="movie_director">Director de la pelicula</label>
+            <input type="text" id="movie_director" formControlName="movie_director" class="form-input"
+                   placeholder="Director de la pelicula" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="origin_country">Pais de la pelicula</label>
+            <input type="text" id="origin_country" formControlName="origin_country" class="form-input"
+                   placeholder="Pais de origen" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="gender_movies">Genero</label>
+            <input type="text" id="gender_movies" formControlName="gender_movies" class="form-input"
+                   placeholder="Pais de origen" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="language_movie">Lenguaje</label>
+            <input type="text" id="language_movie" formControlName="language_movie" class="form-input"
+                   placeholder="Lenguaje" appValidateErrors>
+          </div>
+        </div>
+      </div>
+      <div class="content-btn">
+        <button (click)="sendRegisterMovie()">Registrar pelicula</button>
+      </div>
+    </form>
+  </div>
 </ng-container>
