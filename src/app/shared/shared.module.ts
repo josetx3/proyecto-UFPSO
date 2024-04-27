@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NavComponent} from './layouts/nav/nav.component';
 import {NavbarComponent} from './layouts/navbar/navbar.component';
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import { LoadingComponent } from './layouts/loading/loading.component';
 import { CardMovieComponent } from './layouts/card-movie/card-movie.component';
 import {InputMaskDirective} from "@app/shared/directives/input-mask/input-mask.directive";
@@ -56,18 +56,19 @@ import {NgSelectModule} from "@ng-select/ng-select";
     TableComponent,
     NgSelectModule
   ],
-  imports: [
-    CommonModule,
-    RouterLink,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    NgSelectModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterLink,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatProgressSpinnerModule,
+        NgSelectModule,
+        RouterLinkActive,
+    ],
   providers: [
     DataTypeTablePipe,
     CustomIsoPipe

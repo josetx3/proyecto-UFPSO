@@ -72,6 +72,21 @@
         color: theme-palette-color('color', 'primary');
       }
     }
+
+    &.active{
+      cursor: pointer;
+      border-radius: 0 0 12px 12px;
+      border-bottom: 1px solid theme-palette-color('color', 'primary');
+      transition: all linear .25s;
+
+      em {
+        color: theme-palette-color('color', 'primary');
+      }
+
+      span {
+        color: theme-palette-color('color', 'primary');
+      }
+    }
   }
 }
 
