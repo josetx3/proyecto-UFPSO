@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.dialog.closeAll();
-    this.initFormRegister();
-    this.getDocumentType();
+      this.initFormRegister();
+      this.getDocumentType();
   }
 
   getDocumentType(): void {

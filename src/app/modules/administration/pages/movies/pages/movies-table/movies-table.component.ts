@@ -8,6 +8,7 @@ import {MovieService} from "@app/modules/user/services/movie.service";
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
+import {Select} from "@app/core/interfaces/select.interface";
 
 @Component({
   selector: 'app-movies-table',
@@ -19,6 +20,11 @@ export class MoviesTableComponent implements OnInit {
 
   public formMovie: FormGroup = new FormGroup<any>({});
   dateRelease: Date = new Date();
+  public genderMovie: any;
+  public languageMovie: any;
+
+  dataGenderMovie: any = [];
+  dataLanguageMovie: any = [];
 
 
   movies: any[] = [
@@ -93,6 +99,9 @@ export class MoviesTableComponent implements OnInit {
   ngOnInit(): void {
     // this.getMovieTable(new HttpParams());
     this.initFormMovie();
+    this.getGenderMovie();
+    this.getLanguageMovie();
+
   }
 
   showCreateMovie(): void {
@@ -171,6 +180,37 @@ export class MoviesTableComponent implements OnInit {
       this._loader.hide();
       this._alert.warning('Faltan campos por llenar')
     }
+  }
+
+  getGenderMovie() {
+    this._movie.getGenderMovie().subscribe({
+      next: (data) => {
+        this.dataGenderMovie = data;
+      }
+    })
+  }
+
+  getLanguageMovie() {
+    this._movie.getLanguageMovie().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.dataLanguageMovie = data;
+      }
+    })
+  }
+
+  changeGender(_event: Select): void {
+    const validators = [Validators.required, Validators.maxLength(15)];
+    this.formMovie?.get('gender_movies')?.reset();
+    this.formMovie?.get('gender_movies')?.setValidators(validators);
+    this.formMovie?.get('gender_movies')?.updateValueAndValidity();
+  }
+
+  changeLanguage(_event: Select): void {
+    const validators = [Validators.required, Validators.maxLength(15)];
+    this.formMovie?.get('language_movie')?.reset();
+    this.formMovie?.get('language_movie')?.setValidators(validators);
+    this.formMovie?.get('language_movie')?.updateValueAndValidity();
   }
 
 }

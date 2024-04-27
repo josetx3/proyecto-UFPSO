@@ -34,7 +34,7 @@ export class AuthService {
 
   public signedInSuccessfully(data: UserAuth): void {
     this._storage.setItem('user_id', data.user_id);
-    this._storage.setItem('token_jwt', data.token_jwt);
+    this._storage.setItem('access_token', data.token_jwt);
     this._storage.setItem('refresh_token', data.refresh_token);
     this._storage.setItem('user_data', data.user_data);
     this._storage.setItem('user_module', data.user_module);

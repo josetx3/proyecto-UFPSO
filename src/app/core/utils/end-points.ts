@@ -14,5 +14,7 @@ export const enum EndPoints {
 
   //MOVIES
   GET_ALL_MOVIES = '',
-  REGISTER_MOVIE = 'security/movie',
+  GET_GENDER_MOVIE = 'security/gender/',
+  GET_LANGUAGE_MOVIE = 'security/language/',
+  REGISTER_MOVIE = 'security/movie/',
 }

@@ -22,4 +22,12 @@ export class MovieService {
     return this._http.post(EndPoints.REGISTER_MOVIE, data);
   }
 
+  public getGenderMovie(): Observable<any> {
+    return this._http.get<any>(EndPoints.GET_GENDER_MOVIE, false);
+  }
+
+  public getLanguageMovie(): Observable<any> {
+    return this._http.get<any>(EndPoints.GET_LANGUAGE_MOVIE, false);
+  }
+
 }
