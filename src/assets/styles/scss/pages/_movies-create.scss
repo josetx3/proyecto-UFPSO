@@ -8,7 +8,8 @@
   .form-movie {
 
     label {
-      color: theme-palette-color('font', 'span');
+      color: theme-palette-color('font', 'span') !important;
+      font-size: 14px !important;
     }
 
     .form-input {
@@ -21,5 +22,40 @@
       top: 17px;
       color: theme-palette-color('font', 'span');
     }
+
+    .ng-select-container {
+      color: whitesmoke;
+      background-color: transparent;
+    }
+
+    .form-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .btn-form {
+        width: 160px;
+        height: 40px;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        border-radius: 12px;
+        color: theme-palette-color('font', 'title');
+        background-color: theme-palette-color('color', 'primary');
+        transition: all linear .25s;
+
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 2px 2px theme-palette-color('color', 'box-shadow-p');
+          transition: all linear .25s;
+        }
+      }
+
+      .btn-form-return{
+
+      }
+    }
+
   }
 }

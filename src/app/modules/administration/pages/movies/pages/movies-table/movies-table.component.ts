@@ -9,6 +9,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 import {Select} from "@app/core/interfaces/select.interface";
+import {SelectService} from "@app/core/services/select.service";
+import {ImageService} from "@app/core/services/image.service";
 
 @Component({
   selector: 'app-movies-table',
@@ -23,35 +25,12 @@ export class MoviesTableComponent implements OnInit {
   public genderMovie: any;
   public languageMovie: any;
 
-  dataGenderMovie: any = [];
-  dataLanguageMovie: any = [];
+  dataGenderMovie: Select[] = [];
+  dataLanguageMovie: Select[] = [];
 
-
-  movies: any[] = [
-    {
-      movie_id: '1',
-      movie_name: 'Shazam',
-      movie_animation: '3D',
-      movie_status: 'Activo',
-      movie_duration: '2h 10m'
-    },
-    {
-      movie_id: '2',
-      movie_name: 'Kunfu panda',
-      movie_animation: '3D',
-      movie_status: 'Activo',
-      movie_duration: '1h 33m'
-    },
-    {
-      movie_id: '3',
-      movie_name: 'Scream VI',
-      movie_animation: '2D',
-      movie_status: 'Inactivo',
-      movie_duration: '2h 34m'
-    },
-
-  ]
-
+  movies: any[] = [];
+  fileNameProduct: string[] = [];
+  fileImageProduct: string[] = [];
   showRegisterMovie: boolean = false;
 
   menuEditMovie: boolean = false;
@@ -92,20 +71,22 @@ export class MoviesTableComponent implements OnInit {
     private dialog: MatDialog,
     private _alert: AlertService,
     private _movie: MovieService,
+    private _image: ImageService,
+    private _select: SelectService,
     private _loader: LoadingService,
   ) {
   }
 
   ngOnInit(): void {
-    // this.getMovieTable(new HttpParams());
-    this.initFormMovie();
+    this.getMovieTable(new HttpParams());
     this.getGenderMovie();
     this.getLanguageMovie();
-
   }
 
   showCreateMovie(): void {
     this.showRegisterMovie = !this.showRegisterMovie;
+    this.initFormMovie();
+
   }
 
   edit(data: any): void {
@@ -122,6 +103,9 @@ export class MoviesTableComponent implements OnInit {
         this.dataTable = data;
         this._loader.hide();
         console.log(data);
+      }, error: (e): void => {
+        this._loader.hide();
+        this._alert.warning('Tenemos problemas, reintenta mas tarde')
       }
     })
   }
@@ -141,8 +125,28 @@ export class MoviesTableComponent implements OnInit {
       origin_country: new FormControl('', [Validators.required]),
       gender_movies: new FormControl('', [Validators.required]),
       language_movie: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required])
     })
   }
+
+  uploadImages(event: any): void {
+    const capturedFile = event.target.files[0];
+    const supportedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+    const fileType = capturedFile.type;
+    if (supportedTypes.includes(fileType)) {
+      const fileName = capturedFile.name;
+      this.fileNameProduct.push(fileName);
+      this._image.compressImage(capturedFile, 0.10).then(
+        compressedResult => {
+          this.fileImageProduct.push(compressedResult);
+          this._alert.success('Imagen subida correctamente');
+        }
+      )
+    } else {
+      this._alert.warning('Solo se admiten archivos PNG, JPEG, JPG o WEBP.');
+    }
+  };
+
 
   sendRegisterMovie(): void {
     if (this.formMovie.valid) {
@@ -162,6 +166,7 @@ export class MoviesTableComponent implements OnInit {
         origin_country: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
         gender_movies: this.formMovie.get('gender_movies')?.value,
         language_movie: this.formMovie.get('language_movie')?.value,
+        image: this.formMovie.get('image')?.value,
       }
       this._movie.registerMovie(dataMovieRegister).subscribe({
         next: () => {
@@ -183,18 +188,11 @@ export class MoviesTableComponent implements OnInit {
   }
 
   getGenderMovie() {
-    this._movie.getGenderMovie().subscribe({
+    this._select.getGenderMovie().subscribe({
       next: (data) => {
         this.dataGenderMovie = data;
-      }
-    })
-  }
-
-  getLanguageMovie() {
-    this._movie.getLanguageMovie().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.dataLanguageMovie = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener el genero de las peliculas, reintenta mas tarde')
       }
     })
   }
@@ -204,6 +202,16 @@ export class MoviesTableComponent implements OnInit {
     this.formMovie?.get('gender_movies')?.reset();
     this.formMovie?.get('gender_movies')?.setValidators(validators);
     this.formMovie?.get('gender_movies')?.updateValueAndValidity();
+  }
+
+  getLanguageMovie() {
+    this._select.getLanguageMovie().subscribe({
+      next: (data) => {
+        this.dataLanguageMovie = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener el lenguaje de las peliculas, reintenta mas tarde')
+      }
+    })
   }
 
   changeLanguage(_event: Select): void {

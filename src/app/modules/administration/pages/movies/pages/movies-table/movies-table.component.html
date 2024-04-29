@@ -23,6 +23,31 @@
 <ng-container *ngIf="showRegisterMovie">
   <div class="wrapper-main-movie-create">
     <form [formGroup]="formMovie" class="form-grid grid form-movie">
+      <div class="col-12 md:col-12 lg:col-12">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <div class="form-btn">
+              <button class="btn-form-return" (click)="showCreateMovie()">Regresar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <div class="form-image" (change)="uploadImages($event)">
+              <label for="img-upload" class="form-upload-image"><a>Sube tu imagen</a>, el peso maximo es de 10MB</label>
+              <input id="img-upload" type="file">
+            </div>
+            <div class="form-control-image" *ngFor="let base64Img of fileImageProduct; let i = index">
+              <img [src]="base64Img" alt="img">
+              <span>{{ fileNameProduct[i] }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="col-12 md:col-6 log:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -71,7 +96,7 @@
       <div class="col-12 md:col-6 lg:col-6">
         <div class="form-container form-rounded datepicker-line">
           <div class="form-group">
-            <label class="form-label" style="font-weight:500 ; font-size: 13px">Fecha de esttreno</label>
+            <label class="form-label">Fecha de estreno</label>
             <input [matDatepicker]="movieRelease"
                    [max]="dateRelease" appValidateErrors class="form-input"
                    formControlName="movie_release_date" matInput
@@ -86,7 +111,7 @@
           <div class="form-group">
             <label for="movie_duration">Duracion</label>
             <input type="text" id="movie_duration" formControlName="movie_duration" class="form-input"
-                   placeholder="Ingresa la duracion" appValidateErrors>
+                   placeholder="Ingresa la duracion" appValidateErrors appInputMask="integer">
           </div>
         </div>
       </div>
@@ -95,7 +120,7 @@
           <div class="form-group">
             <label for="movie_classification">Clasificacion</label>
             <input type="text" id="movie_classification" formControlName="movie_classification" class="form-input"
-                   placeholder="Ingresa la clasificacion" appValidateErrors>
+                   placeholder="Ingresa la clasificacion" appValidateErrors appInputMask="float">
           </div>
         </div>
       </div>
@@ -133,8 +158,8 @@
             <label class="form-label">Genero</label>
             <ng-select (change)="changeGender($event)"
                        [items]="dataGenderMovie"
-                       bindLabel="gender_name"
-                       bindValue="gender_id"
+                       bindLabel="label"
+                       bindValue="value"
                        [clearable]="false"
                        [searchable]="false"
                        appValidateErrors
@@ -152,8 +177,8 @@
             <label class="form-label">Lenguaje</label>
             <ng-select (change)="changeLanguage($event)"
                        [items]="dataLanguageMovie"
-                       bindLabel="language_name"
-                       bindValue="language_id"
+                       bindLabel="label"
+                       bindValue="value"
                        [clearable]="false"
                        [searchable]="false"
                        appValidateErrors
@@ -165,8 +190,14 @@
           </div>
         </div>
       </div>
-      <div class="content-btn">
-        <button (click)="sendRegisterMovie()">Registrar pelicula</button>
+      <div class="col-12 md:col-12 lg:col-12">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <div class="form-btn">
+              <button class="btn-form" (click)="sendRegisterMovie()">Registrar pelicula</button>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   </div>

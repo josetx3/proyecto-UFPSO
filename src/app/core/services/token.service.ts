@@ -13,6 +13,6 @@ export class TokenService {
   }
 
   public refresh(data: TokenRefreshRequest): Observable<TokenRefreshResponse> {
-    return this._http.post<TokenRefreshRequest, TokenRefreshResponse>(EndPoints.TOKEN_REFRESH, data);
+    return this._http.post<TokenRefreshRequest, TokenRefreshResponse>(EndPoints.TOKEN_REFRESH, data , true);
   }
 }

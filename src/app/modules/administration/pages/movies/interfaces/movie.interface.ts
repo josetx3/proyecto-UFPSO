@@ -12,4 +12,5 @@ export interface RegisterMovie {
   origin_country: string;
   gender_movies: string;
   language_movie: string;
+  image: string;
 }

@@ -16,14 +16,6 @@ export interface DocumentType {
   document_name: string;
 }
 
-export interface SubCategory {
-  sub_category_id: string;
-  sub_category_name: string;
-  sub_category_status: string;
-  category_id: string;
-  category_name: string;
-}
-
 export interface Tag {
   tag_id: string;
   value: string;
@@ -35,14 +27,14 @@ export interface Currency {
   currency_iso: string;
 }
 
-export interface Variant {
-  variant_id: string;
-  variant_type: string;
-  variant_value: string;
+export interface GenderMovie {
+  gender_id: string;
+  gender_name: string;
+  gender_description: string;
 }
 
-export interface ProductWithoutOffer{
-  product_description: string;
-  product_id: string;
-  product_name: string;
+export interface LanguageMovie {
+  language_id: string;
+  language_name: string;
+  description: string;
 }
