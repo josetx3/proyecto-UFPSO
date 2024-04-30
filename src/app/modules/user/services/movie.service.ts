@@ -15,6 +15,7 @@ export class MovieService {
 
   public getMovieTable(params: HttpParams): Observable<any> {
     const defaultOptions = this._http.addParams(params);
+    console.log(this._http.get<any>(EndPoints.GET_ALL_MOVIES, false, defaultOptions))
     return this._http.get<any>(EndPoints.GET_ALL_MOVIES, false, defaultOptions);
   }
 

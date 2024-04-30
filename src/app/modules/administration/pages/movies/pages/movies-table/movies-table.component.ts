@@ -7,7 +7,7 @@ import {LoadingService} from "@app/core/services/loading.service";
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
+import {DataMovieTable, RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 import {Select} from "@app/core/interfaces/select.interface";
 import {SelectService} from "@app/core/services/select.service";
 import {ImageService} from "@app/core/services/image.service";
@@ -22,8 +22,6 @@ export class MoviesTableComponent implements OnInit {
 
   public formMovie: FormGroup = new FormGroup<any>({});
   dateRelease: Date = new Date();
-  public genderMovie: any;
-  public languageMovie: any;
 
   //Select para obtener informacion para registrar peliculas
   dataGenderMovie: Select[] = [];
@@ -40,10 +38,10 @@ export class MoviesTableComponent implements OnInit {
   image: string = './assets/img/profile-user.png';
 
   columnsTable: TableColumn[] = [
-    {name: 'Pelicula', isFilterable: true, key: 'movie_name', type: 'text'},
-    {name: 'Animacion', isFilterable: true, key: 'movie_animation', type: 'text'},
+    {name: 'Nombre', isFilterable: true, key: 'movie_name_spanish', type: 'text'},
+    {name: 'Clasificacion', isFilterable: true, key: 'movie_classification', type: 'text'},
     {name: 'Duracion', isFilterable: true, key: 'movie_duration', type: 'text'},
-    {name: 'Estado', isFilterable: true, key: 'movie_status', type: 'statusName'},
+    {name: 'Estado', isFilterable: true, key: 'movie_status', type: 'status'},
   ];
 
   tableActions: TableActions = {
@@ -66,7 +64,7 @@ export class MoviesTableComponent implements OnInit {
   totalElements: number = 0;
   hasRoles: boolean = false;
   isPageable: boolean = false;
-  dataTable: any[] = [];
+  dataTable: DataMovieTable[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -82,30 +80,13 @@ export class MoviesTableComponent implements OnInit {
     this.getMovieTable(new HttpParams());
   }
 
-  showCreateMovie(): void {
-    this.showRegisterMovie = !this.showRegisterMovie;
-    this.initFormMovie();
-    this.getGenderMovie();
-    this.getLanguageMovie();
-    this.getCountryMovie();
-    setTimeout(() => {
-    }, 1000)
-  }
-
-  edit(data: any): void {
-
-  }
-
-  unlockMovie(user: any): void {
-  }
-
+//Obtener las peliculas para la tabla
   getMovieTable(params: HttpParams): void {
     this._loader.show();
     this._movie.getMovieTable(params).subscribe({
       next: (data) => {
-        this.dataTable = data;
+        this.dataTable = data.content;
         this._loader.hide();
-        console.log(data);
       }, error: (e): void => {
         this._loader.hide();
         this._alert.warning('Tenemos problemas, reintenta mas tarde')
@@ -113,18 +94,32 @@ export class MoviesTableComponent implements OnInit {
     })
   }
 
+  showCreateMovie(): void {
+    this.showRegisterMovie = !this.showRegisterMovie;
+    this.initFormMovie();
+    this.getGenderMovie();
+    this.getLanguageMovie();
+    this.getCountryMovie();
+  }
+
+  edit(data: any): void {
+  }
+
+  unlockMovie(user: any): void {
+  }
+
   initFormMovie(): void {
     this.formMovie = new FormGroup({
-      movie_name_spanish: new FormControl('', [Validators.required]),
-      movie_name_english: new FormControl('', [Validators.required]),
-      movie_description: new FormControl('', [Validators.required]),
-      movie_trailer: new FormControl('', [Validators.required]),
-      movie_actors: new FormControl('', [Validators.required]),
+      movie_name_spanish: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      movie_name_english: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      movie_description: new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(255)]),
+      movie_trailer: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
+      movie_actors: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
       movie_release_date: new FormControl('', [Validators.required]),
-      movie_duration: new FormControl('', [Validators.required]),
-      movie_classification: new FormControl('', [Validators.required]),
-      movie_availability: new FormControl('', [Validators.required]),
-      movie_director: new FormControl('', [Validators.required]),
+      movie_duration: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3)]),
+      movie_classification: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3)]),
+      movie_availability: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      movie_director: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
       origin_country: new FormControl('', [Validators.required]),
       gender_movie: new FormControl('', [Validators.required]),
       language_movie: new FormControl('', [Validators.required]),
@@ -139,11 +134,9 @@ export class MoviesTableComponent implements OnInit {
     if (supportedTypes.includes(fileType)) {
       const fileName = capturedFile.name;
       this.fileNameProduct.push(fileName);
-      console.log(capturedFile);
       this._image.compressImage(capturedFile, 0.10).then(
         compressedResult => {
           this.fileImageProduct.push(compressedResult);
-          console.log(this.fileImageProduct);
           this._alert.success('Imagen subida correctamente');
         }
       )
@@ -152,18 +145,28 @@ export class MoviesTableComponent implements OnInit {
     }
   };
 
-
   sendRegisterMovie(): void {
     if (!this.formMovie.valid) {
       this._loader.show();
+      const movieReleaseDate: Date = this.formMovie.get('movie_release_date')?.value;
+      let formattedDate: string = '';
+      if (movieReleaseDate) {
+        // Obtener la fecha en formato ISO (YYYY-MM-DDTHH:MM:SSZ)
+        const isoDateString: string = movieReleaseDate.toISOString();
+        // Obtener solo la parte de la fecha (YYYY-MM-DD)
+        const isoDate: string = isoDateString.split('T')[0];
+        // Dividir la fecha en partes (año, mes, día)
+        const [year, month, day] = isoDate.split('-');
+        // Formatear la fecha como deseas (por ejemplo, "YYYY-MM-DD")
+        formattedDate = `${year}-${month}-${day}`;
+      }
       const dataMovieRegister: RegisterMovie = {
         movie_name_spanish: this.formMovie.get('movie_name_spanish')?.value,
         movie_name_english: this.formMovie.get('movie_name_english')?.value,
         movie_description: this.formMovie.get('movie_description')?.value,
         movie_trailer: this.formMovie.get('movie_trailer')?.value,
         movie_actors: this.formMovie.get('movie_actors')?.value,
-        // movie_release_date: this.formMovie.get('movie_release_date')?.value,
-        movie_release_date: '2024-04-29',
+        movie_release_date: formattedDate,
         movie_duration: this.formMovie.get('movie_duration')?.value,
         movie_classification: this.formMovie.get('movie_classification')?.value,
         movie_availability: this.formMovie.get('movie_availability')?.value,
@@ -172,22 +175,24 @@ export class MoviesTableComponent implements OnInit {
         gender_movie: [this.formMovie.get('gender_movie')?.value],
         language_movie: [this.formMovie.get('language_movie')?.value],
         image: this.fileImageProduct[0],
-      }
+      };
+      console.log(dataMovieRegister);
       this._movie.registerMovie(dataMovieRegister).subscribe({
         next: () => {
           this._loader.hide();
-          this._alert.success('Pelicula registrada con exito')
+          this.showRegisterMovie = !this.showRegisterMovie;
+          this._alert.success('Pelicula registrada con exito');
           this.getMovieTable(new HttpParams());
         },
         error: (error) => {
-          console.error(error.error.message)
+          console.error(error.error.message);
           this._alert.error('¡Oops! Parece que hubo un problema al intentar registrar la pelicula.');
           this._loader.hide();
         }
-      })
+      });
     } else {
       this._loader.hide();
-      this._alert.warning('Faltan campos por llenar')
+      this._alert.warning('Faltan campos por llenar');
     }
   }
 

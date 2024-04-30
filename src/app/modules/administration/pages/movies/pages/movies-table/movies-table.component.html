@@ -1,5 +1,5 @@
 <div class="wrapper-module" *ngIf="!showRegisterMovie">
-  <span class="title-module">Administra tus usuarios</span>
+  <span class="title-module">Administra tus peliculas</span>
   <app-table
     (add)="showCreateMovie()"
     (edit)="edit($event)"
@@ -19,7 +19,6 @@
   </app-table>
   <div class="screen-gray" *ngIf="menuEditMovie"></div>
 </div>
-
 <ng-container *ngIf="showRegisterMovie">
   <div class="wrapper-main-movie-create">
     <form [formGroup]="formMovie" class="form-grid grid form-movie">
@@ -119,16 +118,26 @@
           <div class="form-group">
             <label for="movie_classification">Clasificacion</label>
             <input type="text" id="movie_classification" formControlName="movie_classification" class="form-input"
-                   placeholder="Ingresa la clasificacion" appValidateErrors appInputMask="float">
+                   placeholder="Ingresa la clasificacion" appValidateErrors>
           </div>
         </div>
       </div>
       <div class="col-12 md:col-6 log:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
-            <label for="movie_availability">Disponibilidad</label>
-            <input type="text" id="movie_availability" formControlName="movie_availability" class="form-input"
-                   placeholder="Inglresa la disponibilidad" appValidateErrors>
+            <label id="movie_availability" for="movie_availability">Disponibilidad</label>
+            <ng-select formControlName="movie_availability"
+                       [clearable]="false"
+                       [searchable]="false"
+                       appValidateErrors
+                       class="custom-two form-ng-select"
+                       placeholder="Seleccione una opción">
+              <ng-option [value]="'Estreno'">Estreno</ng-option>
+              <ng-option [value]="'En cartelera'">En cartelera</ng-option>
+              <ng-option [value]="'Preventa'">Preventa</ng-option>
+              <ng-option [value]="'Proximamente'">Próximamente</ng-option>
+              <ng-option [value]="'Pasadas'">Pasadas</ng-option>
+            </ng-select>
           </div>
         </div>
       </div>

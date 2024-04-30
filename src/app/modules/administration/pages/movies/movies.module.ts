@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesTableComponent } from './pages/movies-table/movies-table.component';
 import {MoviesRoutingModule} from "@app/modules/administration/pages/movies/movies-routing.module";
 import {SharedModule} from "@app/shared/shared.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -15,14 +15,15 @@ import {MatInputModule} from "@angular/material/input";
     MoviesTableComponent,
 
   ],
-  imports: [
-    CommonModule,
-    MoviesRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule
-  ]
+    imports: [
+        CommonModule,
+        MoviesRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule
+    ]
 })
 export class MoviesModule { }
