@@ -87,13 +87,14 @@ export class MoviesTableComponent implements OnInit {
         this._loader.hide();
       }, error: (e): void => {
         this._loader.hide();
-        this._alert.warning('Tenemos problemas, reintenta mas tarde')
+        this._alert.warning('Tenemos problemas, reintenta mas tarde.')
       }
     })
   }
 
   showCreateMovie(): void {
     this.showRegisterMovie = !this.showRegisterMovie;
+    //Carga la data para los select al registrar una pelicula
     this.initFormMovie();
     this.getGenderMovie();
     this.getLanguageMovie();
