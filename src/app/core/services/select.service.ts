@@ -36,10 +36,10 @@ export class SelectService {
     return new Observable<Select[]>((observable) => {
       this._http.get<GenderMovie[]>(EndPoints.GET_GENDER_MOVIE).subscribe({
         next: (data) => {
-          const gender_movie: Select[] = data.map((select) => {
+          const gender_movie: Select[] = data.map((obj) => {
             return {
-              label: select.gender_name,
-              value: select.gender_id,
+              label: obj.gender_name,
+              value: obj.gender_id,
             }
           });
           observable.next(gender_movie);

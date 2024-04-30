@@ -23,16 +23,16 @@
 <ng-container *ngIf="showRegisterMovie">
   <div class="wrapper-main-movie-create">
     <form [formGroup]="formMovie" class="form-grid grid form-movie">
-      <div class="col-12 md:col-12 lg:col-12">
+      <div class=" div-abs col-12 md:col-12 lg:col-12">
         <div class="form-container form-rounded">
           <div class="form-group">
             <div class="form-btn">
-              <button class="btn-form-return" (click)="showCreateMovie()">Regresar</button>
+              <button class="btn-form-return" (click)="showCreateMovie()"><em class="icon-arrow-circle-left"></em>
+              </button>
             </div>
           </div>
         </div>
       </div>
-
       <div class="col-12 md:col-12 lg:col-12">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -47,7 +47,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-12 md:col-6 log:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -151,7 +150,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-12 md:col-12 lg:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -164,8 +162,7 @@
                        [searchable]="false"
                        appValidateErrors
                        class="custom-two form-ng-select"
-                       formControlName="gender_movies"
-                       appInputMask="integer"
+                       formControlName="gender_movie"
                        placeholder="Seleccione una opción">
             </ng-select>
           </div>

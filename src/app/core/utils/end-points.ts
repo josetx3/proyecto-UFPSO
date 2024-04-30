@@ -13,7 +13,7 @@ export const enum EndPoints {
   GET_CHAIRS = 'security/place_to_sit/',
 
   //MOVIES
-  GET_ALL_MOVIES = '',
+  GET_ALL_MOVIES = '/security/movie/all',
   GET_GENDER_MOVIE = 'security/gender/',
   GET_LANGUAGE_MOVIE = 'security/language/',
   REGISTER_MOVIE = 'security/movie/',

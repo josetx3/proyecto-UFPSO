@@ -79,14 +79,13 @@ export class MoviesTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovieTable(new HttpParams());
-    this.getGenderMovie();
-    this.getLanguageMovie();
   }
 
   showCreateMovie(): void {
     this.showRegisterMovie = !this.showRegisterMovie;
     this.initFormMovie();
-
+    this.getGenderMovie();
+    this.getLanguageMovie();
   }
 
   edit(data: any): void {
@@ -123,7 +122,7 @@ export class MoviesTableComponent implements OnInit {
       movie_availability: new FormControl('', [Validators.required]),
       movie_director: new FormControl('', [Validators.required]),
       origin_country: new FormControl('', [Validators.required]),
-      gender_movies: new FormControl('', [Validators.required]),
+      gender_movie: new FormControl('', [Validators.required]),
       language_movie: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required])
     })
@@ -136,9 +135,11 @@ export class MoviesTableComponent implements OnInit {
     if (supportedTypes.includes(fileType)) {
       const fileName = capturedFile.name;
       this.fileNameProduct.push(fileName);
+      console.log(capturedFile);
       this._image.compressImage(capturedFile, 0.10).then(
         compressedResult => {
           this.fileImageProduct.push(compressedResult);
+          console.log(this.fileImageProduct);
           this._alert.success('Imagen subida correctamente');
         }
       )
@@ -149,7 +150,7 @@ export class MoviesTableComponent implements OnInit {
 
 
   sendRegisterMovie(): void {
-    if (this.formMovie.valid) {
+    if (!this.formMovie.valid) {
       this._loader.show();
       const dataMovieRegister: RegisterMovie = {
         movie_name_spanish: this.formMovie.get('movie_name_spanish')?.value,
@@ -157,16 +158,17 @@ export class MoviesTableComponent implements OnInit {
         movie_description: this.formMovie.get('movie_description')?.value,
         movie_trailer: this.formMovie.get('movie_trailer')?.value,
         movie_actors: this.formMovie.get('movie_actors')?.value,
-        movie_release_date: this.formMovie.get('movie_release_date')?.value,
+        // movie_release_date: this.formMovie.get('movie_release_date')?.value,
+        movie_release_date: '2024-04-29',
         movie_duration: this.formMovie.get('movie_duration')?.value,
         movie_classification: this.formMovie.get('movie_classification')?.value,
         movie_availability: this.formMovie.get('movie_availability')?.value,
         movie_director: this.formMovie.get('movie_director')?.value,
         // origin_country: this.formMovie.get('origin_country')?.value,
-        origin_country: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-        gender_movies: this.formMovie.get('gender_movies')?.value,
-        language_movie: this.formMovie.get('language_movie')?.value,
-        image: this.formMovie.get('image')?.value,
+        origin_country: 'aeafef38-4090-4d7a-80c9-34ecec634af9',
+        gender_movie: [this.formMovie.get('gender_movie')?.value],
+        language_movie: [this.formMovie.get('language_movie')?.value],
+        image: this.fileImageProduct[0],
       }
       this._movie.registerMovie(dataMovieRegister).subscribe({
         next: () => {
@@ -180,7 +182,6 @@ export class MoviesTableComponent implements OnInit {
           this._loader.hide();
         }
       })
-
     } else {
       this._loader.hide();
       this._alert.warning('Faltan campos por llenar')
@@ -199,9 +200,6 @@ export class MoviesTableComponent implements OnInit {
 
   changeGender(_event: Select): void {
     const validators = [Validators.required, Validators.maxLength(15)];
-    this.formMovie?.get('gender_movies')?.reset();
-    this.formMovie?.get('gender_movies')?.setValidators(validators);
-    this.formMovie?.get('gender_movies')?.updateValueAndValidity();
   }
 
   getLanguageMovie() {
@@ -216,9 +214,6 @@ export class MoviesTableComponent implements OnInit {
 
   changeLanguage(_event: Select): void {
     const validators = [Validators.required, Validators.maxLength(15)];
-    this.formMovie?.get('language_movie')?.reset();
-    this.formMovie?.get('language_movie')?.setValidators(validators);
-    this.formMovie?.get('language_movie')?.updateValueAndValidity();
   }
 
 }

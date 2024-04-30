@@ -10,7 +10,7 @@ export interface RegisterMovie {
   movie_availability: string;
   movie_director: string;
   origin_country: string;
-  gender_movies: string;
-  language_movie: string;
   image: string;
+  gender_movie: string[] ;
+  language_movie: string[];
 }
