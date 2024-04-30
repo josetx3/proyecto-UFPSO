@@ -25,8 +25,10 @@ export class MoviesTableComponent implements OnInit {
   public genderMovie: any;
   public languageMovie: any;
 
+  //Select para obtener informacion para registrar peliculas
   dataGenderMovie: Select[] = [];
   dataLanguageMovie: Select[] = [];
+  dataCountryMovie: Select[] = [];
 
   movies: any[] = [];
   fileNameProduct: string[] = [];
@@ -64,7 +66,6 @@ export class MoviesTableComponent implements OnInit {
   totalElements: number = 0;
   hasRoles: boolean = false;
   isPageable: boolean = false;
-  // dataTable: UserAuth[] = [];
   dataTable: any[] = [];
 
   constructor(
@@ -86,6 +87,9 @@ export class MoviesTableComponent implements OnInit {
     this.initFormMovie();
     this.getGenderMovie();
     this.getLanguageMovie();
+    this.getCountryMovie();
+    setTimeout(() => {
+    }, 1000)
   }
 
   edit(data: any): void {
@@ -164,8 +168,7 @@ export class MoviesTableComponent implements OnInit {
         movie_classification: this.formMovie.get('movie_classification')?.value,
         movie_availability: this.formMovie.get('movie_availability')?.value,
         movie_director: this.formMovie.get('movie_director')?.value,
-        // origin_country: this.formMovie.get('origin_country')?.value,
-        origin_country: 'aeafef38-4090-4d7a-80c9-34ecec634af9',
+        origin_country: this.formMovie.get('origin_country')?.value,
         gender_movie: [this.formMovie.get('gender_movie')?.value],
         language_movie: [this.formMovie.get('language_movie')?.value],
         image: this.fileImageProduct[0],
@@ -188,6 +191,7 @@ export class MoviesTableComponent implements OnInit {
     }
   }
 
+  //Genero de la pelicula
   getGenderMovie() {
     this._select.getGenderMovie().subscribe({
       next: (data) => {
@@ -202,6 +206,7 @@ export class MoviesTableComponent implements OnInit {
     const validators = [Validators.required, Validators.maxLength(15)];
   }
 
+  //Lenguaje de la pelicula
   getLanguageMovie() {
     this._select.getLanguageMovie().subscribe({
       next: (data) => {
@@ -214,6 +219,21 @@ export class MoviesTableComponent implements OnInit {
 
   changeLanguage(_event: Select): void {
     const validators = [Validators.required, Validators.maxLength(15)];
+  }
+
+  //Pais de la pelicula
+  changeCountry(_event: Select): void {
+    const validators = [Validators.required, Validators.maxLength(15)];
+  }
+
+  getCountryMovie(): void {
+    this._select.getCountryMovie().subscribe({
+      next: (data: Select[]) => {
+        this.dataCountryMovie = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener la ciudad de la pelicula, reintenta mas tarde');
+      }
+    })
   }
 
 }

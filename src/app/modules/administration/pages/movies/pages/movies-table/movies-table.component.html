@@ -141,12 +141,21 @@
           </div>
         </div>
       </div>
-      <div class="col-12 md:col-6 log:col-6">
+      <div class="col-12 md:col-12 lg:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
-            <label for="origin_country">Pais de la pelicula</label>
-            <input type="text" id="origin_country" formControlName="origin_country" class="form-input"
-                   placeholder="Pais de origen" appValidateErrors>
+            <label class="form-label">Pais de la pelicula</label>
+            <ng-select (change)="changeCountry($event)"
+                       [items]="dataCountryMovie"
+                       bindLabel="label"
+                       bindValue="value"
+                       [clearable]="false"
+                       [searchable]="false"
+                       appValidateErrors
+                       class="custom-two form-ng-select"
+                       formControlName="origin_country"
+                       placeholder="Seleccione una opción">
+            </ng-select>
           </div>
         </div>
       </div>

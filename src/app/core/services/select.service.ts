@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {DocumentType, GenderMovie, LanguageMovie, Select} from '@app/core/interfaces/select.interface';
+import {CountryMovie, DocumentType, GenderMovie, LanguageMovie, Select} from '@app/core/interfaces/select.interface';
 import {EndPoints} from '@app/core/utils/end-points';
 import {HttpService} from '@app/core/services/http.service';
 
@@ -66,5 +66,21 @@ export class SelectService {
     });
   }
 
+  public getCountryMovie(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<CountryMovie[]>(EndPoints.GET_COUNTRY_MOVIE).subscribe({
+        next: (data) => {
+          const country_movie: Select[] = data.map((select) => {
+            return {
+              label: select.countryName,
+              value: select.country_id,
+            }
+          });
+          observable.next(country_movie);
+          observable.complete();
+        }
+      })
+    });
+  }
 
 }

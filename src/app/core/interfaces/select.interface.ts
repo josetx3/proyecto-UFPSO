@@ -38,3 +38,8 @@ export interface LanguageMovie {
   language_name: string;
   description: string;
 }
+
+export interface CountryMovie {
+  country_id: string;
+  countryName: string;
+}
