@@ -5,7 +5,6 @@ import {DatePipe} from "@angular/common";
 import {HttpParams} from "@angular/common/http";
 import {LoadingService} from "@app/core/services/loading.service";
 import {MovieService} from "@app/modules/user/services/movie.service";
-import {MatDialog} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataMovieTable, RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 import {Select} from "@app/core/interfaces/select.interface";
@@ -67,7 +66,6 @@ export class MoviesTableComponent implements OnInit {
   dataTable: DataMovieTable[] = [];
 
   constructor(
-    private dialog: MatDialog,
     private _alert: AlertService,
     private _movie: MovieService,
     private _image: ImageService,
@@ -100,6 +98,7 @@ export class MoviesTableComponent implements OnInit {
     this.getGenderMovie();
     this.getLanguageMovie();
     this.getCountryMovie();
+    this.formMovie.reset();
   }
 
   edit(data: any): void {
