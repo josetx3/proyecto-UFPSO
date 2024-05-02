@@ -7,23 +7,27 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {MatPseudoCheckboxModule} from "@angular/material/core";
+import { MoviesEditComponent } from './pages/movies-edit/movies-edit.component';
 
 
 
 @NgModule({
   declarations: [
     MoviesTableComponent,
+    MoviesEditComponent,
 
   ],
-    imports: [
-        CommonModule,
-        MoviesRoutingModule,
-        SharedModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    MoviesRoutingModule,
+    SharedModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatPseudoCheckboxModule
+  ]
 })
 export class MoviesModule { }

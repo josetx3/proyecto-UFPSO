@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TableActions, TableColumn} from "@app/core/interfaces/table.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {DatePipe} from "@angular/common";
@@ -10,6 +10,8 @@ import {DataMovieTable, RegisterMovie} from "@app/modules/administration/pages/m
 import {Select} from "@app/core/interfaces/select.interface";
 import {SelectService} from "@app/core/services/select.service";
 import {ImageService} from "@app/core/services/image.service";
+import {MoviesEditComponent} from "@app/modules/administration/pages/movies/pages/movies-edit/movies-edit.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-movies-table',
@@ -24,13 +26,16 @@ export class MoviesTableComponent implements OnInit {
 
   //Select para obtener informacion para registrar peliculas
   dataGenderMovie: Select[] = [];
+  ArrayGender: string[] = [];
   dataLanguageMovie: Select[] = [];
+  ArrayLanguage: string[] = [];
   dataCountryMovie: Select[] = [];
 
   movies: any[] = [];
   fileNameProduct: string[] = [];
   fileImageProduct: string[] = [];
   showRegisterMovie: boolean = false;
+  showEditMovie: boolean = false;
 
   menuEditMovie: boolean = false;
   title: string = 'Nueva pelicula';
@@ -67,6 +72,7 @@ export class MoviesTableComponent implements OnInit {
 
   constructor(
     private _alert: AlertService,
+    private router: Router,
     private _movie: MovieService,
     private _image: ImageService,
     private _select: SelectService,
@@ -103,7 +109,16 @@ export class MoviesTableComponent implements OnInit {
   }
 
   edit(data: any): void {
+    this._movie.setMovieId(data.movie_id);
+    this.showEditMovie = true;
+    this.router.navigateByUrl('administration/movies/' + data.movie_id).then();
   }
+
+  editMovie(valor: boolean): void {
+    this.menuEditMovie = valor;
+    this.getMovieTable(new HttpParams());
+  }
+
 
   unlockMovie(user: any): void {
   }
@@ -172,8 +187,8 @@ export class MoviesTableComponent implements OnInit {
         movie_availability: this.formMovie.get('movie_availability')?.value,
         movie_director: this.formMovie.get('movie_director')?.value,
         origin_country: this.formMovie.get('origin_country')?.value,
-        gender_movie: [this.formMovie.get('gender_movie')?.value],
-        language_movie: [this.formMovie.get('language_movie')?.value],
+        gender_movie: this.formMovie.get('gender_movie')?.value,
+        language_movie: this.formMovie.get('language_movie')?.value,
         image: this.fileImageProduct[0],
       };
       console.log(dataMovieRegister);
@@ -182,6 +197,8 @@ export class MoviesTableComponent implements OnInit {
           this._loader.hide();
           this.showRegisterMovie = !this.showRegisterMovie;
           this._alert.success('Pelicula registrada con exito');
+          this.formMovie.reset();
+          this.fileImageProduct = [];
           this.getMovieTable(new HttpParams());
         },
         error: (error) => {
@@ -209,6 +226,9 @@ export class MoviesTableComponent implements OnInit {
 
   changeGender(_event: Select): void {
     const validators = [Validators.required, Validators.maxLength(15)];
+    const genderSelected = this.formMovie?.get('gender_movie')?.value;
+    this.ArrayGender.push(genderSelected);
+    const lastGender = this.ArrayGender[this.ArrayGender.length - 1];
   }
 
   //Lenguaje de la pelicula
@@ -224,6 +244,9 @@ export class MoviesTableComponent implements OnInit {
 
   changeLanguage(_event: Select): void {
     const validators = [Validators.required, Validators.maxLength(15)];
+    const languageSelected = this.formMovie?.get('language_movie')?.value;
+    this.ArrayLanguage.push(languageSelected);
+    const lastGender = this.ArrayLanguage[this.ArrayLanguage.length - 1];
   }
 
   //Pais de la pelicula

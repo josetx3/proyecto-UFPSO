@@ -174,6 +174,7 @@
             <label class="form-label">Genero</label>
             <ng-select (change)="changeGender($event)"
                        [items]="dataGenderMovie"
+                       [multiple]=true
                        bindLabel="label"
                        bindValue="value"
                        [clearable]="false"
@@ -192,6 +193,7 @@
             <label class="form-label">Lenguaje</label>
             <ng-select (change)="changeLanguage($event)"
                        [items]="dataLanguageMovie"
+                       [multiple]=true
                        bindLabel="label"
                        bindValue="value"
                        [clearable]="false"
@@ -216,4 +218,8 @@
       </div>
     </form>
   </div>
+</ng-container>
+
+<ng-container *ngIf="menuEditMovie">
+  <app-movies-edit (editMovie)="editMovie($event)"></app-movies-edit>
 </ng-container>

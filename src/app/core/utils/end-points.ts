@@ -17,5 +17,5 @@ export const enum EndPoints {
   GET_GENDER_MOVIE = 'security/gender/',
   GET_LANGUAGE_MOVIE = 'security/language/',
   GET_COUNTRY_MOVIE = 'security/country/',
-  REGISTER_MOVIE = 'security/movie/',
+  MOVIE = 'security/movie/',
 }
