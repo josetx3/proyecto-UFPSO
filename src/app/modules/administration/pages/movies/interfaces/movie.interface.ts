@@ -23,3 +23,11 @@ export interface DataMovieTable {
   movie_name_spanish: string;
   movie_classification: string;
 }
+
+
+export interface MovieSchedule {
+  movie_id?: string;
+  movie_schedule_price: boolean;
+  movie_schedule_presentation: string;
+  movie_schedule_video_quality: string;
+}

@@ -9,6 +9,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatPseudoCheckboxModule} from "@angular/material/core";
 import { MoviesEditComponent } from './pages/movies-edit/movies-edit.component';
+import {NgxMatDatetimePickerModule} from "@angular-material-components/datetime-picker";
 
 
 
@@ -27,7 +28,8 @@ import { MoviesEditComponent } from './pages/movies-edit/movies-edit.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatPseudoCheckboxModule
+    MatPseudoCheckboxModule,
+    NgxMatDatetimePickerModule
   ]
 })
 export class MoviesModule { }

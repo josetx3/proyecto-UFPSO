@@ -21,6 +21,7 @@ export class MoviesEditComponent implements OnInit {
   @Output() editMovie: EventEmitter<boolean> = new EventEmitter();
 
   public FormMovie: FormGroup = new FormGroup({});
+  public formMovieSchedule: FormGroup = new FormGroup({});
 
   dataGenderMovie: Select[] = [];
   ArrayGender: string[] = [];
@@ -32,7 +33,6 @@ export class MoviesEditComponent implements OnInit {
   edit: boolean = false;
   fileNameProduct: string[] = [];
   fileImageProduct: string[] = [];
-  dateRelease: Date = new Date();
 
   constructor(
     private router: Router,
@@ -46,6 +46,7 @@ export class MoviesEditComponent implements OnInit {
 
   ngOnInit() {
     this.initFormMovie();
+    this.initFormMovieSchedule();
     this.getGenderMovie();
     this.getCountryMovie();
     this.getLanguageMovie();
@@ -82,7 +83,15 @@ export class MoviesEditComponent implements OnInit {
     })
   }
 
-  sendEditMovie():void {
+  initFormMovieSchedule(): void {
+    this.formMovieSchedule = new FormGroup({
+      movie_schedule_price: new FormControl('', [Validators.required]),
+      movie_schedule_presentation: new FormControl('', [Validators.required]),
+      movie_schedule_video_quality: new FormControl('', [Validators.required]),
+    })
+  }
+
+  setDate(): void {
 
   }
 
@@ -154,7 +163,7 @@ export class MoviesEditComponent implements OnInit {
     this.FormMovie.get('image')?.setValue(data.image);
   }
 
-  returnTableMovie():void{
+  returnTableMovie(): void {
     this.router.navigateByUrl('administration/movies').then();
   }
 
@@ -175,5 +184,15 @@ export class MoviesEditComponent implements OnInit {
       this._alert.warning('Solo se admiten archivos PNG, JPEG, JPG o WEBP.');
     }
   };
+
+  //Editar los datos de la pelicula
+  sendEditMovie(): void {
+
+  }
+
+  //Agregar la parte de las fechas en la pelicula
+  sendDatesMovie(): void {
+
+  }
 
 }
