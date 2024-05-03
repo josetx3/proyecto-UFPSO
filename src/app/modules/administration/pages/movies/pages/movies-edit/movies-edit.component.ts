@@ -7,7 +7,7 @@ import {AlertService} from "@app/core/services/alert.service";
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {ImageService} from "@app/core/services/image.service";
 import {LoadingService} from "@app/core/services/loading.service";
-import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
+import {MovieSchedule, RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 import {Router} from "@angular/router";
 
 @Component({
@@ -55,7 +55,9 @@ export class MoviesEditComponent implements OnInit {
         this.movie_id = value;
         this._movie.getMovieId(value).subscribe({
           next: (data): void => {
+            console.log(data);
             this.movie_id = data.movie_id;
+            console.log(this.movie_id);
             this.setValueMovie(data);
             this.edit = true;
           }
@@ -192,7 +194,32 @@ export class MoviesEditComponent implements OnInit {
 
   //Agregar la parte de las fechas en la pelicula
   sendDatesMovie(): void {
-
+    if (this.formMovieSchedule.valid) {
+      this._loader.show();
+      console.log(this.movie_id);
+      const dataMovieSchedule: MovieSchedule = {
+        movie_id: this.movie_id,
+        movie_schedule_price: this.formMovieSchedule.get('movie_schedule_price')?.value,
+        movie_schedule_presentation: this.formMovieSchedule.get('movie_schedule_presentation')?.value,
+        movie_schedule_video_quality: this.formMovieSchedule.get('movie_schedule_video_quality')?.value,
+      }
+      console.log(dataMovieSchedule);
+      this._movie.setMovieSchedule(dataMovieSchedule).subscribe({
+        next: () => {
+          this._loader.hide();
+          this.edit = false;
+          this._alert.success('Fecha para ver la pelicula registradas con exito');
+          this.formMovieSchedule.reset();
+        }, error: (error) => {
+          console.error(error);
+          this._alert.error('¡Oops! Parece que hubo un problema al intentar registrar la pelicula.');
+          this._loader.hide();
+        }
+      })
+    } else {
+      this._loader.hide();
+      this._alert.warning('Faltan campos por llenar');
+    }
   }
 
 }

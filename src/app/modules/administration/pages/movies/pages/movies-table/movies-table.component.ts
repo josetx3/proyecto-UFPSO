@@ -241,7 +241,6 @@ export class MoviesTableComponent implements OnInit {
         language_movie: this.formMovie.get('language_movie')?.value,
         image: this.fileImageProduct[0],
       };
-      console.log(dataMovieRegister);
       this._movie.registerMovie(dataMovieRegister).subscribe({
         next: () => {
           this._loader.hide();
