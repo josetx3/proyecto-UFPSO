@@ -2,6 +2,11 @@ import {Component} from '@angular/core';
 import {TableActions, TableColumn} from "@app/core/interfaces/table.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {DatePipe} from "@angular/common";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {LoadingService} from "@app/core/services/loading.service";
+import {RegisterFood} from "@app/modules/administration/interfaces/food.interface";
+import {FoodService} from "@app/modules/administration/pages/foods/services/food.service";
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-foods-table',
@@ -10,6 +15,9 @@ import {DatePipe} from "@angular/common";
   providers: [DatePipe]
 })
 export class FoodsTableComponent {
+
+  public formFood: FormGroup = new FormGroup<any>({});
+
   foods: any[] = [
     {
       food_id: '1',
@@ -43,6 +51,7 @@ export class FoodsTableComponent {
     },
   ]
 
+  showRegisterFood: boolean = false;
   menuEditFood: boolean = false;
   title: string = 'Nueva comida';
   image: string = './assets/img/profile-user.png';
@@ -81,16 +90,29 @@ export class FoodsTableComponent {
   dataTable: any[] = [];
 
   constructor(
-    private _alert: AlertService
+    private _alert: AlertService,
+    private _loader: LoadingService,
+    private _food: FoodService
   ) {
   }
 
   ngOnInit(): void {
-    this.getFoodTable();
+    this.getFoodTable(new HttpParams());
   }
 
-  createFood(): void {
+  initFormFood(): void {
+    this.formFood = new FormGroup({
+      food_name: new FormControl('', [Validators.required]),
+      food_description: new FormControl('', [Validators.required]),
+      food_price: new FormControl('', [Validators.required]),
+      food_stock: new FormControl('', [Validators.required]),
+      food_image: new FormControl('', [Validators.required]),
+      variant_type_food_id: new FormControl('', [Validators.required]),
+    })
+  }
 
+  getFoodTable(params: HttpParams): void {
+    this.dataTable = this.foods;
   }
 
   edit(data: any): void {
@@ -100,8 +122,33 @@ export class FoodsTableComponent {
   unlockFood(user: any): void {
   }
 
-  getFoodTable(): void {
-    this.dataTable = this.foods;
+  createFood(): void {
+    this.showRegisterFood = !this.showRegisterFood;
+    this.formFood.reset();
+    this.initFormFood();
   }
+
+  sendFormRegisterFood(): void {
+    //   Falta el if para el formulario
+    this._loader.show();
+    const dataRegisterFood: RegisterFood = {
+      food_name: this.formFood.get('food_name')?.value,
+      food_description: this.formFood.get('food_description')?.value,
+      food_price: this.formFood.get('food_price')?.value,
+      food_stock: this.formFood.get('food_stock')?.value,
+      food_image: this.formFood.get('food_image')?.value,
+      variant_type_food_id: this.formFood.get('variant_type_food_id')?.value,
+    }
+    this._food.registerFood(dataRegisterFood).subscribe({
+      next: () => {
+        this._loader.hide();
+        this.showRegisterFood = !this.showRegisterFood;
+        this.formFood.reset();
+        this._alert.success('Comidax registrada con exito');
+        this.getFoodTable(new HttpParams())
+      }
+    })
+  }
+
 
 }

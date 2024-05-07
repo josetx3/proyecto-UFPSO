@@ -4,7 +4,7 @@ export const enum EndPoints {
   DOCUMENT_TYPE = 'security/document_type/',
 
   LOGIN = 'security/authentication/login',
-  SIG_IN= 'security/user/',
+  SIG_IN = 'security/user/',
   TOKEN_REFRESH = 'security/authentication/refresh_token',
   VALIDATE_CODE = 'security/authentication/mfa',
   CSRF_TOKEN = '',
@@ -19,4 +19,7 @@ export const enum EndPoints {
   GET_COUNTRY_MOVIE = 'security/country/',
   MOVIE = 'security/movie/',
   MOVIE_SCHEDULE = 'security/movie_schedule/',
+
+  //FOOD
+  FOOD = 'security/food/',
 }

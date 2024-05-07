@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {TableActions, TableColumn} from "@app/core/interfaces/table.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {DatePipe} from "@angular/common";
+import {HttpParams} from "@angular/common/http";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-combos-table',
@@ -10,6 +12,8 @@ import {DatePipe} from "@angular/common";
   providers: [DatePipe]
 })
 export class CombosTableComponent {
+
+  public formCombo: FormGroup = new FormGroup<any>({});
 
   foodCombo: any[] = [
     {
@@ -35,6 +39,7 @@ export class CombosTableComponent {
   ]
 
   menuEditCombo: boolean = false;
+  showRegisterCombo: boolean = false;
   title: string = 'Nuevo combo';
   image: string = './assets/img/profile-user.png';
 
@@ -71,16 +76,29 @@ export class CombosTableComponent {
   // dataTable: UserAuth[] = [];
   dataTable: any[] = [];
 
+
   constructor(
     private _alert: AlertService
   ) {
   }
 
   ngOnInit(): void {
-    this.getComboTable();
+    this.getComboTable(new HttpParams());
+  }
+
+  initFormCombo(): void {
+    this.formCombo = new FormGroup({
+      combo_name: new FormControl('', [Validators.required]),
+      combo_description: new FormControl('', [Validators.required]),
+      combo_price: new FormControl('', [Validators.required]),
+      combo_stock: new FormControl('', [Validators.required]),
+      combo_image: new FormControl('', [Validators.required]),
+      food_ids: new FormControl('', [Validators.required]),
+    })
   }
 
   createCombo(): void {
+    this.showRegisterCombo = !this.showRegisterCombo;
 
   }
 
@@ -91,7 +109,12 @@ export class CombosTableComponent {
   unlockCombo(combo: any): void {
   }
 
-  getComboTable(): void {
+  editCombo(valor: boolean): void {
+    this.menuEditCombo = valor;
+    this.getComboTable(new HttpParams());
+  }
+
+  getComboTable(params: HttpParams): void {
     this.dataTable = this.foodCombo;
   }
 
