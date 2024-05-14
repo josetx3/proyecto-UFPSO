@@ -28,6 +28,6 @@ export interface DataMovieTable {
 export interface MovieSchedule {
   movie_id?: string;
   movie_schedule_price: number;
-  movie_schedule_presentation: string;
+  movie_schedule_presentation: any;
   movie_schedule_video_quality: string;
 }

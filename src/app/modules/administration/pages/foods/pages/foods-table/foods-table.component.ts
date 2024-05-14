@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableActions, TableColumn} from "@app/core/interfaces/table.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {DatePipe} from "@angular/common";
@@ -7,6 +7,7 @@ import {LoadingService} from "@app/core/services/loading.service";
 import {RegisterFood} from "@app/modules/administration/interfaces/food.interface";
 import {FoodService} from "@app/modules/administration/pages/foods/services/food.service";
 import {HttpParams} from "@angular/common/http";
+import {ImageService} from "@app/core/services/image.service";
 
 @Component({
   selector: 'app-foods-table',
@@ -14,9 +15,35 @@ import {HttpParams} from "@angular/common/http";
   styleUrls: ['./foods-table.component.scss'],
   providers: [DatePipe]
 })
-export class FoodsTableComponent {
+export class FoodsTableComponent implements OnInit {
 
   public formFood: FormGroup = new FormGroup<any>({});
+
+
+  columnsTable: TableColumn[] = [
+    {name: 'Nombre', isFilterable: true, key: 'food_name', type: 'text'},
+    {name: 'Referencia', isFilterable: true, key: 'food_reference', type: 'text'},
+    {name: 'Stock', isFilterable: true, key: 'food_stock', type: 'text'},
+    {name: 'Precio', isFilterable: true, key: 'food_price', type: 'text'},
+    {name: 'Vendidos', isFilterable: true, key: 'food_selling', type: 'text'},
+    {name: 'Categoria', isFilterable: true, key: 'food_category', type: 'text'},
+    {name: 'Estado', isFilterable: true, key: 'food_status', type: 'statusName'},
+  ];
+
+  tableActions: TableActions = {
+    add: true,
+    search: false,
+    unlock: true,
+    edit: {
+      can: true
+    },
+    delete: {
+      can: false
+    },
+    view: {
+      can: false
+    }
+  }
 
   foods: any[] = [
     {
@@ -50,36 +77,10 @@ export class FoodsTableComponent {
       food_selling: 45,
     },
   ]
-
   showRegisterFood: boolean = false;
   menuEditFood: boolean = false;
   title: string = 'Nueva comida';
   image: string = './assets/img/profile-user.png';
-
-  columnsTable: TableColumn[] = [
-    {name: 'Nombre', isFilterable: true, key: 'food_name', type: 'text'},
-    {name: 'Referencia', isFilterable: true, key: 'food_reference', type: 'text'},
-    {name: 'Stock', isFilterable: true, key: 'food_stock', type: 'text'},
-    {name: 'Precio', isFilterable: true, key: 'food_price', type: 'text'},
-    {name: 'Vendidos', isFilterable: true, key: 'food_selling', type: 'text'},
-    {name: 'Categoria', isFilterable: true, key: 'food_category', type: 'text'},
-    {name: 'Estado', isFilterable: true, key: 'food_status', type: 'statusName'},
-  ];
-
-  tableActions: TableActions = {
-    add: true,
-    search: false,
-    unlock: true,
-    edit: {
-      can: true
-    },
-    delete: {
-      can: false
-    },
-    view: {
-      can: false
-    }
-  }
 
   size: number = 0;
   pageIndex: number = 0;
@@ -89,16 +90,38 @@ export class FoodsTableComponent {
   // dataTable: UserAuth[] = [];
   dataTable: any[] = [];
 
+  fileNameProduct: string[] = [];
+  fileImageProduct: string[] = [];
+
   constructor(
     private _alert: AlertService,
     private _loader: LoadingService,
-    private _food: FoodService
+    private _food: FoodService,
+    private _image: ImageService,
   ) {
   }
 
   ngOnInit(): void {
     this.getFoodTable(new HttpParams());
   }
+
+  uploadImages(event: any): void {
+    const capturedFile = event.target.files[0];
+    const supportedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+    const fileType = capturedFile.type;
+    if (supportedTypes.includes(fileType)) {
+      const fileName = capturedFile.name;
+      this.fileNameProduct.push(fileName);
+      this._image.compressImage(capturedFile, 0.10).then(
+        compressedResult => {
+          this.fileImageProduct.push(compressedResult);
+          this._alert.success('Imagen subida correctamente');
+        }
+      )
+    } else {
+      this._alert.warning('Solo se admiten archivos PNG, JPEG, JPG o WEBP.');
+    }
+  };
 
   initFormFood(): void {
     this.formFood = new FormGroup({

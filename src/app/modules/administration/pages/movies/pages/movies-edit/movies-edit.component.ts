@@ -33,6 +33,7 @@ export class MoviesEditComponent implements OnInit {
   edit: boolean = false;
   fileNameProduct: string[] = [];
   fileImageProduct: string[] = [];
+  minDate = new Date(new Date().setHours(new Date().getHours()));
 
   constructor(
     private router: Router,
@@ -94,7 +95,11 @@ export class MoviesEditComponent implements OnInit {
   }
 
   setDate(): void {
-
+    this.minDate = new Date(new Date().setHours(new Date().getHours()));
+    this.formMovieSchedule.get('movie_schedule_presentation')?.setValue(this.minDate);
+    setTimeout(() => {
+      this.formMovieSchedule.get('movie_schedule_presentation')?.setValue(null);
+    }, 1)
   }
 
   //Genero de la pelicula
@@ -189,27 +194,38 @@ export class MoviesEditComponent implements OnInit {
 
   //Editar los datos de la pelicula
   sendEditMovie(): void {
-
   }
 
   //Agregar la parte de las fechas en la pelicula
   sendDatesMovie(): void {
     if (this.formMovieSchedule.valid) {
       this._loader.show();
-      console.log(this.movie_id);
-      const dataMovieSchedule: MovieSchedule = {
+      const movieReleaseDate: Date = this.formMovieSchedule.get('movie_schedule_presentation')?.value;
+      var dia = movieReleaseDate.getDate();
+      var mes = movieReleaseDate.getMonth() + 1;
+      var año = movieReleaseDate.getFullYear();
+      // Formatear la fecha
+      var fechaFormateada = año + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia + '-';
+      var hora = movieReleaseDate.getHours();
+      var minutos = movieReleaseDate.getMinutes();
+      // Formatear la hora
+      var horaFormateada = hora + ':' + (minutos < 10 ? '0' : '') + minutos;
+      let dateMovie = fechaFormateada + horaFormateada;
+
+      let dataMovieSchedule: MovieSchedule = {
         movie_id: this.movie_id,
         movie_schedule_price: this.formMovieSchedule.get('movie_schedule_price')?.value,
-        movie_schedule_presentation: this.formMovieSchedule.get('movie_schedule_presentation')?.value,
+        movie_schedule_presentation: dateMovie,
         movie_schedule_video_quality: this.formMovieSchedule.get('movie_schedule_video_quality')?.value,
       }
       console.log(dataMovieSchedule);
       this._movie.setMovieSchedule(dataMovieSchedule).subscribe({
         next: () => {
-          this._loader.hide();
           this.edit = false;
-          this._alert.success('Fecha para ver la pelicula registradas con exito');
           this.formMovieSchedule.reset();
+          this.router.navigateByUrl('/administration/movies').then();
+          this._loader.hide();
+          this._alert.success('Fecha para ver la pelicula registradas con exito');
         }, error: (error) => {
           console.error(error);
           this._alert.error('¡Oops! Parece que hubo un problema al intentar registrar la pelicula.');
