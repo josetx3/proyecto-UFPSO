@@ -56,9 +56,7 @@ export class MoviesEditComponent implements OnInit {
         this.movie_id = value;
         this._movie.getMovieId(value).subscribe({
           next: (data): void => {
-            console.log(data);
             this.movie_id = data.movie_id;
-            console.log(this.movie_id);
             this.setValueMovie(data);
             this.edit = true;
           }
@@ -201,25 +199,21 @@ export class MoviesEditComponent implements OnInit {
     if (this.formMovieSchedule.valid) {
       this._loader.show();
       const movieReleaseDate: Date = this.formMovieSchedule.get('movie_schedule_presentation')?.value;
-      var dia = movieReleaseDate.getDate();
-      var mes = movieReleaseDate.getMonth() + 1;
-      var año = movieReleaseDate.getFullYear();
-      // Formatear la fecha
-      var fechaFormateada = año + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia + '-';
-      var hora = movieReleaseDate.getHours();
-      var minutos = movieReleaseDate.getMinutes();
-      // Formatear la hora
-      var horaFormateada = hora + ':' + (minutos < 10 ? '0' : '') + minutos;
-      let dateMovie = fechaFormateada + horaFormateada;
-
+      const dia = movieReleaseDate.getDate();
+      const mes = movieReleaseDate.getMonth() + 1;
+      const año = movieReleaseDate.getFullYear();
+      const fechaFormateada = año + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia;
+      const hora = movieReleaseDate.getHours();
+      const minutos = movieReleaseDate.getMinutes();
+      const segundos = movieReleaseDate.getSeconds();
+      const horaFormateada = (hora < 10 ? '0' : '') + hora + ':' + (minutos < 10 ? '0' : '') + minutos + ':' + (segundos < 10 ? '0' : '') + segundos;
+      const dateMovie = `${fechaFormateada}T${horaFormateada}`;
       let dataMovieSchedule: MovieSchedule = {
         movie_id: this.movie_id,
         movie_schedule_price: this.formMovieSchedule.get('movie_schedule_price')?.value,
-        // movie_schedule_presentation: dateMovie,
-        movie_schedule_presentation: this.formMovieSchedule.get('movie_schedule_presentation')?.value,
+        movie_schedule_presentation: dateMovie,
         movie_schedule_video_quality: this.formMovieSchedule.get('movie_schedule_video_quality')?.value,
-      }
-      console.log(dataMovieSchedule);
+      };
       this._movie.setMovieSchedule(dataMovieSchedule).subscribe({
         next: () => {
           this.edit = false;
@@ -227,16 +221,18 @@ export class MoviesEditComponent implements OnInit {
           this.router.navigateByUrl('/administration/movies').then();
           this._loader.hide();
           this._alert.success('Fecha para ver la pelicula registradas con exito');
-        }, error: (error) => {
+        },
+        error: (error) => {
           console.error(error);
           this._alert.error('¡Oops! Parece que hubo un problema al intentar registrar la pelicula.');
           this._loader.hide();
         }
-      })
+      });
     } else {
       this._loader.hide();
       this._alert.warning('Faltan campos por llenar');
     }
   }
+
 
 }
