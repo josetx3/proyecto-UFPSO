@@ -159,9 +159,11 @@ export class FoodsTableComponent implements OnInit {
       food_description: this.formFood.get('food_description')?.value,
       food_price: this.formFood.get('food_price')?.value,
       food_stock: this.formFood.get('food_stock')?.value,
-      food_image: this.formFood.get('food_image')?.value,
-      variant_type_food_id: this.formFood.get('variant_type_food_id')?.value,
+      food_image: this.fileImageProduct[0],
+      // variant_type_food_id: this.formFood.get('variant_type_food_id')?.value,
+      variant_type_food_id: 'e3d5a435-765c-4646-bb52-774db2bb4650',
     }
+    console.log(dataRegisterFood);
     this._food.registerFood(dataRegisterFood).subscribe({
       next: () => {
         this._loader.hide();
@@ -169,6 +171,11 @@ export class FoodsTableComponent implements OnInit {
         this.formFood.reset();
         this._alert.success('Comidax registrada con exito');
         this.getFoodTable(new HttpParams())
+      },
+      error: (error): void => {
+        console.error(error.error.message);
+        this._alert.error('Parece que hubo problemas el registar esta comida, intentalo de nuevo');
+        this._loader.hide();
       }
     })
   }

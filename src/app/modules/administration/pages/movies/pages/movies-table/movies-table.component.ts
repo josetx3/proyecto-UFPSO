@@ -159,7 +159,9 @@ export class MoviesTableComponent implements OnInit {
     }
   };
 
-  //Genero de la pelicula
+  /**
+   * Genero de la pelicula
+   */
   getGenderMovie() {
     this._select.getGenderMovie().subscribe({
       next: (data) => {
@@ -177,7 +179,9 @@ export class MoviesTableComponent implements OnInit {
     const lastGender = this.ArrayGender[this.ArrayGender.length - 1];
   }
 
-  //Lenguaje de la pelicula
+  /**
+   * Lenguaje de la pelicula
+   */
   getLanguageMovie() {
     this._select.getLanguageMovie().subscribe({
       next: (data) => {
@@ -195,7 +199,9 @@ export class MoviesTableComponent implements OnInit {
     const lastGender = this.ArrayLanguage[this.ArrayLanguage.length - 1];
   }
 
-  //Pais de la pelicula
+  /**
+   * Pais de la pelicula
+   */
   changeCountry(_event: Select): void {
     const validators = [Validators.required, Validators.maxLength(15)];
   }

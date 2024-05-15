@@ -215,7 +215,8 @@ export class MoviesEditComponent implements OnInit {
       let dataMovieSchedule: MovieSchedule = {
         movie_id: this.movie_id,
         movie_schedule_price: this.formMovieSchedule.get('movie_schedule_price')?.value,
-        movie_schedule_presentation: dateMovie,
+        // movie_schedule_presentation: dateMovie,
+        movie_schedule_presentation: this.formMovieSchedule.get('movie_schedule_presentation')?.value,
         movie_schedule_video_quality: this.formMovieSchedule.get('movie_schedule_video_quality')?.value,
       }
       console.log(dataMovieSchedule);

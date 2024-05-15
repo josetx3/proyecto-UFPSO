@@ -30,12 +30,12 @@ export class PurchaseComponent implements OnInit {
 
   ngOnInit() {
     this.getDataChair();
-    console.log(this.chairsA)
   }
 
   getDataChair() {
     this._purchase.getDataChair().subscribe({
       next: (data: Chairs[]) => {
+        console.log(data)
         this.chairs = data;
         this.chairsA = this.chairs.filter(chair => chair.row.charAt(0) === 'A');
         this.chairsB = this.chairs.filter(chair => chair.row.charAt(0) === 'B');
@@ -44,8 +44,6 @@ export class PurchaseComponent implements OnInit {
         this.chairsE = this.chairs.filter(chair => chair.row.charAt(0) === 'E');
         this.chairsF = this.chairs.filter(chair => chair.row.charAt(0) === 'F');
         this.chairsG = this.chairs.filter(chair => chair.row.charAt(0) === 'G');
-        console.log(this.chairs)
-        console.log(this.chairsA)
       }
     })
   }
