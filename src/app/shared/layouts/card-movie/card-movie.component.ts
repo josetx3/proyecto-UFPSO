@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Movie} from "@app/modules/user/interfaces/home.interface";
+import {Component, OnInit} from '@angular/core';
+import {Movie, MovieCard} from "@app/modules/user/interfaces/home.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {ModalMovieInfoComponent} from "@app/shared/layouts/modal-movie-info/modal-movie-info.component";
 import {MovieService} from "@app/modules/user/services/movie.service";
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   templateUrl: './card-movie.component.html',
   styleUrls: ['./card-movie.component.scss']
 })
-export class CardMovieComponent {
+export class CardMovieComponent implements OnInit {
 
   Movies: Movie[] = [
     {
@@ -311,15 +311,27 @@ export class CardMovieComponent {
     }
   ]
 
+  movies: MovieCard[] = [];
+
   constructor(
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private _movie: MovieService
   ) {
   }
 
 
-  openModalInfoMovie(movie: Movie) {
-    this.router.navigateByUrl('movie/' + movie.movie_id);
+  ngOnInit() {
+    this.getAllMoviesCard();
+  }
+
+  getAllMoviesCard(): void {
+    this._movie.getAllMoviesCard().subscribe({
+      next: (data) => {
+        this.movies = data;
+        console.log(this.movies);
+      }
+    })
   }
 
 

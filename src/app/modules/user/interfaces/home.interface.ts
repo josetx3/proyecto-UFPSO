@@ -33,3 +33,43 @@ export interface Food {
   food_additional: string,
   food_status: string,
 }
+
+export interface MovieCard {
+  movie_id: string;
+  movie_image: string;
+  movie_trailer: string;
+  movie_name_spanish: string;
+  movie_name_english: string;
+  movie_release_date: Date;
+  movie_gender: string[];
+  movie_classification: string;
+  movie_duration: number;
+  movie_availability: string;
+}
+
+export interface MovieInfoId {
+  movie_id: string;
+  movie_image: string;
+  movie_trailer: string;
+  movie_name_spanish: string;
+  movie_name_english: string;
+  movie_release_date: Date;
+  movie_gender: string[];
+  movie_description: string;
+  movie_classification: string;
+  movie_duration: number;
+  movie_availability: string;
+  movie_country: string;
+  movie_director: string;
+  movie_actor: string;
+  movie_languages: string[];
+  movie_schedule: MovieSchedule[];
+}
+
+export interface MovieSchedule {
+  movie_schedule_id: string;
+  movie_presentation_date: Date;
+  movie_presentation_start_time: string[];
+  movie_price: number;
+  movie_video_quality: string;
+}

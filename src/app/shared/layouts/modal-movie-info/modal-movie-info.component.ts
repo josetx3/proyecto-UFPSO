@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Movie} from "@app/modules/user/interfaces/home.interface";
+import {Movie, MovieInfoId} from "@app/modules/user/interfaces/home.interface";
 import {ActivatedRoute} from "@angular/router";
+import {MovieService} from "@app/modules/user/services/movie.service";
+import {LoadingService} from "@app/core/services/loading.service";
 
 @Component({
   selector: 'app-modal-movie-info',
@@ -9,8 +11,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ModalMovieInfoComponent implements OnInit {
 
-  movieId: string | null = '';
-  dataMovie: any = '';
+  movieId: string | any = '';
+  //CAmbiar el tipado por | MovieInfoId |
+  dataMovie: any = [];
 
   Movies: Movie[] = [
     {
@@ -314,24 +317,23 @@ export class ModalMovieInfoComponent implements OnInit {
   @Input() selectedMovie!: Movie;
 
   constructor(
-    private router: ActivatedRoute
+    private _loader: LoadingService,
+    private router: ActivatedRoute,
+    private _movie: MovieService
   ) {
   }
 
   ngOnInit() {
-    this.movieId = this.router.snapshot.paramMap.get('movie_id');
-    if (this.movieId != null) {
-      this.getMovieById(this.movieId);
-    }
-  }
-
-  getMovieById(movie_id: string) {
-    const foundMovies = this.Movies.filter(movie => movie.movie_id === movie_id);
-    if (foundMovies.length > 0) {
-      this.dataMovie = foundMovies[0];
-    } else {
-      this.dataMovie = undefined;
-    }
+    this._loader.show();
+    this.router.paramMap.subscribe(params => {
+      this.movieId = params.get('movie_id');
+      this._movie.getMovieId(this.movieId).subscribe({
+        next: (data) => {
+          this.dataMovie = data;
+          this._loader.hide();
+        }
+      })
+    });
   }
 
 

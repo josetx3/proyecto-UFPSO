@@ -2,24 +2,25 @@
   <div class="modal-movie-top">
     <div class="modal-movie-top--left">
       <div class="movie-top-left--img">
-        <img src="{{dataMovie.movie_img}}" alt="{{dataMovie.movie_name}}">
+        <img src="{{dataMovie.movie_image}}" alt="{{dataMovie.movie_name_spanish}}">
       </div>
       <div class="movie-top-left--info">
         <div class="movie-top-left--info__content">
-          <span class="movie-stars">
-            <em *ngFor="let starClass of countStartMovie(dataMovie.movie_rating)" class="{{ starClass }}"></em>
-          </span>
-          <span>{{ dataMovie.movie_date }}</span>
-          <span>{{ dataMovie.movie_duration }}</span>
-          <span>{{ dataMovie.movie_animation }}</span>
+          <!--          <span class="movie-stars">-->
+          <!--            <em *ngFor="let starClass of countStartMovie(dataMovie.movie_rating)" class="{{ starClass }}"></em>-->
+          <!--          </span>-->
+          <span>{{ dataMovie.movie_release_date }}</span>
+          <span>{{ dataMovie.movie_duration }} Min</span>
+          <span class="highlighted-text">{{ dataMovie.movie_classification }}</span>
+          <span class="highlighted-text">{{ dataMovie.movie_availability }}</span>
         </div>
-        <div class="movie-top-left--info__content">
-          <span *ngFor="let category of dataMovie.movie_category"
-                class="movie-category">{{ category.category_name }}</span>
+        <div class="movie-top-left--info__content movie-top-left--info__content--gender">
+          <span *ngFor="let category of dataMovie.movie_gender"
+                class="movie-category">{{ category }}</span>
         </div>
 
         <div class="movie-top-left--info__content">
-          <span class="movie-text">{{ dataMovie.movie_text }}</span>
+          <span class="movie-text">{{ dataMovie.movie_description }}</span>
         </div>
       </div>
     </div>
@@ -36,7 +37,8 @@
           <span class="title">Estos son nuestros horarios</span>
         </div>
         <div class="right-date--content">
-          <span class="hour" *ngFor="let hour of dataMovie.movie_times">{{ hour.movie_time_hour }}</span>
+          <span class="hour"
+                *ngFor="let hour of dataMovie.movie_schedule">{{ hour.movie_presentation_date }}</span>
         </div>
       </div>
     </div>
