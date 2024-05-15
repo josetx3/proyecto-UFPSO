@@ -38,6 +38,45 @@
           </div>
         </div>
       </div>
+
+      <div class="col-12 md:col-12 lg:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label class="form-label">Tipo de comida</label>
+            <ng-select (change)="changeTypeFood($event)"
+                       [items]="dataTypeFood"
+                       bindLabel="label"
+                       bindValue="value"
+                       [clearable]="false"
+                       [searchable]="false"
+                       appValidateErrors
+                       class="custom-two form-ng-select"
+                       formControlName="type_food_id"
+                       placeholder="Seleccione una opción">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label class="form-label">Variante de la comida</label>
+            <ng-select
+              [items]="dataVariantFood"
+              bindLabel="label"
+              bindValue="value"
+              [clearable]="false"
+              [searchable]="false"
+              appValidateErrors
+              class="custom-two form-ng-select"
+              formControlName="variant_type_food_id"
+              placeholder="Seleccione una opción">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
       <div class="col-12 md:col-6 log:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">

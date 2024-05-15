@@ -83,4 +83,38 @@ export class SelectService {
     });
   }
 
+  public getTypeFood(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_TYPE_FOOD).subscribe({
+        next: (data) => {
+          const type_food: Select[] = data.map((select) => {
+            return {
+              label: select.type_food_name,
+              value: select.type_food_id,
+            }
+          });
+          observable.next(type_food);
+          observable.complete();
+        }
+      })
+    });
+  }
+
+  public getVariantFood(type_food_id: string): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_VARIANT_FOOD + type_food_id).subscribe({
+        next: (data) => {
+          const type_food: Select[] = data.map((select) => {
+            return {
+              label: select.variant_type_food_name,
+              value: select.variant_type_food_id,
+            }
+          });
+          observable.next(type_food);
+          observable.complete();
+        }
+      })
+    });
+  }
+
 }

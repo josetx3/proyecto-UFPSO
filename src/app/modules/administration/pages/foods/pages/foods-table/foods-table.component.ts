@@ -8,6 +8,8 @@ import {RegisterFood} from "@app/modules/administration/interfaces/food.interfac
 import {FoodService} from "@app/modules/administration/pages/foods/services/food.service";
 import {HttpParams} from "@angular/common/http";
 import {ImageService} from "@app/core/services/image.service";
+import {Select} from "@app/core/interfaces/select.interface";
+import {SelectService} from "@app/core/services/select.service";
 
 @Component({
   selector: 'app-foods-table',
@@ -77,10 +79,14 @@ export class FoodsTableComponent implements OnInit {
       food_selling: 45,
     },
   ]
+
   showRegisterFood: boolean = false;
   menuEditFood: boolean = false;
   title: string = 'Nueva comida';
   image: string = './assets/img/profile-user.png';
+  dataTypeFood: Select[] = [];
+  typeFoodId: string = '';
+  dataVariantFood: Select[] = [];
 
   size: number = 0;
   pageIndex: number = 0;
@@ -98,11 +104,21 @@ export class FoodsTableComponent implements OnInit {
     private _loader: LoadingService,
     private _food: FoodService,
     private _image: ImageService,
+    private _select: SelectService,
   ) {
   }
 
   ngOnInit(): void {
+    this.getTypeFood();
     this.getFoodTable(new HttpParams());
+  }
+
+  getTypeFood(): void {
+    this._select.getTypeFood().subscribe({
+      next: (data: Select[]) => {
+        this.dataTypeFood = data;
+      }
+    })
   }
 
   uploadImages(event: any): void {
@@ -160,22 +176,29 @@ export class FoodsTableComponent implements OnInit {
       food_price: this.formFood.get('food_price')?.value,
       food_stock: this.formFood.get('food_stock')?.value,
       food_image: this.fileImageProduct[0],
-      // variant_type_food_id: this.formFood.get('variant_type_food_id')?.value,
-      variant_type_food_id: 'e3d5a435-765c-4646-bb52-774db2bb4650',
+      variant_type_food_id: this.formFood.get('variant_type_food_id')?.value,
     }
-    console.log(dataRegisterFood);
     this._food.registerFood(dataRegisterFood).subscribe({
       next: () => {
-        this._loader.hide();
         this.showRegisterFood = !this.showRegisterFood;
         this.formFood.reset();
-        this._alert.success('Comidax registrada con exito');
+        this.fileImageProduct = [];
         this.getFoodTable(new HttpParams())
+        this._loader.hide();
+        this._alert.success('Comida registrada con exito');
       },
       error: (error): void => {
         console.error(error.error.message);
         this._alert.error('Parece que hubo problemas el registar esta comida, intentalo de nuevo');
         this._loader.hide();
+      }
+    })
+  }
+
+  changeTypeFood(_event: any): void {
+    this._select.getVariantFood(_event.value).subscribe({
+      next: (data: Select[]) => {
+        this.dataVariantFood = data;
       }
     })
   }
