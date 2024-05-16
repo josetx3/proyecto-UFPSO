@@ -47,7 +47,6 @@ export class PurchaseComponent implements OnInit {
     this._loader.show();
     setTimeout(() => {
       this.scheduleId = this._schedule.getScheduleId();
-      console.log(this.scheduleId);
       this.getDataChair();
       this._loader.hide();
     })

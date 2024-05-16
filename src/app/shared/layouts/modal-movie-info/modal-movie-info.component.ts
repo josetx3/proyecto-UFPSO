@@ -35,14 +35,12 @@ export class ModalMovieInfoComponent implements OnInit {
     this._loader.show();
     this.router.paramMap.subscribe(params => {
       this.movieId = params.get('movie_id');
-      // setTimeout(() => {
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
           this.dataMovie = data;
           this._loader.hide();
         }
       })
-      // }, 500)
     });
   }
 
