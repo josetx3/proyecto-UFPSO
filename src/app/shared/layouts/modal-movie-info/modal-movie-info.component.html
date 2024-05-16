@@ -27,10 +27,11 @@
     <div class="modal-movie-top--right">
       <div class="movie-top-right--trailer">
 
-        <iframe src="https://www.youtube.com/embed/03n1lgk8E9U?si=1PsMd3PuyZ_j5Gl-" title="YouTube video player"
-                frameborder="0"
+        <iframe [src]="getTrailerUrl()" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
       </div>
       <div class="movie-top-right--date">
         <div class="right-date--content">
