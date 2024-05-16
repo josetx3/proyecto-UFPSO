@@ -26,20 +26,17 @@
     </div>
     <div class="modal-movie-top--right">
       <div class="movie-top-right--trailer">
-
         <iframe [src]="getTrailerUrl()" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
       </div>
       <div class="movie-top-right--date">
         <div class="right-date--content">
           <span class="title">Estos son nuestros horarios</span>
         </div>
         <div class="right-date--content">
-          <span class="hour"
-                *ngFor="let hour of dataMovie.movie_schedule">{{ hour.movie_presentation_date }}</span>
+          <span class="hour" (click)="showFunctionHour(schedule.movie_presentation_date)"
+                *ngFor="let schedule of dataMovie.movie_schedule">{{ schedule.movie_presentation_date }}</span>
         </div>
       </div>
     </div>

@@ -23,5 +23,9 @@ export class MovieScheduleService {
     return this._http.post(EndPoints.MOVIE_SCHEDULE, data);
   }
 
+  getMovieSchedule(id_movie: string, date: any): Observable<any> {
+    return this._http.get<any>(EndPoints.GET_MOVIE_SCHEDULE + id_movie + '/' + date);
+  }
+
 
 }
