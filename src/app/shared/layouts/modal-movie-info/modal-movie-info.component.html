@@ -35,13 +35,15 @@
           <span class="title">Estos son nuestros horarios</span>
         </div>
         <div class="right-date--content">
-          <span class="hour" (click)="showFunctionHour(schedule.movie_presentation_date)"
+          <span class="hour" (click)="showFunctionHour(schedule.movie_schedule_id  , schedule.movie_presentation_date)"
                 *ngFor="let schedule of dataMovie.movie_schedule">{{ schedule.movie_presentation_date }}</span>
         </div>
+        <ng-container *ngIf="dataHourMovie != []">
+          <div class="right-date--content">
+            <span class="hour" *ngFor="let scheduleHour of dataHourMovie"  (click)="asd()" > {{ scheduleHour.movie_schedule_presentation_time }} </span>
+          </div>
+        </ng-container>
       </div>
     </div>
-  </div>
-  <div class="modal-movie-bottom">
-    <button routerLink="/purchase">Comprar ticket <em class="icon-ticket"></em></button>
   </div>
 </div>

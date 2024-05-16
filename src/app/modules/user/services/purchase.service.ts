@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpService} from "@app/core/services/http.service";
 import {StorageService} from "@app/core/services/storage.service";
@@ -14,10 +14,15 @@ export class PurchaseService {
   constructor(
     private _http: HttpService,
     private _storage: StorageService
-  ) { }
+  ) {
+  }
 
   public getDataChair(): Observable<any> {
     return this._http.get<any>(EndPoints.GET_CHAIRS);
+  }
+
+  public getDAtaChairIdSchedule(id_schedule: string): Observable<any> {
+    return this._http.get<any>(EndPoints.GET_CHAIR_ID + id_schedule);
   }
 
   //PASAR LA INFORMACION DE LAS SILLAS DESDE PURCHASE - CHECKOUT

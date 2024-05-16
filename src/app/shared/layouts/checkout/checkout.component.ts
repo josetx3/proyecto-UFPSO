@@ -8,12 +8,13 @@ import {PurchaseService} from "@app/modules/user/services/purchase.service";
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit{
+export class CheckoutComponent implements OnInit {
 
   selectedChairs: Chairs[] = [];
   private subscription: Subscription = new Subscription();
 
-  constructor(private _purchase: PurchaseService) {}
+  constructor(private _purchase: PurchaseService) {
+  }
 
   ngOnInit(): void {
     this.subscription = this._purchase.selectedChairs$.subscribe(chairs => {

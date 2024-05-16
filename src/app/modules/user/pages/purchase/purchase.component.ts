@@ -2,6 +2,8 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {PurchaseService} from "@app/modules/user/services/purchase.service";
 import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
 import {AlertService} from "@app/core/services/alert.service";
+import {MovieScheduleService} from "@app/modules/administration/pages/movie-schedule/services/movie-schedule.service";
+import {LoadingService} from "@app/core/services/loading.service";
 
 @Component({
   selector: 'app-purchase',
@@ -16,6 +18,8 @@ export class PurchaseComponent implements OnInit {
   //FOOD
   quantityFood: number = 0;
 
+  //ID PARA LAS SILLAS
+  scheduleId: string = '';
 
   public chairs: Chairs[] = [];
 
@@ -34,11 +38,19 @@ export class PurchaseComponent implements OnInit {
   constructor(
     private _purchase: PurchaseService,
     private _alert: AlertService,
+    private _schedule: MovieScheduleService,
+    private _loader: LoadingService,
   ) {
   }
 
   ngOnInit() {
-    this.getDataChair();
+    this._loader.show();
+    setTimeout(() => {
+      this.scheduleId = this._schedule.getScheduleId();
+      console.log(this.scheduleId);
+      this.getDataChair();
+      this._loader.hide();
+    })
   }
 
   increment() {
@@ -65,7 +77,7 @@ export class PurchaseComponent implements OnInit {
 
   //OBTENER LA DATA DE LAS SILLAS
   getDataChair() {
-    this._purchase.getDataChair().subscribe({
+    this._purchase.getDAtaChairIdSchedule(this.scheduleId).subscribe({
       next: (data: Chairs[]) => {
         this.chairs = data;
         this.chairsA = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'A'));

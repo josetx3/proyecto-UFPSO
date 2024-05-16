@@ -11,6 +11,7 @@ export const enum EndPoints {
 
   //SILLAS
   GET_CHAIRS = 'security/place_to_sit/',
+  GET_CHAIR_ID = 'security/place_to_sit/',
 
   //MOVIES
   GET_ALL_MOVIES = 'security/movie/all',

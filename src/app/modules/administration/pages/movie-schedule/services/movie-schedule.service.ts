@@ -10,9 +10,19 @@ import {MovieSchedule} from "@app/modules/administration/pages/movies/interfaces
 })
 export class MovieScheduleService {
 
+  private scheduleId: string = '';
+
   constructor(private _http: HttpService) {
   }
 
+
+  setScheduleId(id: string) {
+    this.scheduleId = id;
+  }
+
+  getScheduleId(): string {
+    return this.scheduleId;
+  }
 
   public getDataSchedule(params: HttpParams): Observable<any> {
     const defaultOptions = this._http.addParams(params);

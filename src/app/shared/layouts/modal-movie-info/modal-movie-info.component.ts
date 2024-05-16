@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Movie, MovieInfoId} from "@app/modules/user/interfaces/home.interface";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {LoadingService} from "@app/core/services/loading.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -16,6 +16,8 @@ export class ModalMovieInfoComponent implements OnInit {
   movieId: string | any = '';
   //CAmbiar el tipado por | MovieInfoId |
   dataMovie: any = [];
+  dataHourMovie: any = [];
+  schedule_id: string = '';
   @Input() selectedMovie!: Movie;
 
   constructor(
@@ -23,7 +25,8 @@ export class ModalMovieInfoComponent implements OnInit {
     private router: ActivatedRoute,
     private _movie: MovieService,
     private _schedule: MovieScheduleService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _router: Router
   ) {
   }
 
@@ -35,7 +38,6 @@ export class ModalMovieInfoComponent implements OnInit {
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
           this.dataMovie = data;
-          console.log(this.dataMovie);
           this._loader.hide();
         }
       })
@@ -62,16 +64,20 @@ export class ModalMovieInfoComponent implements OnInit {
   }
 
 
-  showFunctionHour(date: any): void {
-    console.log(this.movieId)
+  showFunctionHour(schedule_id: string, date: any): void {
     console.log(date);
-    this._schedule.getMovieSchedule(this.movieId, date).subscribe({
+    this.schedule_id = schedule_id;
+    this._schedule.getMovieSchedule(schedule_id, date).subscribe({
       next: (data) => {
-        console.log(data);
+        this.dataHourMovie = data;
       }
     })
   }
 
+  asd(): void {
+    this._schedule.setScheduleId(this.schedule_id);
+    this._router.navigate(['/purchase']);
+  }
 
   countStartMovie(rating: number): string[] {
     const starClasses = [];
