@@ -31,8 +31,8 @@ export class MoviesTableComponent implements OnInit {
   dataCountryMovie: Select[] = [];
 
   movies: any[] = [];
-  fileNameProduct: string[] = [];
-  fileImageProduct: string[] = [];
+  fileImageProduct: string = '';
+  fileNameProduct: string = '';
   showRegisterMovie: boolean = false;
   showEditMovie: boolean = false;
 
@@ -99,7 +99,8 @@ export class MoviesTableComponent implements OnInit {
   showCreateMovie(): void {
     this.showRegisterMovie = !this.showRegisterMovie;
     this.formMovie.reset();
-    this.fileImageProduct = [];
+    this.fileNameProduct = '';
+    this.fileImageProduct = '';
     //Carga la data para los select al registrar una pelicula
     this.initFormMovie();
     this.getGenderMovie();
@@ -141,23 +142,22 @@ export class MoviesTableComponent implements OnInit {
     })
   }
 
-  uploadImages(event: any): void {
+  uploadImage(event: any): void {
     const capturedFile = event.target.files[0];
     const supportedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
     const fileType = capturedFile.type;
+
     if (supportedTypes.includes(fileType)) {
       const fileName = capturedFile.name;
-      this.fileNameProduct.push(fileName);
-      this._image.compressImage(capturedFile, 0.10).then(
-        compressedResult => {
-          this.fileImageProduct.push(compressedResult);
-          this._alert.success('Imagen subida correctamente');
-        }
-      )
+      this._image.compressImage(capturedFile, 0.10).then(compressedResult => {
+        this.fileImageProduct = compressedResult;
+        this.fileNameProduct = fileName;
+        this._alert.success('Imagen subida correctamente');
+      });
     } else {
       this._alert.warning('Solo se admiten archivos PNG, JPEG, JPG o WEBP.');
     }
-  };
+  }
 
   /**
    * Genero de la pelicula
@@ -245,7 +245,7 @@ export class MoviesTableComponent implements OnInit {
         origin_country: this.formMovie.get('origin_country')?.value,
         gender_movie: this.formMovie.get('gender_movie')?.value,
         language_movie: this.formMovie.get('language_movie')?.value,
-        image: this.fileImageProduct[0],
+        image: this.fileImageProduct,
       };
       this._movie.registerMovie(dataMovieRegister).subscribe({
         next: () => {
@@ -253,7 +253,8 @@ export class MoviesTableComponent implements OnInit {
           this.showRegisterMovie = !this.showRegisterMovie;
           this._alert.success('Pelicula registrada con exito');
           this.formMovie.reset();
-          this.fileImageProduct = [];
+          this.fileImageProduct = '';
+          this.fileNameProduct = '';
           this.getMovieTable(new HttpParams());
         },
         error: (error) => {

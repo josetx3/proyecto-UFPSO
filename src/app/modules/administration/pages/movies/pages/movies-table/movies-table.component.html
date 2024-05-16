@@ -22,6 +22,7 @@
 <ng-container *ngIf="showRegisterMovie">
   <div class="wrapper-main-movie-create">
     <form [formGroup]="formMovie" class="form-grid grid form-movie">
+
       <div class="div-abs col-12 md:col-12 lg:col-12">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -32,20 +33,25 @@
           </div>
         </div>
       </div>
+
       <div class="col-12 md:col-6 lg:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
-            <div class="form-image" (change)="uploadImages($event)">
-              <label for="img-upload" class="form-upload-image"><a>Sube tu imagen</a>, el peso maximo es de 10MB</label>
-              <input id="img-upload" type="file">
+            <div class="form-image" (change)="uploadImage($event)">
+              <label for="img-upload" class="form-upload-image">
+                <a>Sube tu imagen</a>, el peso máximo es de 10MB
+              </label>
+              <input id="img-upload" type="file" accept="image/png, image/jpeg, image/jpg, image/webp">
             </div>
-            <div class="form-control-image" *ngFor="let base64Img of fileImageProduct; let i = index">
-              <img [src]="base64Img" alt="img">
-              <span>{{ fileNameProduct[i] }}</span>
+            <div class="form-control-image" *ngIf="fileImageProduct">
+              <img [src]="fileImageProduct" alt="img">
+              <span>{{ fileNameProduct }}</span>
             </div>
           </div>
         </div>
       </div>
+
+
       <div class="col-12 md:col-6 log:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -170,7 +176,6 @@
           </div>
         </div>
       </div>
-
 
 
       <div class="col-12 md:col-12 lg:col-6">
