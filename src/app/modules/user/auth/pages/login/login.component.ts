@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           })
         },
         error: (e): void => {
-          console.log(e)
+          console.error(e)
           this._loader.hide();
           this._alert.error('Error al intentar ingresar');
         }

@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
     this._select.getDocumentTypes().subscribe({
       next: (data: any) => {
         this.documentType = data;
-        console.log(this.documentType)
       }
     })
   }

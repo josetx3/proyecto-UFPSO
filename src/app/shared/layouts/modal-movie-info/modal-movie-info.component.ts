@@ -32,8 +32,9 @@ export class ModalMovieInfoComponent implements OnInit {
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
           this.dataMovie = data;
-          console.log(this.dataMovie)
-          this._loader.hide();
+          setTimeout(() => {
+            this._loader.hide();
+          }, 500)
         }
       })
     });

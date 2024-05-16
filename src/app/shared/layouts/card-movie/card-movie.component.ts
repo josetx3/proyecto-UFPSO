@@ -329,7 +329,6 @@ export class CardMovieComponent implements OnInit {
     this._movie.getAllMoviesCard().subscribe({
       next: (data) => {
         this.movies = data;
-        console.log(this.movies);
       }
     })
   }
