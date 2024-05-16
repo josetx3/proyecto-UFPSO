@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpService} from "@app/core/services/http.service";
 import {StorageService} from "@app/core/services/storage.service";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {EndPoints} from "@app/core/utils/end-points";
 import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
 
@@ -26,7 +26,7 @@ export class PurchaseService {
   }
 
   //PASAR LA INFORMACION DE LAS SILLAS DESDE PURCHASE - CHECKOUT
-  private selectedChairsSource = new BehaviorSubject<Chairs[]>([]);
+  private selectedChairsSource = new Subject<Chairs[]>();
   selectedChairs$ = this.selectedChairsSource.asObservable();
 
   updateSelectedChairs(chairs: Chairs[]): void {

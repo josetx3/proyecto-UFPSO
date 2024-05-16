@@ -18,6 +18,7 @@ export class ModalMovieInfoComponent implements OnInit {
   dataMovie: any = [];
   dataHourMovie: any = [];
   schedule_id: string = '';
+  schedule_price: number = 0;
   @Input() selectedMovie!: Movie;
 
   constructor(
@@ -65,17 +66,18 @@ export class ModalMovieInfoComponent implements OnInit {
 
 
   showFunctionHour(schedule_id: string, date: any): void {
-    console.log(date);
     this.schedule_id = schedule_id;
     this._schedule.getMovieSchedule(schedule_id, date).subscribe({
       next: (data) => {
+        this.schedule_price = data[0].movie_schedule_price;
         this.dataHourMovie = data;
+        this._schedule.setScheduleId(this.schedule_id);
+        this._schedule.setPriceMovieSchedule(this.schedule_price)
       }
     })
   }
 
-  asd(): void {
-    this._schedule.setScheduleId(this.schedule_id);
+  openCheckout(): void {
     this._router.navigate(['/purchase']);
   }
 

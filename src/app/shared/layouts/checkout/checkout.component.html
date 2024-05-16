@@ -12,7 +12,7 @@
       </div>
       <div class="content-main-info-chair--right">
         <span>Silla {{ chair.row }}{{ chair.column }}</span>
-        <span class="chair-cost">$12.000</span>
+        <span class="chair-cost">${{ schedulePrice }}</span>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
     </div>
   </div>
   <div class="main-checkout--bottom">
-    <span class="total-checkout">Total:<em>$83.500</em></span>
-    <button>Pagar</button>
+    <span class="total-checkout">Total:<em>${{ totalCheckout }}</em></span>
+    <button (click)="sendCheckout()" >Pagar</button>
   </div>
 </div>

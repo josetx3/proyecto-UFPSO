@@ -40,7 +40,7 @@
         </div>
         <ng-container *ngIf="dataHourMovie != []">
           <div class="right-date--content">
-            <span class="hour" *ngFor="let scheduleHour of dataHourMovie"  (click)="asd()" > {{ scheduleHour.movie_schedule_presentation_time }} </span>
+            <span class="hour" *ngFor="let scheduleHour of dataHourMovie"  (click)="openCheckout()" > {{ scheduleHour.movie_schedule_presentation_time }} </span>
           </div>
         </ng-container>
       </div>

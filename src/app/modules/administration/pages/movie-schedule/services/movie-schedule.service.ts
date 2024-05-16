@@ -11,6 +11,7 @@ import {MovieSchedule} from "@app/modules/administration/pages/movies/interfaces
 export class MovieScheduleService {
 
   private scheduleId: string = '';
+  private priceMovieSchedule: number = 0;
 
   constructor(private _http: HttpService) {
   }
@@ -22,6 +23,14 @@ export class MovieScheduleService {
 
   getScheduleId(): string {
     return this.scheduleId;
+  }
+
+  setPriceMovieSchedule(price: number) {
+    this.priceMovieSchedule = price;
+  }
+
+  getPriceMovieSchedule(): number {
+    return this.priceMovieSchedule;
   }
 
   public getDataSchedule(params: HttpParams): Observable<any> {
