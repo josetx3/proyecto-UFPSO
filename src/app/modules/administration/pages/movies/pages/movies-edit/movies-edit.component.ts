@@ -21,7 +21,7 @@ export class MoviesEditComponent implements OnInit {
   @Output() editMovie: EventEmitter<boolean> = new EventEmitter();
 
   public FormMovie: FormGroup = new FormGroup({});
-  public formMovieSchedule: FormGroup = new FormGroup({});
+
 
   dataGenderMovie: Select[] = [];
   ArrayGender: string[] = [];
@@ -33,7 +33,6 @@ export class MoviesEditComponent implements OnInit {
   edit: boolean = false;
   fileNameProduct: string[] = [];
   fileImageProduct: string[] = [];
-  minDate = new Date(new Date().setHours(new Date().getHours()));
 
   constructor(
     private router: Router,
@@ -47,7 +46,6 @@ export class MoviesEditComponent implements OnInit {
 
   ngOnInit() {
     this.initFormMovie();
-    this.initFormMovieSchedule();
     this.getGenderMovie();
     this.getCountryMovie();
     this.getLanguageMovie();
@@ -82,22 +80,6 @@ export class MoviesEditComponent implements OnInit {
       language_movie: new FormControl('', [Validators.required]),
       image: new FormControl('', [Validators.required])
     })
-  }
-
-  initFormMovieSchedule(): void {
-    this.formMovieSchedule = new FormGroup({
-      movie_schedule_price: new FormControl('', [Validators.required]),
-      movie_schedule_presentation: new FormControl('', [Validators.required]),
-      movie_schedule_video_quality: new FormControl('', [Validators.required]),
-    })
-  }
-
-  setDate(): void {
-    this.minDate = new Date(new Date().setHours(new Date().getHours()));
-    this.formMovieSchedule.get('movie_schedule_presentation')?.setValue(this.minDate);
-    setTimeout(() => {
-      this.formMovieSchedule.get('movie_schedule_presentation')?.setValue(null);
-    }, 1)
   }
 
   //Genero de la pelicula
@@ -196,42 +178,7 @@ export class MoviesEditComponent implements OnInit {
 
   //Agregar la parte de las fechas en la pelicula
   sendDatesMovie(): void {
-    if (this.formMovieSchedule.valid) {
-      this._loader.show();
-      const movieReleaseDate: Date = this.formMovieSchedule.get('movie_schedule_presentation')?.value;
-      const dia = movieReleaseDate.getDate();
-      const mes = movieReleaseDate.getMonth() + 1;
-      const año = movieReleaseDate.getFullYear();
-      const fechaFormateada = año + '-' + (mes < 10 ? '0' : '') + mes + '-' + (dia < 10 ? '0' : '') + dia;
-      const hora = movieReleaseDate.getHours();
-      const minutos = movieReleaseDate.getMinutes();
-      const segundos = movieReleaseDate.getSeconds();
-      const horaFormateada = (hora < 10 ? '0' : '') + hora + ':' + (minutos < 10 ? '0' : '') + minutos + ':' + (segundos < 10 ? '0' : '') + segundos;
-      const dateMovie = `${fechaFormateada}T${horaFormateada}`;
-      let dataMovieSchedule: MovieSchedule = {
-        movie_id: this.movie_id,
-        movie_schedule_price: this.formMovieSchedule.get('movie_schedule_price')?.value,
-        movie_schedule_presentation: dateMovie,
-        movie_schedule_video_quality: this.formMovieSchedule.get('movie_schedule_video_quality')?.value,
-      };
-      this._movie.setMovieSchedule(dataMovieSchedule).subscribe({
-        next: () => {
-          this.edit = false;
-          this.formMovieSchedule.reset();
-          this.router.navigateByUrl('/administration/movies').then();
-          this._loader.hide();
-          this._alert.success('Fecha para ver la pelicula registradas con exito');
-        },
-        error: (error) => {
-          console.error(error);
-          this._alert.error('¡Oops! Parece que hubo un problema al intentar registrar la pelicula.');
-          this._loader.hide();
-        }
-      });
-    } else {
-      this._loader.hide();
-      this._alert.warning('Faltan campos por llenar');
-    }
+
   }
 
 

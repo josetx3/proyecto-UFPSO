@@ -33,10 +33,6 @@ export class MovieService {
     return this._http.get(EndPoints.MOVIE + movie_id);
   }
 
-  public setMovieSchedule(data: MovieSchedule): Observable<any> {
-    return this._http.post(EndPoints.MOVIE_SCHEDULE, data);
-  }
-
   public getAllMoviesCard(): Observable<any> {
     return this._http.get<any>(EndPoints.GET_MOVIE_INFO_BASIC, false);
   }

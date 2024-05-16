@@ -22,6 +22,9 @@ export class FoodsTableComponent implements OnInit {
   public formFood: FormGroup = new FormGroup<any>({});
 
 
+  /**
+   * ESTILOS DE LA TABLA
+   */
   columnsTable: TableColumn[] = [
     {name: 'Nombre', isFilterable: true, key: 'food_name', type: 'text'},
     {name: 'Referencia', isFilterable: true, key: 'food_reference', type: 'text'},
@@ -47,6 +50,7 @@ export class FoodsTableComponent implements OnInit {
     }
   }
 
+  // ELIMINAR CUANDO SE TRAIGAN LAS COMIDAS
   foods: any[] = [
     {
       food_id: '1',
@@ -82,18 +86,20 @@ export class FoodsTableComponent implements OnInit {
 
   showRegisterFood: boolean = false;
   menuEditFood: boolean = false;
+
   title: string = 'Nueva comida';
   image: string = './assets/img/profile-user.png';
+
   dataTypeFood: Select[] = [];
   typeFoodId: string = '';
   dataVariantFood: Select[] = [];
+
 
   size: number = 0;
   pageIndex: number = 0;
   totalElements: number = 0;
   hasRoles: boolean = false;
   isPageable: boolean = false;
-  // dataTable: UserAuth[] = [];
   dataTable: any[] = [];
 
   fileNameProduct: string[] = [];
@@ -109,7 +115,6 @@ export class FoodsTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTypeFood();
     this.getFoodTable(new HttpParams());
   }
 
@@ -155,7 +160,6 @@ export class FoodsTableComponent implements OnInit {
   }
 
   edit(data: any): void {
-
   }
 
   unlockFood(user: any): void {
@@ -165,6 +169,7 @@ export class FoodsTableComponent implements OnInit {
     this.showRegisterFood = !this.showRegisterFood;
     this.formFood.reset();
     this.initFormFood();
+    this.getTypeFood();
   }
 
   sendFormRegisterFood(): void {

@@ -117,4 +117,22 @@ export class SelectService {
     });
   }
 
+  //OBTENER LAS PELICULAS QUE TENGAN EL CAMPO DE STATUS_HOME = TRUE
+  public getScheduleMovieHome(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_MOVIE_INFO_BASIC).subscribe({
+        next: (data) => {
+          const movies_home: Select[] = data.map((select) => {
+            return {
+              label: select.movie_name_spanish,
+              value: select.movie_id,
+            }
+          });
+          observable.next(movies_home);
+          observable.complete();
+        }
+      })
+    });
+  }
+
 }

@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('@app/modules/administration/pages/movies/movies.module').then(m => m.MoviesModule)
       },
       {
+        path: 'movies_schedule',
+        loadChildren: () => import('@app/modules/administration/pages/movie-schedule/movie-schedule.module').then(m => m.MovieScheduleModule)
+      },
+      {
         path: 'food',
         loadChildren: () => import('@app/modules/administration/pages/foods/foods.module').then(m => m.FoodsModule)
       },
