@@ -5,8 +5,6 @@
         <div class="main-purchase-top--screen">
           <img src="assets/img/video-pantalla.gif" alt="">
         </div>
-
-
         <div class="main-purchase-top--chair">
           <div class="chair-row" *ngFor="let row of [chairsA, chairsB, chairsC, chairsD, chairsE, chairsF, chairsG]; let i = index">
             <ng-container *ngFor="let chair of row">
@@ -20,10 +18,6 @@
             </ng-container>
           </div>
         </div>
-
-
-
-
       </div>
       <div class="main-purchase-bottom--chair">
         <div class="info-chair">
@@ -52,7 +46,20 @@
         <button (click)="nextScreen(1)"><em class="icon-arrow-left"></em></button>
       </div>
       <div class="main-purchase-content--food">
-        <app-card-food></app-card-food>
+        <div class="card-food">
+          <img src="assets/img/food/pizza.jpg" alt="Comida">
+          <h2>Pizza personal doble queso</h2>
+          <span>Comida salada</span>
+          <div class="stock-food">
+            <button (click)="decrement()">-</button>
+            <span>{{ quantityFood }}</span>
+            <button (click)="increment()">+</button>
+          </div>
+          <div class="price-food">
+            <span>$15000</span>
+            <button>Agregar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
