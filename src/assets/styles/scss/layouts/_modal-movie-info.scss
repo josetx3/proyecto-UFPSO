@@ -91,6 +91,7 @@
           padding: 0 4px;
           overflow-x: auto;
           align-items: center;
+          justify-content: flex-start;
         }
       }
     }
@@ -135,6 +136,7 @@
 
           &:last-child {
             justify-content: flex-start;
+            padding: 0 2px;
           }
 
           .title {
