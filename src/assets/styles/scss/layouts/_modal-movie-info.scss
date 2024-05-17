@@ -147,6 +147,9 @@
           }
 
           .hour {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 8px;
             font-size: 16px;
             min-width: 100px;
