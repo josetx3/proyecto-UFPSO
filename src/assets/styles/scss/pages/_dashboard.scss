@@ -4,16 +4,58 @@
   height: 100%;
 
   .wrapper-main-dashboard--left {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
     width: 60%;
     height: 100%;
-    padding: 6px;
-    border: 1px solid red;
+
+    .dashboard-left--top {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      height: 100px;
+      min-height: 100px;
+
+      .card-info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        width: 180px;
+        height: 80px;
+        border-radius: 12px;
+        background-color: theme-palette-color('background', 'pardo');
+        transition: all linear .25s;
+
+        span {
+          font-size: 18px;
+          font-weight: 500;
+          color: theme-palette-color('font', 'span');
+
+          &:last-child {
+            font-size: 20px;
+            font-weight: 600;
+            color: theme-palette-color('color', 'primary');
+          }
+        }
+
+        &:hover {
+          box-shadow: 0 0 2px 4px rgba(161, 217, 217, .35);
+          transition: all linear .25s;
+        }
+      }
+    }
+
   }
 
   .wrapper-main-dashboard--right {
     width: 40%;
     height: 100%;
-    padding: 6px;
-    border: 1px solid red;
+    border: 1px solid blue;
   }
 }
