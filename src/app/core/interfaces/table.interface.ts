@@ -5,7 +5,7 @@ export interface TableColumn {
   table?: string;
   isSortable?: boolean;
   isFilterable?: boolean;
-  type: 'text' | 'status' | 'statusName' | 'statusIf' | 'dateTime' | 'textLogoFranchise' | 'currency' | 'requestType' | 'payments' | 'date' | 'portalType' | 'number' | 'statusCommerce' | 'percentage';
+  type: 'text' | 'status' | 'availability' | 'statusName' | 'statusIf' | 'dateTime' | 'textLogoFranchise' | 'currency' | 'requestType' | 'payments' | 'date' | 'portalType' | 'number' | 'statusCommerce' | 'percentage';
 }
 
 export interface TableActions {

@@ -68,6 +68,25 @@ export class DataTypeTablePipe implements PipeTransform {
         if (value === 'LOCKED') return 'Bloqueado';
         return null;
       }
+
+
+      case 'availability': {
+        this.renderer.addClass(this.el.nativeElement.parentElement, 'dataTypeTable');
+        if (typeof value !== 'string') {
+          console.warn('Valor invalido');
+          return null;
+        }
+        this.addStatus(value);
+        if (value === 'Estreno') return 'Estreno';
+        if (value === 'En cartelera') return 'En cartelera';
+        if (value === 'Preventa') return 'Preventa';
+        if (value === 'Proximamente') return 'Proximamente';
+        if (value === 'Pasadas') return 'Pasadas';
+        return null;
+
+      }
+
+
       case 'dateTime': {
         if (!isValue(value)) return 'No aplica';
         const date: Date = new Date(value);
@@ -137,18 +156,20 @@ export class DataTypeTablePipe implements PipeTransform {
   addStatus(value: string): void {
     if (value === 'PENDIENTE') {
       this.addClass('pending');
-    } else if ((value === 'APROBADA') || (value === 'ACTIVE') || (value === 'ACTIVA') || (value === 'ACTIVO')) {
+    } else if ((value === 'APROBADA') || (value === 'ACTIVE') || (value === 'ACTIVA') || (value === 'ACTIVO') || (value === 'Estreno')) {
       this.addClass('approved');
-    } else if ((value === 'RECHAZADA') || (value === 'INACTIVE') || (value === 'CANCELED') || (value === 'INACTIVA') || (value === 'INACTIVO') || (value === 'LOCKED')) {
+    } else if ((value === 'RECHAZADA') || (value === 'INACTIVE') || (value === 'CANCELED') || (value === 'INACTIVA') || (value === 'INACTIVO') || (value === 'LOCKED') || (value === 'Pasadas')) {
       this.addClass('rejected');
-    } else if ((value === 'REVERSADA') ) {
+    } else if ((value === 'REVERSADA') || (value === 'Preventa')) {
       this.addClass('reversed');
-    } else if ((value === 'EXPIRADO') || (value === 'FINALIZADA') || (value === 'ELIMINADO') || (value === 'SUSPENDED')) {
+    } else if ((value === 'EXPIRADO') || (value === 'FINALIZADA') || (value === 'ELIMINADO') || (value === 'SUSPENDED') || (value === 'Próximamente')) {
       this.addClass('expired');
-    } else if ((value === 'CONGELADO') || (value === 'BLOQUEADO') ) {
+    } else if ((value === 'CONGELADO') || (value === 'BLOQUEADO') || (value === 'En cartelera')) {
       this.addClass('frozen');
     } else if ((value === 'POR CANCELAR')) {
       this.addClass('to-cancel');
+    } else if ((value === 'Proximamente')) {
+      this.addClass('next')
     } else {
       console.warn('Estado no definido', value)
     }

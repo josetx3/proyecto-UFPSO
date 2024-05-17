@@ -45,6 +45,7 @@ export class MoviesTableComponent implements OnInit {
     {name: 'Clasificacion', isFilterable: true, key: 'movie_classification', type: 'text'},
     {name: 'Duracion', isFilterable: true, key: 'movie_duration', type: 'text'},
     {name: 'Estado', isFilterable: true, key: 'movie_status', type: 'status'},
+    {name: 'Disponibilidad', isFilterable: true, key: 'movie_availability', type: 'availability'},
   ];
 
   tableActions: TableActions = {
@@ -87,6 +88,7 @@ export class MoviesTableComponent implements OnInit {
     this._loader.show();
     this._movie.getMovieTable(params).subscribe({
       next: (data) => {
+        console.log(data)
         this.dataTable = data.content;
         this._loader.hide();
       }, error: (e): void => {
