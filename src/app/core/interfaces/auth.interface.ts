@@ -3,7 +3,7 @@ export interface UserAuth {
   token_jwt: string;
   type_token: string;
   refresh_token: string;
-  user_data: UserDataAuth[];
+  user_data: UserDataAuth;
   user_module: UserModule[];
   user_permission: UserPermission[];
 }

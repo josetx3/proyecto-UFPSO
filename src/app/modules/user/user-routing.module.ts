@@ -10,11 +10,16 @@ import {PurchaseComponent} from "@app/modules/user/pages/purchase/purchase.compo
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: MainUserComponent,
     children: [
       {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'index'
+      },
+      {
+        path: 'index',
         component: HomeComponent
       },
       {
@@ -22,7 +27,7 @@ const routes: Routes = [
         component: FoodComponent
       },
       {
-        path: 'movies',
+        path: 'movie',
         component: MovieComponent
       },
       {

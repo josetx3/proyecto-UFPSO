@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from "@app/core/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar-adm',
@@ -11,7 +12,8 @@ export class NavbarAdmComponent {
   reduceNavBar: boolean = false;
 
   constructor(
-    private _auth: AuthService
+    private router: Router,
+    private _auth: AuthService,
   ) {
   }
 
@@ -21,5 +23,6 @@ export class NavbarAdmComponent {
 
   logout(): void {
     this._auth.logout();
+    this.router.navigateByUrl('/').then();
   }
 }

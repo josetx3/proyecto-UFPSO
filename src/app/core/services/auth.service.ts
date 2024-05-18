@@ -18,14 +18,21 @@ export class AuthService {
   ) {
   }
 
+  isAdministrator: boolean = false;
+
   public login(authLogin: any): Observable<any> {
     return this._http.post<any, any>(EndPoints.LOGIN, authLogin, false);
   }
 
   public logout(): void {
     this._storage.removeAll();
-    this.router.navigateByUrl('/').then();
-    location.reload();
+    this.router.navigateByUrl('home').then(
+      ()=>{
+        if(!this.isAdministrator){
+            window.location.reload();
+        }
+      }
+    );
   }
 
   public sendMultiFactorAuthentication(data: any): Observable<any> {
@@ -39,6 +46,7 @@ export class AuthService {
     this._storage.setItem('user_data', data.user_data);
     this._storage.setItem('user_module', data.user_module);
     this._storage.setItem('user_permission', data.user_permission);
+    this.isAdministrator = data.user_data.administrator
     // setTimeout(() => {
     //   this.router.navigateByUrl((data.user.is_commerce ? 'administration' : '/')).then(
     //     () => {
