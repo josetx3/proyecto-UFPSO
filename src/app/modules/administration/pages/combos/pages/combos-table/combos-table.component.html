@@ -81,7 +81,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-12 md:col-6 log:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
@@ -92,16 +91,26 @@
         </div>
       </div>
 
-      <!--FALTA HACER EL SELECT PARA LAS COMIDAS-->
-      <div class="col-12 md:col-6 log:col-6">
+      <div class="col-12 md:col-12 lg:col-6">
         <div class="form-container form-rounded">
           <div class="form-group">
-            <label for="food_ids">ID COMIDA</label>
-            <input type="text" id="food_ids" formControlName="food_ids" class="form-input"
-                   placeholder="ID COMIDA" appValidateErrors>
+            <label class="form-label">Comida</label>
+            <ng-select (change)="changeFood($event)"
+                       [items]="dataFood"
+                       [multiple]=true
+                       bindLabel="label"
+                       bindValue="value"
+                       [clearable]="false"
+                       [searchable]="false"
+                       appValidateErrors
+                       class="custom-two form-ng-select"
+                       formControlName="food_ids"
+                       placeholder="Seleccione una opción">
+            </ng-select>
           </div>
         </div>
       </div>
+
 
       <div class="col-12 md:col-12 lg:col-12">
         <div class="form-container form-rounded">

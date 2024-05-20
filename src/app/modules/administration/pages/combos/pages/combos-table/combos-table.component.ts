@@ -9,6 +9,8 @@ import {LoadingService} from "@app/core/services/loading.service";
 import {RegisterCombo} from "@app/modules/administration/pages/combos/interfaces/combo.interface";
 import {ComboService} from "@app/modules/administration/pages/combos/services/combo.service";
 import {format} from "crypto-js";
+import {Select} from "@app/core/interfaces/select.interface";
+import {SelectService} from "@app/core/services/select.service";
 
 @Component({
   selector: 'app-combos-table',
@@ -52,13 +54,10 @@ export class CombosTableComponent implements OnInit {
   fileNameProduct: string = '';
 
   columnsTable: TableColumn[] = [
-    {name: 'Referencia', isFilterable: true, key: 'combo_reference', type: 'text'},
-    {name: 'Stock', isFilterable: true, key: 'combo_stock', type: 'number'},
-    {name: 'Fecha inicio', isFilterable: true, key: 'combo_date_start', type: 'text'},
-    {name: 'Fecha fin', isFilterable: true, key: 'combo_date_find', type: 'text'},
+    {name: 'Nombre combo', isFilterable: true, key: 'combo_name', type: 'text'},
     {name: 'Precio', isFilterable: true, key: 'combo_price', type: 'text'},
-    {name: 'Vendidos', isFilterable: true, key: 'combo_sell', type: 'text'},
-    {name: 'Estado', key: 'combo_status', type: 'statusName'},
+    {name: 'Stock', isFilterable: true, key: 'combo_stock', type: 'number'},
+    {name: 'Estado', key: 'combo_status', type: 'status'},
   ];
 
   tableActions: TableActions = {
@@ -84,12 +83,16 @@ export class CombosTableComponent implements OnInit {
   // dataTable: UserAuth[] = [];
   dataTable: any[] = [];
 
+  arrayFood: string[] = [];
+  dataFood: Select[] = [];
+
 
   constructor(
     private _alert: AlertService,
     private _image: ImageService,
     private _loader: LoadingService,
     private _combo: ComboService,
+    private _select: SelectService,
   ) {
   }
 
@@ -132,9 +135,27 @@ export class CombosTableComponent implements OnInit {
     }
   }
 
+  changeFood(_event: Select): void {
+    const validators = [Validators.required];
+    const foodSelect = this.formCombo?.get('food_ids')?.value;
+    this.arrayFood.push(foodSelect);
+    const lastFood = this.arrayFood[this.arrayFood.length - 1];
+  }
+
+  getFoodSelect(): void {
+    this._select.getFood().subscribe({
+      next: (data) => {
+        this.dataFood = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener las comidas, reintenta mas tarde')
+      }
+    })
+  }
+
   createCombo(): void {
     this.showRegisterCombo = !this.showRegisterCombo;
     this.initFormCombo();
+    this.getFoodSelect();
     this.formCombo.reset();
   }
 
@@ -151,7 +172,17 @@ export class CombosTableComponent implements OnInit {
   }
 
   getComboTable(params: HttpParams): void {
-    this.dataTable = this.foodCombo;
+    this._loader.show();
+    this._combo.getComboTable(params).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.dataTable = data.content;
+        this._loader.hide()
+      }, error: (e): void => {
+        this._loader.hide();
+        this._alert.warning('Tenemos problemas, reintenta mas tarde.')
+      }
+    })
   }
 
   sendRegisterCombo(): void {
@@ -162,7 +193,7 @@ export class CombosTableComponent implements OnInit {
       combo_price: this.formCombo.get('combo_price')?.value,
       combo_stock: this.formCombo.get('combo_stock')?.value,
       combo_image: this.fileImageProduct,
-      food_ids: ['546fd31a-36a3-4b3d-95a4-efbdfdf4dd0b', '3d2a99f7-e288-4707-8eca-7267f77c2ab7'],
+      food_ids: this.formCombo.get('food_ids')?.value
     }
     console.table(dataRegisterCombo);
     this._combo.registerCombo(dataRegisterCombo).subscribe({

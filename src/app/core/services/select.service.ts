@@ -83,6 +83,23 @@ export class SelectService {
     });
   }
 
+  public getFood(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_FOOD).subscribe({
+        next: (data) => {
+          const food: Select[] = data.map((select) => {
+            return {
+              label: select.food_name,
+              value: select.food_id,
+            }
+          });
+          observable.next(food);
+          observable.complete();
+        }
+      })
+    });
+  }
+
   public getTypeFood(): Observable<Select[]> {
     return new Observable<Select[]>((observable) => {
       this._http.get<any[]>(EndPoints.GET_TYPE_FOOD).subscribe({

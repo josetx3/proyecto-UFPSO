@@ -27,9 +27,11 @@ export const enum EndPoints {
   FOOD = 'security/food/',
   GET_ALL_FOOD = 'security/food/',
   GET_TYPE_FOOD = 'security/type_food/',
+  GET_FOOD = 'security/food/all',
   GET_VARIANT_FOOD = 'security/variant_food/',
 
   //COMBOS
+  GET_COMBOS = 'security/combo/',
   COMBO = 'security/combo/',
 
   //CHECKOUT
