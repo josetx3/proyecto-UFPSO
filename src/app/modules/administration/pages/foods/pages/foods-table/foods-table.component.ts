@@ -156,7 +156,16 @@ export class FoodsTableComponent implements OnInit {
   }
 
   getFoodTable(params: HttpParams): void {
-    this.dataTable = this.foods;
+    this._loader.show();
+    this._food.getFoodTable(params).subscribe({
+      next: (data) => {
+        this.dataTable = data.content;
+        this._loader.hide();
+      }, error: (e): void => {
+        this._loader.hide();
+        this._alert.warning('Tenemos problemas, reintenta mas tarde.')
+      }
+    })
   }
 
   edit(data: any): void {
