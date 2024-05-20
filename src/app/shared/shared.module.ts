@@ -25,6 +25,7 @@ import {CustomIsoPipe} from "@app/shared/pipes/custom-iso.pipe";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
+import { OrderSummaryComponent } from './layouts/order-summary/order-summary.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-mater
     TableComponent,
     DataTypeTablePipe,
     GetterPropertyPipe,
-    CustomIsoPipe
+    CustomIsoPipe,
+    OrderSummaryComponent
   ],
   exports: [
     NavComponent,

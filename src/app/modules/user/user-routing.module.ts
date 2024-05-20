@@ -10,16 +10,16 @@ import {PurchaseComponent} from "@app/modules/user/pages/purchase/purchase.compo
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: MainUserComponent,
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'index'
+        redirectTo: 'home'
       },
       {
-        path: 'index',
+        path: 'home',
         component: HomeComponent
       },
       {

@@ -50,6 +50,7 @@ export class CheckoutComponent implements OnInit {
     return this.schedulePrice * this.selectedChairs.length;
   }
 
+  //  VALIDAR ESTA PARTE PARA QUE CUAND NO SE PAGUE NO COLOQUE LAS SILLAS EN OCUPADO
   sendCheckout(): void {
     this._loader.show();
     const sendCheckout = {
@@ -60,13 +61,23 @@ export class CheckoutComponent implements OnInit {
       checkout_combos: [],
     }
     this._checkout.sendCheckout(sendCheckout).subscribe({
-      next: () => {
+      next: (data) => {
         this._loader.hide();
+        const link = data.link;
+        this.navigateToLink(link);
       }, error: (error) => {
         this._alert.error('Tenemos problemas ' + error.error.message);
         this._loader.hide();
       }
     })
+  }
+
+  navigateToLink(link: string) {
+    if (link.startsWith('https')) {
+      window.location.href = link;
+    } else {
+      this.router.navigate([link]);
+    }
   }
 
   ngOnDestroy(): void {
