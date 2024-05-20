@@ -21,6 +21,8 @@ export class CheckoutComponent implements OnInit {
   schedulePrice: number = 0;
   scheduleMovieId: string = '';
 
+  redirectToPayment: string = '';
+
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -51,7 +53,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   //  VALIDAR ESTA PARTE PARA QUE CUAND NO SE PAGUE NO COLOQUE LAS SILLAS EN OCUPADO
-  sendCheckout(): void {
+  openOrderSummary(): void {
     this._loader.show();
     const sendCheckout = {
       checkout_total: this.totalCheckout,
@@ -63,8 +65,8 @@ export class CheckoutComponent implements OnInit {
     this._checkout.sendCheckout(sendCheckout).subscribe({
       next: (data) => {
         this._loader.hide();
-        const link = data.link;
-        this.navigateToLink(link);
+        this.redirectToPayment = data.link
+        window.location.href = this.redirectToPayment;
       }, error: (error) => {
         this._alert.error('Tenemos problemas ' + error.error.message);
         this._loader.hide();
@@ -72,13 +74,6 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  navigateToLink(link: string) {
-    if (link.startsWith('https')) {
-      window.location.href = link;
-    } else {
-      this.router.navigate([link]);
-    }
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
