@@ -2,32 +2,31 @@
   <div class="modal-movie-top">
     <div class="modal-movie-top--left">
       <div class="movie-top-left--img">
-        <img src="{{dataMovie.movie_img}}" alt="{{dataMovie.movie_name}}">
+        <img src="{{dataMovie.movie_image}}" alt="{{dataMovie.movie_name_spanish}}">
       </div>
       <div class="movie-top-left--info">
         <div class="movie-top-left--info__content">
-          <span class="movie-stars">
-            <em *ngFor="let starClass of countStartMovie(dataMovie.movie_rating)" class="{{ starClass }}"></em>
-          </span>
-          <span>{{ dataMovie.movie_date }}</span>
-          <span>{{ dataMovie.movie_duration }}</span>
-          <span>{{ dataMovie.movie_animation }}</span>
+          <!--          <span class="movie-stars">-->
+          <!--            <em *ngFor="let starClass of countStartMovie(dataMovie.movie_rating)" class="{{ starClass }}"></em>-->
+          <!--          </span>-->
+          <span>{{ dataMovie.movie_release_date }}</span>
+          <span>{{ dataMovie.movie_duration }} Min</span>
+          <span class="highlighted-text">{{ dataMovie.movie_classification }}</span>
+          <span class="highlighted-text">{{ dataMovie.movie_availability }}</span>
         </div>
-        <div class="movie-top-left--info__content">
-          <span *ngFor="let category of dataMovie.movie_category"
-                class="movie-category">{{ category.category_name }}</span>
+        <div class="movie-top-left--info__content movie-top-left--info__content--gender">
+          <span *ngFor="let category of dataMovie.movie_gender"
+                class="movie-category">{{ category }}</span>
         </div>
 
         <div class="movie-top-left--info__content">
-          <span class="movie-text">{{ dataMovie.movie_text }}</span>
+          <span class="movie-text">{{ dataMovie.movie_description }}</span>
         </div>
       </div>
     </div>
     <div class="modal-movie-top--right">
       <div class="movie-top-right--trailer">
-
-        <iframe src="https://www.youtube.com/embed/03n1lgk8E9U?si=1PsMd3PuyZ_j5Gl-" title="YouTube video player"
-                frameborder="0"
+        <iframe [src]="getTrailerUrl()" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
@@ -36,12 +35,15 @@
           <span class="title">Estos son nuestros horarios</span>
         </div>
         <div class="right-date--content">
-          <span class="hour" *ngFor="let hour of dataMovie.movie_times">{{ hour.movie_time_hour }}</span>
+          <span class="hour" (click)="showFunctionHour(schedule.movie_schedule_id  , schedule.movie_presentation_date)"
+                *ngFor="let schedule of dataMovie.movie_schedule">{{ schedule.movie_presentation_date }}</span>
         </div>
+        <ng-container *ngIf="dataHourMovie != []">
+          <div class="right-date--content">
+            <span class="hour" *ngFor="let scheduleHour of dataHourMovie"  (click)="openCheckout()" > {{ scheduleHour.movie_schedule_presentation_time }} </span>
+          </div>
+        </ng-container>
       </div>
     </div>
-  </div>
-  <div class="modal-movie-bottom">
-    <button routerLink="/purchase">Comprar ticket <em class="icon-ticket"></em></button>
   </div>
 </div>

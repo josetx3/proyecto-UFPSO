@@ -15,6 +15,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+      },
+      {
+        path: 'home',
         component: HomeComponent
       },
       {
@@ -22,7 +27,7 @@ const routes: Routes = [
         component: FoodComponent
       },
       {
-        path: 'movies',
+        path: 'movie',
         component: MovieComponent
       },
       {

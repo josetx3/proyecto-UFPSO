@@ -1,12 +1,14 @@
-<div class="content-card-movie" (click)="openModalInfoMovie(movie)" *ngFor="let movie of Movies">
+<div class="content-card-movie" routerLink="../movie/{{movie.movie_id}}" *ngFor="let movie of movies">
   <div class="left-center--card__img">
-    <img src="{{movie.movie_img}}" alt="{{movie.movie_name}}">
+    <img src="{{movie.movie_image}}" alt="{{movie.movie_name_spanish}}">
   </div>
   <div class="left-center--card__text">
-    <span class="card-text--title">{{ movie.movie_name }}</span>
-    <span class="card-text--category" *ngFor="let category of movie.movie_category">{{ category.category_name }}</span>
+    <span class="card-text--title">{{ movie.movie_name_spanish }}</span>
+    <div class="content-card-text--category">
+      <span class="card-text--category" *ngFor="let category of movie.movie_gender">{{ category }}</span>
+    </div>
     <div>
-      <em *ngFor="let starClass of countStartMovie(movie.movie_rating)" class="{{ starClass }}"></em>
+      <em *ngFor="let starClass of countStartMovie(movie.movie_duration)" class="{{ starClass }}"></em>
     </div>
   </div>
 </div>

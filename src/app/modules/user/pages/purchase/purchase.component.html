@@ -6,66 +6,14 @@
           <img src="assets/img/video-pantalla.gif" alt="">
         </div>
         <div class="main-purchase-top--chair">
-          <!-- Recorriendo las sillas de la fila A -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsA">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
-              </div>
-            </ng-container>
-          </div>
-          <!-- Recorriendo las sillas de la fila B -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsB">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
-              </div>
-            </ng-container>
-          </div>
-          <!-- Recorriendo las sillas de la fila C -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsC">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
-              </div>
-            </ng-container>
-          </div>
-          <!-- Recorriendo las sillas de la fila D -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsD">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
-              </div>
-            </ng-container>
-          </div>
-          <!-- Recorriendo las sillas de la fila E -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsE">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
-              </div>
-            </ng-container>
-          </div>
-          <!-- Recorriendo las sillas de la fila F -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsF">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
-              </div>
-            </ng-container>
-          </div>
-          <!-- Recorriendo las sillas de la fila G -->
-          <div class="chair-row">
-            <ng-container *ngFor="let chair of chairsG">
-              <div class="main-chair">
-                <!--                <img src="{{chair.chair_img}}" alt="{{chair.place_to_sit_id}}">-->
-                <span>{{ chair.row }}  {{ chair.column }}</span>
+          <div class="chair-row" *ngFor="let row of [chairsA, chairsB, chairsC, chairsD, chairsE, chairsF, chairsG]; let i = index">
+            <ng-container *ngFor="let chair of row">
+              <div class="main-chair" (click)="toggleSelectChair(chair)">
+                <img *ngIf="!chair.status_place_to_sit" src="assets/img/Sillas/silla-desactivada.svg" alt="{{chair.place_to_sit_id}}">
+                <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit && !isSelected(chair)" src="assets/img/Sillas/silla-normal.svg" alt="{{chair.place_to_sit_id}}">
+                <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit && isSelected(chair)" src="assets/img/Sillas/silla-seleccionada.svg" alt="{{chair.place_to_sit_id}}">
+                <img *ngIf="chair.occupied_place_to_sit" src="assets/img/Sillas/silla-ocupada.svg" alt="{{chair.place_to_sit_id}}">
+                <span>{{ chair.row }} {{ chair.column }}</span>
               </div>
             </ng-container>
           </div>
@@ -98,7 +46,20 @@
         <button (click)="nextScreen(1)"><em class="icon-arrow-left"></em></button>
       </div>
       <div class="main-purchase-content--food">
-        <app-card-food></app-card-food>
+        <div class="card-food">
+          <img src="assets/img/food/pizza.jpg" alt="Comida">
+          <h2>Pizza personal doble queso</h2>
+          <span>Comida salada</span>
+          <div class="stock-food">
+            <button (click)="decrement()">-</button>
+            <span>{{ quantityFood }}</span>
+            <button (click)="increment()">+</button>
+          </div>
+          <div class="price-food">
+            <span>$15000</span>
+            <button>Agregar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

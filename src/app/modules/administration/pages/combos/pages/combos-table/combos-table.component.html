@@ -1,10 +1,10 @@
-<div class="wrapper-module">
+<div class="wrapper-module" *ngIf="!showRegisterCombo">
   <span class="title-module">Administra tus combos</span>
   <app-table
     (add)="createCombo()"
     (edit)="edit($event)"
     (unlock)="unlockCombo($event)"
-    (filter)="getComboTable()"
+    (filter)="getComboTable($event)"
     [pageIndex]="pageIndex"
     [pageSize]="size"
     [action]="tableActions"
@@ -19,13 +19,114 @@
   </app-table>
   <div class="screen-gray" *ngIf="menuEditCombo"></div>
 </div>
-<section class="sidebar-form" [ngClass]="menuEditCombo ? 'sidebar-form-show' : ''">
-  <!--  <div class="header-sidebar">-->
-  <!--    <span>{{title}}</span>-->
-  <!--    <em class="icon-log-in" (click)="menuEditUser = false"></em>-->
-  <!--  </div>-->
-  <div class="body-sidebar">
-    <!--    <app-user-edit (editing)="editUser($event)" class="content-sidebar-overflow"></app-user-edit>-->
+
+<ng-container *ngIf="showRegisterCombo">
+  <div class="wrapper-main-movie-create">
+    <form [formGroup]="formCombo" class="form-grid grid form-movie">
+
+      <div class="div-abs col-12 md:col-12 lg:col-12">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <div class="form-btn">
+              <button class="btn-form-return" (click)="createCombo()"><em class="icon-arrow-circle-left"></em>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <div class="form-image" (change)="uploadImage($event)">
+              <label for="img-upload" class="form-upload-image">
+                <a>Sube tu imagen</a>, el peso máximo es de 10MB
+              </label>
+              <input id="img-upload" type="file" accept="image/png, image/jpeg, image/jpg, image/webp">
+            </div>
+            <div class="form-control-image" *ngIf="fileImageProduct">
+              <img [src]="fileImageProduct" alt="img">
+              <span>{{ fileNameProduct }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="combo_name">Nombre del combo</label>
+            <input type="text" id="combo_name" formControlName="combo_name" class="form-input"
+                   placeholder="Ingrese el nombre del combo" appValidateErrors>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="combo_description">Descripcion del combo</label>
+            <input type="text" id="combo_description" formControlName="combo_description" class="form-input"
+                   placeholder="Ingresa una descripcion del combo" appValidateErrors>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="combo_price">Precio</label>
+            <input type="text" id="combo_price" formControlName="combo_price" class="form-input"
+                   placeholder="Precio del combo" appValidateErrors appInputMask="float">
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-6 log:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label for="combo_stock">Stock</label>
+            <input type="text" id="combo_stock" formControlName="combo_stock" class="form-input"
+                   placeholder="Agrega la cantidad de Stock" appValidateErrors appInputMask="integer">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 md:col-12 lg:col-6">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <label class="form-label">Comida</label>
+            <ng-select (change)="changeFood($event)"
+                       [items]="dataFood"
+                       [multiple]=true
+                       bindLabel="label"
+                       bindValue="value"
+                       [clearable]="false"
+                       [searchable]="false"
+                       appValidateErrors
+                       class="custom-two form-ng-select"
+                       formControlName="food_ids"
+                       placeholder="Seleccione una opción">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 md:col-12 lg:col-12">
+        <div class="form-container form-rounded">
+          <div class="form-group">
+            <div class="form-btn">
+              <button class="btn-form" (click)="sendRegisterCombo()">Registrar combo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
   </div>
-</section>
+</ng-container>
+
+<ng-container *ngIf="menuEditCombo">
+  <app-combos-edit (editCombo)="editCombo($event)"></app-combos-edit>
+</ng-container>
 

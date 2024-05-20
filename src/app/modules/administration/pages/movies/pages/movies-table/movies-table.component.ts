@@ -22,7 +22,6 @@ import {Router} from "@angular/router";
 export class MoviesTableComponent implements OnInit {
 
   public formMovie: FormGroup = new FormGroup<any>({});
-  dateRelease: Date = new Date();
 
   //Select para obtener informacion para registrar peliculas
   dataGenderMovie: Select[] = [];
@@ -32,8 +31,8 @@ export class MoviesTableComponent implements OnInit {
   dataCountryMovie: Select[] = [];
 
   movies: any[] = [];
-  fileNameProduct: string[] = [];
-  fileImageProduct: string[] = [];
+  fileImageProduct: string = '';
+  fileNameProduct: string = '';
   showRegisterMovie: boolean = false;
   showEditMovie: boolean = false;
 
@@ -46,6 +45,7 @@ export class MoviesTableComponent implements OnInit {
     {name: 'Clasificacion', isFilterable: true, key: 'movie_classification', type: 'text'},
     {name: 'Duracion', isFilterable: true, key: 'movie_duration', type: 'text'},
     {name: 'Estado', isFilterable: true, key: 'movie_status', type: 'status'},
+    {name: 'Disponibilidad', isFilterable: true, key: 'movie_availability', type: 'availability'},
   ];
 
   tableActions: TableActions = {
@@ -66,7 +66,6 @@ export class MoviesTableComponent implements OnInit {
   size: number = 0;
   pageIndex: number = 0;
   totalElements: number = 0;
-  hasRoles: boolean = false;
   isPageable: boolean = false;
   dataTable: DataMovieTable[] = [];
 
@@ -89,6 +88,7 @@ export class MoviesTableComponent implements OnInit {
     this._loader.show();
     this._movie.getMovieTable(params).subscribe({
       next: (data) => {
+        console.log(data)
         this.dataTable = data.content;
         this._loader.hide();
       }, error: (e): void => {
@@ -100,6 +100,9 @@ export class MoviesTableComponent implements OnInit {
 
   showCreateMovie(): void {
     this.showRegisterMovie = !this.showRegisterMovie;
+    this.formMovie.reset();
+    this.fileNameProduct = '';
+    this.fileImageProduct = '';
     //Carga la data para los select al registrar una pelicula
     this.initFormMovie();
     this.getGenderMovie();
@@ -118,7 +121,6 @@ export class MoviesTableComponent implements OnInit {
     this.menuEditMovie = valor;
     this.getMovieTable(new HttpParams());
   }
-
 
   unlockMovie(user: any): void {
   }
@@ -142,23 +144,79 @@ export class MoviesTableComponent implements OnInit {
     })
   }
 
-  uploadImages(event: any): void {
+  uploadImage(event: any): void {
     const capturedFile = event.target.files[0];
     const supportedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
     const fileType = capturedFile.type;
+
     if (supportedTypes.includes(fileType)) {
       const fileName = capturedFile.name;
-      this.fileNameProduct.push(fileName);
-      this._image.compressImage(capturedFile, 0.10).then(
-        compressedResult => {
-          this.fileImageProduct.push(compressedResult);
-          this._alert.success('Imagen subida correctamente');
-        }
-      )
+      this._image.compressImage(capturedFile, 0.10).then(compressedResult => {
+        this.fileImageProduct = compressedResult;
+        this.fileNameProduct = fileName;
+        this._alert.success('Imagen subida correctamente');
+      });
     } else {
       this._alert.warning('Solo se admiten archivos PNG, JPEG, JPG o WEBP.');
     }
-  };
+  }
+
+  /**
+   * Genero de la pelicula
+   */
+  getGenderMovie() {
+    this._select.getGenderMovie().subscribe({
+      next: (data) => {
+        this.dataGenderMovie = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener el genero de las peliculas, reintenta mas tarde')
+      }
+    })
+  }
+
+  changeGender(_event: Select): void {
+    const validators = [Validators.required, Validators.maxLength(15)];
+    const genderSelected = this.formMovie?.get('gender_movie')?.value;
+    this.ArrayGender.push(genderSelected);
+    const lastGender = this.ArrayGender[this.ArrayGender.length - 1];
+  }
+
+  /**
+   * Lenguaje de la pelicula
+   */
+  getLanguageMovie() {
+    this._select.getLanguageMovie().subscribe({
+      next: (data) => {
+        this.dataLanguageMovie = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener el lenguaje de las peliculas, reintenta mas tarde')
+      }
+    })
+  }
+
+  changeLanguage(_event: Select): void {
+    const validators = [Validators.required, Validators.maxLength(15)];
+    const languageSelected = this.formMovie?.get('language_movie')?.value;
+    this.ArrayLanguage.push(languageSelected);
+    const lastGender = this.ArrayLanguage[this.ArrayLanguage.length - 1];
+  }
+
+  /**
+   * Pais de la pelicula
+   */
+  changeCountry(_event: Select): void {
+    const validators = [Validators.required, Validators.maxLength(15)];
+  }
+
+  getCountryMovie(): void {
+    this._select.getCountryMovie().subscribe({
+      next: (data: Select[]) => {
+        this.dataCountryMovie = data;
+      }, error: (e): void => {
+        this._alert.warning('Tenemos problemas al obtener la ciudad de la pelicula, reintenta mas tarde');
+      }
+    })
+  }
 
   sendRegisterMovie(): void {
     if (!this.formMovie.valid) {
@@ -189,16 +247,16 @@ export class MoviesTableComponent implements OnInit {
         origin_country: this.formMovie.get('origin_country')?.value,
         gender_movie: this.formMovie.get('gender_movie')?.value,
         language_movie: this.formMovie.get('language_movie')?.value,
-        image: this.fileImageProduct[0],
+        image: this.fileImageProduct,
       };
-      console.log(dataMovieRegister);
       this._movie.registerMovie(dataMovieRegister).subscribe({
         next: () => {
           this._loader.hide();
           this.showRegisterMovie = !this.showRegisterMovie;
           this._alert.success('Pelicula registrada con exito');
           this.formMovie.reset();
-          this.fileImageProduct = [];
+          this.fileImageProduct = '';
+          this.fileNameProduct = '';
           this.getMovieTable(new HttpParams());
         },
         error: (error) => {
@@ -211,57 +269,6 @@ export class MoviesTableComponent implements OnInit {
       this._loader.hide();
       this._alert.warning('Faltan campos por llenar');
     }
-  }
-
-  //Genero de la pelicula
-  getGenderMovie() {
-    this._select.getGenderMovie().subscribe({
-      next: (data) => {
-        this.dataGenderMovie = data;
-      }, error: (e): void => {
-        this._alert.warning('Tenemos problemas al obtener el genero de las peliculas, reintenta mas tarde')
-      }
-    })
-  }
-
-  changeGender(_event: Select): void {
-    const validators = [Validators.required, Validators.maxLength(15)];
-    const genderSelected = this.formMovie?.get('gender_movie')?.value;
-    this.ArrayGender.push(genderSelected);
-    const lastGender = this.ArrayGender[this.ArrayGender.length - 1];
-  }
-
-  //Lenguaje de la pelicula
-  getLanguageMovie() {
-    this._select.getLanguageMovie().subscribe({
-      next: (data) => {
-        this.dataLanguageMovie = data;
-      }, error: (e): void => {
-        this._alert.warning('Tenemos problemas al obtener el lenguaje de las peliculas, reintenta mas tarde')
-      }
-    })
-  }
-
-  changeLanguage(_event: Select): void {
-    const validators = [Validators.required, Validators.maxLength(15)];
-    const languageSelected = this.formMovie?.get('language_movie')?.value;
-    this.ArrayLanguage.push(languageSelected);
-    const lastGender = this.ArrayLanguage[this.ArrayLanguage.length - 1];
-  }
-
-  //Pais de la pelicula
-  changeCountry(_event: Select): void {
-    const validators = [Validators.required, Validators.maxLength(15)];
-  }
-
-  getCountryMovie(): void {
-    this._select.getCountryMovie().subscribe({
-      next: (data: Select[]) => {
-        this.dataCountryMovie = data;
-      }, error: (e): void => {
-        this._alert.warning('Tenemos problemas al obtener la ciudad de la pelicula, reintenta mas tarde');
-      }
-    })
   }
 
 }

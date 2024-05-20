@@ -4,33 +4,19 @@
     <span class="movie-info">17-04 18:30</span>
   </div>
   <div class="main-checkout--content">
-    <div class="content-main-info--chair">
+
+
+    <div class="content-main-info--chair" *ngFor="let chair of selectedChairs">
       <div class="content-main-info-chair--left">
         <img src="assets/img/Sillas/silla-seleccionada.svg" alt="Silla seleccionada">
       </div>
       <div class="content-main-info-chair--right">
-        <span>Silla A1</span>
-        <span class="chair-cost">$12.000</span>
+        <span>Silla {{ chair.row }}{{ chair.column }}</span>
+        <span class="chair-cost">${{ schedulePrice }}</span>
       </div>
     </div>
-    <div class="content-main-info--chair">
-      <div class="content-main-info-chair--left">
-        <img src="assets/img/Sillas/silla-seleccionada.svg" alt="Silla seleccionada">
-      </div>
-      <div class="content-main-info-chair--right">
-        <span>Silla A2</span>
-        <span class="chair-cost">$12.000</span>
-      </div>
-    </div>
-    <div class="content-main-info--chair">
-      <div class="content-main-info-chair--left">
-        <img src="assets/img/Sillas/silla-seleccionada.svg" alt="Silla seleccionada">
-      </div>
-      <div class="content-main-info-chair--right">
-        <span>Silla A3</span>
-        <span class="chair-cost">$12.000</span>
-      </div>
-    </div>
+
+
     <div class="content-main-info--food">
       <div class="content-main-info-food--left">
         <img src="assets/img/food/palomitas.png" alt="Palomitas">
@@ -73,7 +59,7 @@
     </div>
   </div>
   <div class="main-checkout--bottom">
-    <span class="total-checkout">Total:<em>$83.500</em></span>
-    <button>Pagar</button>
+    <span class="total-checkout">Total:<em>${{ totalCheckout }}</em></span>
+    <button (click)="openOrderSummary()" >Pagar</button>
   </div>
 </div>

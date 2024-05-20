@@ -3,7 +3,7 @@ import {HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {EndPoints} from "@app/core/utils/end-points";
 import {HttpService} from "@app/core/services/http.service";
-import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
+import {MovieSchedule, RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,6 @@ export class MovieService {
 
   public getMovieTable(params: HttpParams): Observable<any> {
     const defaultOptions = this._http.addParams(params);
-    console.log(this._http.get<any>(EndPoints.GET_ALL_MOVIES, false, defaultOptions))
     return this._http.get<any>(EndPoints.GET_ALL_MOVIES, false, defaultOptions);
   }
 
@@ -34,5 +33,8 @@ export class MovieService {
     return this._http.get(EndPoints.MOVIE + movie_id);
   }
 
+  public getAllMoviesCard(): Observable<any> {
+    return this._http.get<any>(EndPoints.GET_MOVIE_INFO_BASIC, false);
+  }
 
 }

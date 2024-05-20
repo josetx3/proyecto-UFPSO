@@ -1,6 +1,7 @@
 .wrapper-main-navbar-adm {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 12px;
   width: 250px;
   height: 100%;
@@ -73,7 +74,7 @@
       }
     }
 
-    &.active{
+    &.active {
       cursor: pointer;
       border-radius: 0 0 12px 12px;
       border-bottom: 1px solid theme-palette-color('color', 'primary');
@@ -87,6 +88,12 @@
         color: theme-palette-color('color', 'primary');
       }
     }
+  }
+
+  .asd {
+    width: 90%;
+    position: absolute;
+    bottom: 6px;
   }
 }
 
@@ -108,5 +115,9 @@
     span {
       display: none;
     }
+  }
+
+  .asd {
+    left: 2px;
   }
 }

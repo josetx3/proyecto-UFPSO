@@ -83,4 +83,73 @@ export class SelectService {
     });
   }
 
+  public getFood(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_FOOD).subscribe({
+        next: (data) => {
+          const food: Select[] = data.map((select) => {
+            return {
+              label: select.food_name,
+              value: select.food_id,
+            }
+          });
+          observable.next(food);
+          observable.complete();
+        }
+      })
+    });
+  }
+
+  public getTypeFood(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_TYPE_FOOD).subscribe({
+        next: (data) => {
+          const type_food: Select[] = data.map((select) => {
+            return {
+              label: select.type_food_name,
+              value: select.type_food_id,
+            }
+          });
+          observable.next(type_food);
+          observable.complete();
+        }
+      })
+    });
+  }
+
+  public getVariantFood(type_food_id: string): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_VARIANT_FOOD + type_food_id).subscribe({
+        next: (data) => {
+          const type_food: Select[] = data.map((select) => {
+            return {
+              label: select.variant_type_food_name,
+              value: select.variant_type_food_id,
+            }
+          });
+          observable.next(type_food);
+          observable.complete();
+        }
+      })
+    });
+  }
+
+  //OBTENER LAS PELICULAS QUE TENGAN EL CAMPO DE STATUS_HOME = TRUE
+  public getScheduleMovieHome(): Observable<Select[]> {
+    return new Observable<Select[]>((observable) => {
+      this._http.get<any[]>(EndPoints.GET_MOVIE_INFO_BASIC).subscribe({
+        next: (data) => {
+          const movies_home: Select[] = data.map((select) => {
+            return {
+              label: select.movie_name_spanish,
+              value: select.movie_id,
+            }
+          });
+          observable.next(movies_home);
+          observable.complete();
+        }
+      })
+    });
+  }
+
 }

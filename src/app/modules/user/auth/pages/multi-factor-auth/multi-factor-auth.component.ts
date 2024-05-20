@@ -5,6 +5,7 @@ import {AlertService} from "@app/core/services/alert.service";
 import {AuthService} from "@app/core/services/auth.service";
 import {StorageService} from "@app/core/services/storage.service";
 import {LoadingService} from "@app/core/services/loading.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-multi-factor-auth',
@@ -26,6 +27,7 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
   private pathCommerce: string | null = '';
 
   constructor(
+    private router: Router,
     public dialog: MatDialog,
     private _auth: AuthService,
     private _alert: AlertService,
@@ -68,10 +70,15 @@ export class MultiFactorAuthComponent implements OnInit, OnDestroy {
 
     this._auth.sendMultiFactorAuthentication(data).subscribe({
       next: (data) => {
+        console.log(data);
         this.destroyModal();
         this._auth.signedInSuccessfully(data);
+        if (data.user_data.administrator) {
+          this.router.navigateByUrl('administration').then()
+        } else {
+          location.reload();
+        }
         this._loader.hide();
-        location.reload();
       }, error: () => {
         this.codeValid = false;
       }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FoodsTableComponent } from './pages/foods-table/foods-table.component';
 import {FoodsRoutingModule} from "@app/modules/administration/pages/foods/foods-routing.module";
 import {SharedModule} from "@app/shared/shared.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -13,7 +14,8 @@ import {SharedModule} from "@app/shared/shared.module";
     imports: [
         CommonModule,
         FoodsRoutingModule,
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule
     ]
 })
 export class FoodsModule { }
