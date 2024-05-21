@@ -7,7 +7,7 @@ import {AlertService} from "@app/core/services/alert.service";
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {ImageService} from "@app/core/services/image.service";
 import {LoadingService} from "@app/core/services/loading.service";
-import {MovieSchedule, RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
+import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 import {Router} from "@angular/router";
 
 @Component({

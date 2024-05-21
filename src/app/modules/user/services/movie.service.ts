@@ -3,7 +3,7 @@ import {HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {EndPoints} from "@app/core/utils/end-points";
 import {HttpService} from "@app/core/services/http.service";
-import {MovieSchedule, RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
+import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 
 @Injectable({
   providedIn: 'root'
