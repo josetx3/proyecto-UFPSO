@@ -45,12 +45,6 @@ export class ModalMovieInfoComponent implements OnInit {
   }
 
   //AGREGAR EMBED EN LA RUTA PARA QUE FUNCIONE EL IFRAME
-  // getTrailerUrl(): SafeResourceUrl {
-  //   console.log(this.dataMovie.movie_trailer)
-  //     const videoUrl = this.dataMovie.movie_trailer.split('v=')[1];
-  //     const url = `https://www.youtube.com/embed/${videoUrl}`;
-  //     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  // }
   getTrailerUrl(): SafeResourceUrl {
     if (this.dataMovie && this.dataMovie.movie_trailer) {
       const videoUrl = this.dataMovie.movie_trailer.split('v=')[1];

@@ -175,7 +175,6 @@ export class CombosTableComponent implements OnInit {
     this._loader.show();
     this._combo.getComboTable(params).subscribe({
       next: (data) => {
-        console.log(data);
         this.dataTable = data.content;
         this._loader.hide()
       }, error: (e): void => {
