@@ -26,6 +26,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
 import { OrderSummaryComponent } from './layouts/order-summary/order-summary.component';
+import { VideoScreenComponent } from './layouts/video-screen/video-screen.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { OrderSummaryComponent } from './layouts/order-summary/order-summary.com
     DataTypeTablePipe,
     GetterPropertyPipe,
     CustomIsoPipe,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    VideoScreenComponent
   ],
   exports: [
     NavComponent,

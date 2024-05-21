@@ -4,6 +4,8 @@ import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {MovieScheduleService} from "@app/modules/administration/pages/movie-schedule/services/movie-schedule.service";
 import {LoadingService} from "@app/core/services/loading.service";
+import {MatDialog} from "@angular/material/dialog";
+import {VideoScreenComponent} from "@app/shared/layouts/video-screen/video-screen.component";
 
 @Component({
   selector: 'app-purchase',
@@ -11,13 +13,9 @@ import {LoadingService} from "@app/core/services/loading.service";
   styleUrls: ['./purchase.component.scss']
 })
 export class PurchaseComponent implements OnInit {
-
   screen: number = 1;
-
-
   //FOOD
   quantityFood: number = 0;
-
   //ID PARA LAS SILLAS
   scheduleId: string = '';
 
@@ -32,14 +30,16 @@ export class PurchaseComponent implements OnInit {
   chairsG: Chairs[] = [];
   selectedChairs: Chairs[] = [];
 
-  // rows: Chairs[][] = [this.chairsA, this.chairsB, this.chairsC, this.chairsD, this.chairsE, this.chairsF, this.chairsG];
-
+  //TOOLTIP PARA LAS SILLAS Y VALIDAR LA CLASE DE LAS PRIMEARS SILLAS
+  tooltipChairId: string | null = null;
+  isFirstRow: boolean = false;
 
   constructor(
     private _purchase: PurchaseService,
     private _alert: AlertService,
     private _schedule: MovieScheduleService,
     private _loader: LoadingService,
+    private _dialog: MatDialog,
   ) {
   }
 
@@ -103,10 +103,9 @@ export class PurchaseComponent implements OnInit {
         if (this.selectedChairs.length < 5) {
           this.selectedChairs.push(chair);
         } else {
-          this._alert.warning('No se pueden seleccionar más de 5 sillas')
+          this._alert.warning('No se pueden seleccionar más de 5 sillas');
         }
       } else {
-        // Remueve la silla si ya estaba seleccionada
         this.selectedChairs.splice(index, 1);
       }
       this._purchase.updateSelectedChairs(this.selectedChairs);
@@ -115,6 +114,28 @@ export class PurchaseComponent implements OnInit {
 
   isSelected(chair: Chairs): boolean {
     return this.selectedChairs.some(selected => selected.place_to_sit_id === chair.place_to_sit_id);
+  }
+
+  showTooltip(chairId: string, chairRow: string): void {
+    this.tooltipChairId = chairId;
+    this.isFirstRow = chairRow === 'A';
+  }
+
+  hideTooltip(): void {
+    this.tooltipChairId = null;
+    this.isFirstRow = false;
+  }
+
+  executeOptionA(chair: Chairs): void {
+    this.toggleSelectChair(chair);
+  }
+
+  executeOptionB(chair: Chairs): void {
+    console.log('Opción B seleccionada para la silla:', chair);
+    const dialogRef = this._dialog.open(VideoScreenComponent, {});
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('El diálogo se ha cerrado y se ha salido de pantalla completa.');
+    });
   }
 
 
