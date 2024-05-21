@@ -6,6 +6,8 @@ import {MovieScheduleService} from "@app/modules/administration/pages/movie-sche
 import {LoadingService} from "@app/core/services/loading.service";
 import {MatDialog} from "@angular/material/dialog";
 import {VideoScreenComponent} from "@app/shared/layouts/video-screen/video-screen.component";
+import {MovieService} from "@app/modules/user/services/movie.service";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-purchase',
@@ -18,6 +20,10 @@ export class PurchaseComponent implements OnInit {
   quantityFood: number = 0;
   //ID PARA LAS SILLAS
   scheduleId: string = '';
+
+  //Datos de la pelicula
+  movieId: any = '';
+  dataMovie: any = [];
 
   public chairs: Chairs[] = [];
 
@@ -35,21 +41,45 @@ export class PurchaseComponent implements OnInit {
   isFirstRow: boolean = false;
 
   constructor(
-    private _purchase: PurchaseService,
-    private _alert: AlertService,
-    private _schedule: MovieScheduleService,
-    private _loader: LoadingService,
     private _dialog: MatDialog,
+    private _alert: AlertService,
+    private _movie: MovieService,
+    private _loader: LoadingService,
+    private sanitizer: DomSanitizer,
+    private _purchase: PurchaseService,
+    private _schedule: MovieScheduleService,
   ) {
+    this._loader.show();
   }
 
   ngOnInit() {
-    this._loader.show();
     setTimeout(() => {
+      //Obtener los datos de la pelicula
       this.scheduleId = this._schedule.getScheduleId();
+      this.movieId = this._movie.getMovieIdPurchase();
+      this.getMovieId();
       this.getDataChair();
-      this._loader.hide();
     })
+  }
+
+  getMovieId() {
+    this._movie.getMovieId(this.movieId).subscribe({
+      next: (data) => {
+        this.dataMovie = data;
+        this._loader.hide();
+      }
+    })
+  }
+
+  getTrailerUrl(): SafeResourceUrl {
+    if (this.dataMovie && this.dataMovie.movie_trailer) {
+      const videoUrl = this.dataMovie.movie_trailer.split('v=')[1];
+      if (videoUrl) {
+        const url = `https://www.youtube.com/embed/${videoUrl}`;
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      }
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl('');
   }
 
   increment() {

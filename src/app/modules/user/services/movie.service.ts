@@ -10,15 +10,28 @@ import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces
 })
 export class MovieService {
 
+  movieId: string = '';
+
   constructor(private _http: HttpService) {
   }
 
+  //Parte administrativa
   public _movieId = new BehaviorSubject<string | null>(null);
   movideId = this._movieId.asObservable();
 
   public setMovieId(movieId: string | null): void {
     this._movieId.next(movieId);
   }
+
+  //Cargarla en la vista de purchase
+  setMovieIdPurchase(movieId: any): void {
+    this.movieId = movieId
+  }
+
+  getMovieIdPurchase(): string {
+    return this.movieId;
+  }
+
 
   public getMovieTable(params: HttpParams): Observable<any> {
     const defaultOptions = this._http.addParams(params);

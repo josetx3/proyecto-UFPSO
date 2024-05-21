@@ -29,12 +29,14 @@ export class ModalMovieInfoComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private _router: Router
   ) {
+    this._loader.show();
   }
 
   ngOnInit() {
-    this._loader.show();
+
     this.router.paramMap.subscribe(params => {
       this.movieId = params.get('movie_id');
+      this._movie.setMovieIdPurchase(this.movieId);
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
           this.dataMovie = data;
