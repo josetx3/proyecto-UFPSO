@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     gap: 24px 32px;
-    width: 50%;
+    width: 30%;
     height: 100%;
     max-height: 700px;
     padding: 12px 50px;
@@ -34,6 +34,7 @@
 
     .content-info-user {
       display: flex;
+      align-items: center;
       flex-direction: column;
       gap: 16px;
       width: 100%;
@@ -41,7 +42,7 @@
       .info-user {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         width: 300px;
         height: 40px;
         padding: 10px;
@@ -108,8 +109,8 @@
   .order-summary--right {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 50%;
+    justify-content: space-evenly;
+    width: 70%;
     height: 100%;
     max-height: 700px;
     border-radius: 60px 14px 14px 60px;
@@ -206,7 +207,59 @@
           border-radius: 4px;
         }
       }
+    }
 
+    .order-summary-voucher--food {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 12px;
+      width: 420px;
+      height: 560px;
+      padding: 12px;
+      overflow: auto;
+      min-width: 420px;
+      min-height: 560px;
+      border-radius: 18px;
+      background-color: theme-palette-color('background', 'translucidWhite');
+
+      .food-content {
+        display: flex;
+        width: 100%;
+        height: 100px;
+        min-height: 100px;
+        border-radius: 8px;
+        box-shadow: 0 0 6px 2px rgba(255, 255, 255, .25);
+
+        img {
+          width: 30%;
+          object-fit: cover;
+          border-radius: 8px 0 0 8px;
+        }
+
+        .info-food {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-evenly;
+          gap: 4px;
+          width: 70%;
+          height: 100%;
+          padding: 8px;
+          border-radius: 0 8px 8px 0;
+          background-color: theme-palette-color('background', 'pardo');
+
+          span {
+            font-size: 14px;
+            color: theme-palette-color('font', 'span');
+
+            em {
+              color: theme-palette-color('color', 'primary');
+            }
+          }
+        }
+
+      }
     }
 
   }
