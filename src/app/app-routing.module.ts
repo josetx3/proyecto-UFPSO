@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RegisterComponent} from "@app/modules/user/auth/pages/register/register.component";
 import {OrderSummaryComponent} from "@app/shared/layouts/order-summary/order-summary.component";
+import {adminGuard} from "@app/core/guards/admin.guard";
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'administration',
-    loadChildren: () => import('@app/modules/administration/administration.module').then(m => m.AdministrationModule)
+    loadChildren: () => import('@app/modules/administration/administration.module').then(m => m.AdministrationModule),
+    canActivate: [adminGuard]
   },
   {
     path: 'order-summary',

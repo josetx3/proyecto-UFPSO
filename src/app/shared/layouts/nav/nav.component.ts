@@ -8,6 +8,7 @@ import {Component} from '@angular/core';
 export class NavComponent {
 
   isFullScreen: boolean = false;
+  viewScreenPayments: boolean = false;
 
   constructor() {
   }
@@ -32,5 +33,10 @@ export class NavComponent {
     }
     this.isFullScreen = !this.isFullScreen;
   }
+
+  openInfoPayments(): void {
+    this.viewScreenPayments = !this.viewScreenPayments;
+  }
+
 
 }

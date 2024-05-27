@@ -12,11 +12,13 @@
     <span>
       <em class="icon-screen" (click)="toggleFullScreen()"></em>
     </span>
-    <span>
-      <em class="icon-star-f"></em>
-    </span>
-    <span>
-      <em class="icon-bell"></em>
+    <span (click)="openInfoPayments()">
+      <em class="icon-coin"></em>
     </span>
   </div>
+  <ng-container *ngIf="viewScreenPayments">
+    <div class="content-info-payments">
+      <span>as</span>
+    </div>
+  </ng-container>
 </div>

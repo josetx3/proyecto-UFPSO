@@ -27,9 +27,9 @@ export class AuthService {
   public logout(): void {
     this._storage.removeAll();
     this.router.navigateByUrl('home').then(
-      ()=>{
-        if(!this.isAdministrator){
-            window.location.reload();
+      () => {
+        if (!this.isAdministrator) {
+          window.location.reload();
         }
       }
     );
@@ -46,6 +46,7 @@ export class AuthService {
     this._storage.setItem('user_data', data.user_data);
     this._storage.setItem('user_module', data.user_module);
     this._storage.setItem('user_permission', data.user_permission);
+    this._storage.setItem('administrator', data.user_data.administrator);
     this.isAdministrator = data.user_data.administrator
     // setTimeout(() => {
     //   this.router.navigateByUrl((data.user.is_commerce ? 'administration' : '/')).then(
