@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableActions, TableColumn} from "@app/core/interfaces/table.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {DatePipe} from "@angular/common";
@@ -10,7 +10,6 @@ import {DataMovieTable, RegisterMovie} from "@app/modules/administration/pages/m
 import {Select} from "@app/core/interfaces/select.interface";
 import {SelectService} from "@app/core/services/select.service";
 import {ImageService} from "@app/core/services/image.service";
-import {MoviesEditComponent} from "@app/modules/administration/pages/movies/pages/movies-edit/movies-edit.component";
 import {Router} from "@angular/router";
 
 @Component({
@@ -88,7 +87,6 @@ export class MoviesTableComponent implements OnInit {
     this._loader.show();
     this._movie.getMovieTable(params).subscribe({
       next: (data) => {
-        console.log(data)
         this.dataTable = data.content;
         this._loader.hide();
       }, error: (e): void => {

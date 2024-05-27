@@ -3,17 +3,33 @@
     <div class="chair-screen" *ngIf="screen == 1">
       <div class="main-purchase-top--chair">
         <div class="main-purchase-top--screen">
-          <img src="assets/img/video-pantalla.gif" alt="">
+          <iframe [src]="getTrailerUrl()" title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!--          <img src="assets/img/video-pantalla.gif" alt="">-->
         </div>
-        <div class="main-purchase-top--chair">
-          <div class="chair-row" *ngFor="let row of [chairsA, chairsB, chairsC, chairsD, chairsE, chairsF, chairsG]; let i = index">
+        <div class="main-purchase-center--chair">
+          <div class="chair-row"
+               *ngFor="let row of [chairsA, chairsB, chairsC, chairsD, chairsE, chairsF, chairsG]; let i = index">
             <ng-container *ngFor="let chair of row">
-              <div class="main-chair" (click)="toggleSelectChair(chair)">
-                <img *ngIf="!chair.status_place_to_sit" src="assets/img/Sillas/silla-desactivada.svg" alt="{{chair.place_to_sit_id}}">
-                <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit && !isSelected(chair)" src="assets/img/Sillas/silla-normal.svg" alt="{{chair.place_to_sit_id}}">
-                <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit && isSelected(chair)" src="assets/img/Sillas/silla-seleccionada.svg" alt="{{chair.place_to_sit_id}}">
-                <img *ngIf="chair.occupied_place_to_sit" src="assets/img/Sillas/silla-ocupada.svg" alt="{{chair.place_to_sit_id}}">
+              <div class="main-chair"
+                   (mouseenter)="chair.status_place_to_sit ? showTooltip(chair.place_to_sit_id, chair.row) : null"
+                   (mouseleave)="hideTooltip()">
+                <img *ngIf="!chair.status_place_to_sit" src="assets/img/Sillas/silla-desactivada.svg"
+                     alt="{{chair.place_to_sit_id}}">
+                <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit && !isSelected(chair)"
+                     src="assets/img/Sillas/silla-normal.svg" alt="{{chair.place_to_sit_id}}">
+                <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit && isSelected(chair)"
+                     src="assets/img/Sillas/silla-seleccionada.svg" alt="{{chair.place_to_sit_id}}">
+                <img *ngIf="chair.occupied_place_to_sit" src="assets/img/Sillas/silla-ocupada.svg"
+                     alt="{{chair.place_to_sit_id}}">
                 <span>{{ chair.row }} {{ chair.column }}</span>
+                <div class="tooltip"
+                     *ngIf="tooltipChairId === chair.place_to_sit_id && chair.status_place_to_sit"
+                     [ngClass]="{'tooltip-top': !isFirstRow, 'tooltip-bottom': isFirstRow}">
+                  <button (click)="executeOptionB(chair)"><em class="icon-eye"></em></button>
+                  <button (click)="executeOptionA(chair)"><em class="icon-shopping-cart"></em></button>
+                </div>
               </div>
             </ng-container>
           </div>

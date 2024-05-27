@@ -32,7 +32,7 @@
           width: 100%;
           height: 125px;
 
-          img {
+          iframe {
             width: 380px;
             height: 100%;
             border-radius: 12px;
@@ -40,7 +40,7 @@
           }
         }
 
-        .main-purchase-top--chair {
+        .main-purchase-center--chair {
           overflow: auto;
           display: flex;
           flex-direction: column;
@@ -60,6 +60,7 @@
             height: 50px;
 
             .main-chair {
+              position: relative;
               width: 38px;
               height: 38px;
 
@@ -69,6 +70,9 @@
 
                 &:hover {
                   cursor: pointer;
+                  border-radius: 6px;
+                  background-color: theme-palette-color('background', 'translucidBorder');
+                  border: 1px solid theme-palette-color('color', 'primary');
                 }
               }
 
@@ -78,6 +82,45 @@
                 justify-content: center;
                 font-size: 10px;
                 color: theme-palette-color('font', 'span');
+              }
+
+              .tooltip {
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                z-index: 10;
+                padding: 4px;
+                border-radius: 6px;
+                border: 1px solid white;
+                color: theme-palette-color('font', 'span');
+                background-color: theme-palette-color('background', 'pardo');
+
+                &.tooltip-top {
+                  left: 50%;
+                  top: -70px;
+                  transform: translateX(-50%);
+                }
+
+                &.tooltip-bottom {
+                  left: 50%;
+                  top: 35px;
+                  transform: translateX(-50%);
+                }
+
+                button {
+                  border: none;
+                  padding: 4px;
+                  margin: 2px 0;
+                  cursor: pointer;
+                  color: theme-palette-color('font', 'span');
+                  background-color: theme-palette-color('background', 'pardo');
+
+                  &:hover {
+                    border-radius: 4px;
+                    color: theme-palette-color('font', 'subtitle');
+                    background-color: theme-palette-color('color', 'primary');
+                  }
+                }
               }
             }
           }

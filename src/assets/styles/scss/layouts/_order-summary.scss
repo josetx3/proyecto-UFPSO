@@ -1,0 +1,267 @@
+.wrapper-main-order-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100dvw;
+  height: 100dvh;
+  padding: 32px;
+
+  .order-summary--left {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 24px 32px;
+    width: 30%;
+    height: 100%;
+    max-height: 700px;
+    padding: 12px 50px;
+    border-radius: 14px 60px 60px 14px;
+    background-color: theme-palette-color('background', 'translucidWhite');
+
+    .info-status-order {
+      font-size: 30px;
+      font-weight: 500;
+      color: theme-palette-color('font', 'span');
+    }
+
+    .info-msg-order {
+      width: 100%;
+      font-size: 16px;
+      text-align: justify;
+      color: theme-palette-color('font', 'span_dos');
+    }
+
+    .content-info-user {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+
+      .info-user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 8px;
+        color: theme-palette-color('font', 'span');
+        box-shadow: 0 0 6px 2px rgba(255, 255, 255, .25);
+        border: 1px solid theme-palette-color('font', 'span');
+
+        &:last-child {
+          justify-content: center;
+        }
+      }
+    }
+
+    .content-info-payment {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+
+      .info-payment {
+        display: flex;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: theme-palette-color('font', 'span');
+
+        .info-payment--title {
+          width: 150px;
+        }
+
+        &:last-child {
+          font-size: 18px;
+          font-weight: 600;
+          color: theme-palette-color('color', 'primary');
+        }
+      }
+    }
+
+    .button-pay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 40px;
+      font-size: 18px;
+      font-weight: 500;
+      border-radius: 8px;
+      color: theme-palette-color('font', 'subtitle');
+      background-color: theme-palette-color('color', 'primary');
+      transition: all linear .25s;
+
+      &:hover {
+        cursor: pointer;
+        border: 1px solid whitesmoke;
+        box-shadow: 0 0 6px 2px theme-palette-color('color', 'primary');
+        transition: all linear .25s;
+      }
+    }
+
+  }
+
+  .order-summary--right {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 70%;
+    height: 100%;
+    max-height: 700px;
+    border-radius: 60px 14px 14px 60px;
+    background-color: theme-palette-color('background', 'translucidWhite');
+
+    .order-summary-voucher {
+      width: 420px;
+      height: 560px;
+      min-width: 420px;
+      min-height: 560px;
+      border-radius: 18px;
+      background-color: theme-palette-color('background', 'translucidWhite');
+
+      .voucher-top {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        height: 430px;
+        padding: 12px;
+
+        .title-movie {
+          width: 100%;
+          font-size: 20px;
+          font-weight: 600;
+          color: theme-palette-color('font', 'span');
+        }
+
+        .voucher-info {
+          display: flex;
+          width: 100%;
+          height: 100%;
+
+          .voucher-info--left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-evenly;
+            width: 50%;
+            padding: 8px;
+            height: 100%;
+
+            .info-left-content {
+              display: flex;
+              flex-direction: column;
+              gap: 6px;
+              font-size: 18px;
+              font-weight: 500;
+              color: theme-palette-color('font', 'span');
+
+              .content-chairs {
+                width: 100%;
+              }
+            }
+          }
+
+          .voucher-info--right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+
+            img {
+              width: 90%;
+              border-radius: 12px;
+              box-shadow: 0 0 6px 2px rgba(255, 255, 255, .25);
+            }
+          }
+        }
+      }
+
+      .voucher-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        width: 100%;
+        height: 130px;
+        padding: 12px;
+        border-radius: 18px 18px 0 0;
+        border-top: 3px dashed theme-palette-color('grays', 400);
+
+        span {
+          font-size: 14px;
+          color: theme-palette-color('font', 'span');
+        }
+
+        img {
+          width: 90px;
+          height: 90px;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .order-summary-voucher--food {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 12px;
+      width: 420px;
+      height: 560px;
+      padding: 12px;
+      overflow: auto;
+      min-width: 420px;
+      min-height: 560px;
+      border-radius: 18px;
+      background-color: theme-palette-color('background', 'translucidWhite');
+
+      .food-content {
+        display: flex;
+        width: 100%;
+        height: 100px;
+        min-height: 100px;
+        border-radius: 8px;
+        box-shadow: 0 0 6px 2px rgba(255, 255, 255, .25);
+
+        img {
+          width: 30%;
+          object-fit: cover;
+          border-radius: 8px 0 0 8px;
+        }
+
+        .info-food {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-evenly;
+          gap: 4px;
+          width: 70%;
+          height: 100%;
+          padding: 8px;
+          border-radius: 0 8px 8px 0;
+          background-color: theme-palette-color('background', 'pardo');
+
+          span {
+            font-size: 14px;
+            color: theme-palette-color('font', 'span');
+
+            em {
+              color: theme-palette-color('color', 'primary');
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+
+}

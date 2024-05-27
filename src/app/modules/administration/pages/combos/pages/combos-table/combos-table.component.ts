@@ -8,7 +8,6 @@ import {ImageService} from "@app/core/services/image.service";
 import {LoadingService} from "@app/core/services/loading.service";
 import {RegisterCombo} from "@app/modules/administration/pages/combos/interfaces/combo.interface";
 import {ComboService} from "@app/modules/administration/pages/combos/services/combo.service";
-import {format} from "crypto-js";
 import {Select} from "@app/core/interfaces/select.interface";
 import {SelectService} from "@app/core/services/select.service";
 
@@ -175,7 +174,6 @@ export class CombosTableComponent implements OnInit {
     this._loader.show();
     this._combo.getComboTable(params).subscribe({
       next: (data) => {
-        console.log(data);
         this.dataTable = data.content;
         this._loader.hide()
       }, error: (e): void => {

@@ -10,7 +10,6 @@ import {MessageErrorsDirective} from "@app/shared/directives/field-errors/direct
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {CardFoodComponent} from './layouts/card-food/card-food.component';
 import {ModalMovieInfoComponent} from './layouts/modal-movie-info/modal-movie-info.component';
 import {CheckoutComponent} from './layouts/checkout/checkout.component';
@@ -26,6 +25,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
 import { OrderSummaryComponent } from './layouts/order-summary/order-summary.component';
+import { VideoScreenComponent } from './layouts/video-screen/video-screen.component';
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import { OrderSummaryComponent } from './layouts/order-summary/order-summary.com
     DataTypeTablePipe,
     GetterPropertyPipe,
     CustomIsoPipe,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    VideoScreenComponent
   ],
   exports: [
     NavComponent,

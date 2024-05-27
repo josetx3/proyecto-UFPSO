@@ -4,6 +4,10 @@ import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {MovieScheduleService} from "@app/modules/administration/pages/movie-schedule/services/movie-schedule.service";
 import {LoadingService} from "@app/core/services/loading.service";
+import {MatDialog} from "@angular/material/dialog";
+import {VideoScreenComponent} from "@app/shared/layouts/video-screen/video-screen.component";
+import {MovieService} from "@app/modules/user/services/movie.service";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-purchase',
@@ -11,15 +15,15 @@ import {LoadingService} from "@app/core/services/loading.service";
   styleUrls: ['./purchase.component.scss']
 })
 export class PurchaseComponent implements OnInit {
-
   screen: number = 1;
-
-
   //FOOD
   quantityFood: number = 0;
-
   //ID PARA LAS SILLAS
   scheduleId: string = '';
+
+  //Datos de la pelicula
+  movieId: any = '';
+  dataMovie: any = [];
 
   public chairs: Chairs[] = [];
 
@@ -32,24 +36,50 @@ export class PurchaseComponent implements OnInit {
   chairsG: Chairs[] = [];
   selectedChairs: Chairs[] = [];
 
-  // rows: Chairs[][] = [this.chairsA, this.chairsB, this.chairsC, this.chairsD, this.chairsE, this.chairsF, this.chairsG];
-
+  //TOOLTIP PARA LAS SILLAS Y VALIDAR LA CLASE DE LAS PRIMEARS SILLAS
+  tooltipChairId: string | null = null;
+  isFirstRow: boolean = false;
 
   constructor(
-    private _purchase: PurchaseService,
+    private _dialog: MatDialog,
     private _alert: AlertService,
-    private _schedule: MovieScheduleService,
+    private _movie: MovieService,
     private _loader: LoadingService,
+    private sanitizer: DomSanitizer,
+    private _purchase: PurchaseService,
+    private _schedule: MovieScheduleService,
   ) {
+    this._loader.show();
   }
 
   ngOnInit() {
-    this._loader.show();
     setTimeout(() => {
+      //Obtener los datos de la pelicula
       this.scheduleId = this._schedule.getScheduleId();
+      this.movieId = this._movie.getMovieIdPurchase();
+      this.getMovieId();
       this.getDataChair();
-      this._loader.hide();
     })
+  }
+
+  getMovieId() {
+    this._movie.getMovieId(this.movieId).subscribe({
+      next: (data) => {
+        this.dataMovie = data;
+        this._loader.hide();
+      }
+    })
+  }
+
+  getTrailerUrl(): SafeResourceUrl {
+    if (this.dataMovie && this.dataMovie.movie_trailer) {
+      const videoUrl = this.dataMovie.movie_trailer.split('v=')[1];
+      if (videoUrl) {
+        const url = `https://www.youtube.com/embed/${videoUrl}`;
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      }
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl('');
   }
 
   increment() {
@@ -103,10 +133,9 @@ export class PurchaseComponent implements OnInit {
         if (this.selectedChairs.length < 5) {
           this.selectedChairs.push(chair);
         } else {
-          this._alert.warning('No se pueden seleccionar más de 5 sillas')
+          this._alert.warning('No se pueden seleccionar más de 5 sillas');
         }
       } else {
-        // Remueve la silla si ya estaba seleccionada
         this.selectedChairs.splice(index, 1);
       }
       this._purchase.updateSelectedChairs(this.selectedChairs);
@@ -115,6 +144,28 @@ export class PurchaseComponent implements OnInit {
 
   isSelected(chair: Chairs): boolean {
     return this.selectedChairs.some(selected => selected.place_to_sit_id === chair.place_to_sit_id);
+  }
+
+  showTooltip(chairId: string, chairRow: string): void {
+    this.tooltipChairId = chairId;
+    this.isFirstRow = chairRow === 'A';
+  }
+
+  hideTooltip(): void {
+    this.tooltipChairId = null;
+    this.isFirstRow = false;
+  }
+
+  executeOptionA(chair: Chairs): void {
+    this.toggleSelectChair(chair);
+  }
+
+  executeOptionB(chair: Chairs): void {
+    console.log('Opción B seleccionada para la silla:', chair);
+    const dialogRef = this._dialog.open(VideoScreenComponent, {});
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('El diálogo se ha cerrado y se ha salido de pantalla completa.');
+    });
   }
 
 
