@@ -26,6 +26,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule} from "@angular-material-components/datetime-picker";
 import { OrderSummaryComponent } from './layouts/order-summary/order-summary.component';
 import { VideoScreenComponent } from './layouts/video-screen/video-screen.component';
+import { Pague404Component } from './layouts/pague-404/pague-404.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { VideoScreenComponent } from './layouts/video-screen/video-screen.compon
     GetterPropertyPipe,
     CustomIsoPipe,
     OrderSummaryComponent,
-    VideoScreenComponent
+    VideoScreenComponent,
+    Pague404Component
   ],
   exports: [
     NavComponent,

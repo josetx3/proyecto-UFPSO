@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {VideoScreenComponent} from "@app/shared/layouts/video-screen/video-screen.component";
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {FoodService} from "@app/modules/user/services/food.service";
 
 @Component({
   selector: 'app-purchase',
@@ -41,6 +42,7 @@ export class PurchaseComponent implements OnInit {
   isFirstRow: boolean = false;
 
   constructor(
+    private _food: FoodService,
     private _dialog: MatDialog,
     private _alert: AlertService,
     private _movie: MovieService,
@@ -59,6 +61,7 @@ export class PurchaseComponent implements OnInit {
       this.movieId = this._movie.getMovieIdPurchase();
       this.getMovieId();
       this.getDataChair();
+      this.getFood();
     })
   }
 
@@ -67,6 +70,14 @@ export class PurchaseComponent implements OnInit {
       next: (data) => {
         this.dataMovie = data;
         this._loader.hide();
+      }
+    })
+  }
+
+  getFood(): void {
+    this._food.getFoodAll().subscribe({
+      next: (data) => {
+        console.log(data);
       }
     })
   }

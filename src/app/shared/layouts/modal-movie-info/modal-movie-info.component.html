@@ -35,12 +35,18 @@
           <span class="title">Estos son nuestros horarios</span>
         </div>
         <div class="right-date--content">
-          <span class="hour" (click)="showFunctionHour(schedule.movie_schedule_id  , schedule.movie_presentation_date)"
-                *ngFor="let schedule of dataMovie.movie_schedule">{{ schedule.movie_presentation_date }}</span>
+          <div *ngFor="let date of getDates()">
+<!--            <span class="hour" (click)="showFunctionHour(schedule.movie_schedule_id, schedule.movie_presentation_date)"-->
+<!--                  *ngFor="let schedule of fechas[date]"> {{ date }} </span>-->
+            <span class="hour" (click)="showFunctionHour(fechas[date])"> {{date}} </span>
+          </div>
+
+
         </div>
+
         <ng-container *ngIf="dataHourMovie != []">
           <div class="right-date--content">
-            <span class="hour" *ngFor="let scheduleHour of dataHourMovie"  (click)="openCheckout()" > {{ scheduleHour.movie_schedule_presentation_time }} </span>
+            <span class="hour" *ngFor="let scheduleHour of dataHourMovie;let i = index"  (click)="openCheckout(scheduleHour.movie_schedule_price, i )" > {{ scheduleHour.movie_schedule_presentation_time }} </span>
           </div>
         </ng-container>
       </div>

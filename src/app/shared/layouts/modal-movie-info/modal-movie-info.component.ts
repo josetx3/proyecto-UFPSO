@@ -20,6 +20,8 @@ export class ModalMovieInfoComponent implements OnInit {
   schedule_id: string = '';
   schedule_price: number = 0;
   @Input() selectedMovie!: Movie;
+  fechas: any = []
+  schedule_id_array: string [] = [];
 
   constructor(
     private _loader: LoadingService,
@@ -33,17 +35,32 @@ export class ModalMovieInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.router.paramMap.subscribe(params => {
       this.movieId = params.get('movie_id');
       this._movie.setMovieIdPurchase(this.movieId);
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
+
+          const reducedSchedule = data.movie_schedule.reduce((acc: any, current: any) => {
+            const date = current.movie_presentation_date;
+            if (!acc[date]) {
+              acc[date] = [];
+            }
+            acc[date].push(current);
+            return acc;
+          }, {} as { [key: string]: typeof data.movie_schedule });
+
+
+          this.fechas = reducedSchedule;
           this.dataMovie = data;
           this._loader.hide();
         }
       })
     });
+  }
+
+  getDates(): string[] {
+    return Object.keys(this.fechas);
   }
 
   //AGREGAR EMBED EN LA RUTA PARA QUE FUNCIONE EL IFRAME
@@ -59,20 +76,48 @@ export class ModalMovieInfoComponent implements OnInit {
   }
 
 
-  showFunctionHour(schedule_id: string, date: any): void {
-    this.schedule_id = schedule_id;
-    this._schedule.getMovieSchedule(schedule_id, date).subscribe({
-      next: (data) => {
-        this.schedule_price = data[0].movie_schedule_price;
-        this.dataHourMovie = data;
-        this._schedule.setScheduleId(this.schedule_id);
-        this._schedule.setPriceMovieSchedule(this.schedule_price)
-      }
+  // showFunctionHour(schedule_id: string, date: any): void {
+  //   this.schedule_id = schedule_id;
+  //   this._schedule.getMovieSchedule(schedule_id, date).subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //       this.schedule_price = data[0].movie_schedule_price;
+  //       this.dataHourMovie = data;
+  //       this._schedule.setScheduleId(this.schedule_id);
+  //       this._schedule.setPriceMovieSchedule(this.schedule_price)
+  //     }
+  //   })
+  // }
+
+  showFunctionHour(date: any): void {
+    this.dataHourMovie= []
+    date.forEach((item: any) => {
+      this.schedule_id_array.push(item.movie_schedule_id)
+
+      this._schedule.getMovieSchedule(item.movie_schedule_id, item.movie_presentation_date).subscribe({
+        next: (data) => {
+          this.schedule_price = data[0].movie_schedule_price;
+          this.dataHourMovie.push(data[0]);
+        }
+      })
     })
+
+
+    // this._schedule.getMovieSchedule(d, date).subscribe({
+    //       next: (data) => {
+    //         console.log(data);
+    //         this.schedule_price = data[0].movie_schedule_price;
+    //         this.dataHourMovie = data;
+    //         this._schedule.setScheduleId(this.schedule_id);
+    //         this._schedule.setPriceMovieSchedule(this.schedule_price)
+    //       }
+    //     })
   }
 
-  openCheckout(): void {
-    this._router.navigate(['/purchase']);
+  openCheckout(price: number, index: number): void {
+    this._router.navigate(['/purchase']).then();
+    this._schedule.setScheduleId(this.schedule_id_array[index]);
+    this._schedule.setPriceMovieSchedule(price)
   }
 
   countStartMovie(rating: number): string[] {
@@ -87,4 +132,5 @@ export class ModalMovieInfoComponent implements OnInit {
     return starClasses;
   }
 
+  protected readonly Object = Object;
 }
