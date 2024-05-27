@@ -26,6 +26,8 @@ export class PurchaseComponent implements OnInit {
   movieId: any = '';
   dataMovie: any = [];
 
+  dataFood: any[] = [];
+
   public chairs: Chairs[] = [];
 
   chairsA: Chairs[] = [];
@@ -77,7 +79,8 @@ export class PurchaseComponent implements OnInit {
   getFood(): void {
     this._food.getFoodAll().subscribe({
       next: (data) => {
-        console.log(data);
+        this.dataFood = data;
+        console.log(this.dataFood)
       }
     })
   }

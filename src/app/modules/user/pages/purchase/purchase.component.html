@@ -6,7 +6,7 @@
           <iframe [src]="getTrailerUrl()" title="YouTube video player" frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<!--          <img src="assets/img/video-pantalla.gif" alt="">-->
+          <!--          <img src="assets/img/video-pantalla.gif" alt="">-->
         </div>
         <div class="main-purchase-center--chair">
           <div class="chair-row"
@@ -62,17 +62,17 @@
         <button (click)="nextScreen(1)"><em class="icon-arrow-left"></em></button>
       </div>
       <div class="main-purchase-content--food">
-        <div class="card-food">
-          <img src="assets/img/food/pizza.jpg" alt="Comida">
-          <h2>Pizza personal doble queso</h2>
-          <span>Comida salada</span>
+        <div class="card-food" *ngFor="let food of dataFood">
+          <img src="{{food.food_img}}" alt="{{food.food_name}}">
+          <h2>{{ food.food_name }}</h2>
+<!--          <span>Comida salada</span>-->
           <div class="stock-food">
             <button (click)="decrement()">-</button>
             <span>{{ quantityFood }}</span>
             <button (click)="increment()">+</button>
           </div>
           <div class="price-food">
-            <span>$15000</span>
+            <span>${{food.food_price}}</span>
             <button>Agregar</button>
           </div>
         </div>
