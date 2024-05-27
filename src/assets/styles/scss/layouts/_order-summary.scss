@@ -16,7 +16,7 @@
     height: 100%;
     max-height: 700px;
     padding: 12px 50px;
-    border-radius: 14px 60px 60px 14px;
+    border-radius: 60px;
     background-color: theme-palette-color('background', 'translucidWhite');
 
     .info-status-order {
@@ -113,7 +113,7 @@
     width: 70%;
     height: 100%;
     max-height: 700px;
-    border-radius: 60px 14px 14px 60px;
+    border-radius: 60px;
     background-color: theme-palette-color('background', 'translucidWhite');
 
     .order-summary-voucher {
