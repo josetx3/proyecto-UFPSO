@@ -4,27 +4,27 @@
     <span class="info-status-order">Gracias por tu compra </span>
     <span class="info-msg-order">Aquí están los datos de tu compra. En ellos puedes encontrar el correo electrónico con el cual realizaste el pago y donde recibirás la información correspondiente.</span>
     <div class="content-info-user">
-      <span class="info-user">Jose Leonardo Quintero Leon</span>
-      <span class="info-user">joseleoquintero123@gmail.com</span>
-      <span class="info-user">3183843124</span>
+      <span class="info-user">{{ dataCheckout.user_name }}</span>
+      <span class="info-user">{{ dataCheckout.user_email }}</span>
+      <span class="info-user">{{ dataCheckout.user_phone }}</span>
     </div>
     <span class="info-msg-order">Estos son los datos de tu transaccion</span>
     <div class="content-info-payment">
       <div class="info-payment">
         <span class="info-payment--title">Metodo de pago: </span>
-        <span class="info-payment--cont">Tarjeta de credito</span>
+        <span class="info-payment--cont">Pasarela de pagos</span>
       </div>
-      <div class="info-payment">
-        <span class="info-payment--title">Tarjeta: </span>
-        <span class="info-payment--cont">4111 1111 1111</span>
-      </div>
+      <!--      <div class="info-payment">-->
+      <!--        <span class="info-payment&#45;&#45;title">Tarjeta: </span>-->
+      <!--        <span class="info-payment&#45;&#45;cont">4111 1111 1111</span>-->
+      <!--      </div>-->
       <div class="info-payment">
         <span class="info-payment--title">Dia : </span>
-        <span class="info-payment--cont">25-05-2024</span>
+        <span class="info-payment--cont">{{ dataCheckout.checkout_date }}</span>
       </div>
       <div class="info-payment">
         <span class="info-payment--title">Total: </span>
-        <span class="info-payment--cont">$15.000</span>
+        <span class="info-payment--cont">$ {{ dataCheckout.checkout_total }}</span>
       </div>
     </div>
     <span class="button-pay" routerLink="/home">Regresar</span>
@@ -32,31 +32,31 @@
   <div class="order-summary--right">
     <div class="order-summary-voucher">
       <div class="voucher-top">
-        <span class="title-movie">Shazam fury of the gods</span>
+        <span class="title-movie">{{ dataCheckout.movie_name }}</span>
         <div class="voucher-info">
           <div class="voucher-info--left">
             <div class="info-left-content">
               <span>Fecha</span>
-              <span>25-05-2024</span>
+              <span>{{ dataCheckout.movie_presentation_date }}</span>
             </div>
             <div class="info-left-content">
               <span>Puestos</span>
-              <span>A1 - A2 - B3 - C2 - D10 C5 - C10 - A10</span>
+              <span>{{ dataCheckout.checkout_positions }}</span>
             </div>
             <div class="info-left-content">
               <span>Hora</span>
-              <span>16:00 </span>
+              <span>{{ dataCheckout.movie_presentation_time }}</span>
             </div>
           </div>
           <div class="voucher-info--right">
-            <img src="assets/img/movies/shazam.png" alt="Movie">
+            <img src="{{dataCheckout.movie_img}}" alt="{{dataCheckout.movie_name}}">
           </div>
         </div>
       </div>
       <div class="voucher-bottom">
         <div class="">
-          <span>25-05-2024</span>
-          <span>16:00</span>
+          <span>{{ dataCheckout.movie_presentation_date }}</span>
+          <span>{{ dataCheckout.movie_presentation_time }}</span>
         </div>
         <img src="assets/img/qrcode_localhost.png" alt="QR">
       </div>
