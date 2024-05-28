@@ -62,12 +62,12 @@
       </div>
     </div>
     <div class="order-summary-voucher--food">
-      <div class="food-content">
-        <img src="assets/img/food/Ensalada.jpg" alt="Comida">
+      <div class="food-content" *ngFor="let food of dataCheckout.foods">
+        <img src="{{food.food_img}}" alt="{{ food.food_name }}">
         <div class="info-food">
-          <span>Este es el nombre de la comida para que sepas</span>
-          <span>Cantidad: 5</span>
-          <span>Precio: <em>$15000</em></span>
+          <span>{{ food.food_name }}</span>
+          <span>Cantidad: {{ food.food_quantity }}</span>
+          <span>Precio: <em>${{ food.food_price * food.food_quantity }}</em></span>
         </div>
       </div>
     </div>
