@@ -10,28 +10,17 @@ import {RegisterMovie} from "@app/modules/administration/pages/movies/interfaces
 })
 export class MovieService {
 
-  movieId: string = '';
 
   constructor(private _http: HttpService) {
   }
 
-  //Parte administrativa
+  //Parte administrativa        | ID DE LA PELICULA
   public _movieId = new BehaviorSubject<string | null>(null);
-  movideId = this._movieId.asObservable();
+  movieId = this._movieId.asObservable();
 
   public setMovieId(movieId: string | null): void {
     this._movieId.next(movieId);
   }
-
-  //Cargarla en la vista de purchase
-  setMovieIdPurchase(movieId: any): void {
-    this.movieId = movieId
-  }
-
-  getMovieIdPurchase(): string {
-    return this.movieId;
-  }
-
 
   public getMovieTable(params: HttpParams): Observable<any> {
     const defaultOptions = this._http.addParams(params);
@@ -43,7 +32,7 @@ export class MovieService {
   }
 
   public getMovieId(movie_id: string): Observable<any> {
-    return this._http.get(EndPoints.MOVIE + movie_id);
+    return this._http.get(EndPoints.MOVIE + movie_id, false);
   }
 
   public getAllMoviesCard(): Observable<any> {

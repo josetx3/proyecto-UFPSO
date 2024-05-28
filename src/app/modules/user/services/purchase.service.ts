@@ -22,7 +22,7 @@ export class PurchaseService {
   }
 
   public getDAtaChairIdSchedule(id_schedule: string): Observable<any> {
-    return this._http.get<any>(EndPoints.GET_CHAIR_ID + id_schedule);
+    return this._http.get<any>(EndPoints.GET_CHAIR_ID + id_schedule, false);
   }
 
   //PASAR LA INFORMACION DE LAS SILLAS DESDE PURCHASE - CHECKOUT

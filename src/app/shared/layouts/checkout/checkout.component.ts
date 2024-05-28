@@ -1,4 +1,4 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import {Component, OnInit, OnChanges, OnDestroy} from '@angular/core';
 import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
 import {Subscription} from "rxjs";
 import {PurchaseService} from "@app/modules/user/services/purchase.service";
@@ -13,13 +13,13 @@ import {Router} from "@angular/router";
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   selectedChairs: Chairs[] = [];
   chairsId: string[] = [];
 
-  schedulePrice: number = 0;
-  scheduleMovieId: string = '';
+  schedulePrice: number | null = 0;
+  scheduleMovieId: string | null = '';
 
   redirectToPayment: string = '';
 
@@ -36,8 +36,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.schedulePrice = this._schedule.getPriceMovieSchedule();
-    this.scheduleMovieId = this._schedule.getScheduleId();
+    this._schedule._schedulePrice.subscribe({
+      next: (price) => {
+        this.schedulePrice = price;
+      }
+    });
+    this._schedule._scheduleId.subscribe({
+      next: (schedule_id) => {
+        this.scheduleMovieId = schedule_id
+      }
+    });
     if (this.scheduleMovieId != "") {
       this.subscription = this._purchase.selectedChairs$.subscribe(chairs => {
         this.selectedChairs = chairs;
@@ -48,8 +56,12 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  get totalCheckout(): number {
-    return this.schedulePrice * this.selectedChairs.length;
+  get totalCheckout(): any {
+    if (this.schedulePrice != null) {
+      return this.schedulePrice * this.selectedChairs.length;
+    } else {
+      return null;
+    }
   }
 
   //  VALIDAR ESTA PARTE PARA QUE CUAND NO SE PAGUE NO COLOQUE LAS SILLAS EN OCUPADO

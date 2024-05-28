@@ -17,7 +17,6 @@ export class ModalMovieInfoComponent implements OnInit {
   //CAmbiar el tipado por | MovieInfoId |
   dataMovie: any = [];
   dataHourMovie: any = [];
-  schedule_id: string = '';
   schedule_price: number = 0;
   @Input() selectedMovie!: Movie;
   fechas: any = []
@@ -37,7 +36,7 @@ export class ModalMovieInfoComponent implements OnInit {
   ngOnInit() {
     this.router.paramMap.subscribe(params => {
       this.movieId = params.get('movie_id');
-      this._movie.setMovieIdPurchase(this.movieId);
+      this._movie.setMovieId(this.movieId);
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
 
@@ -75,22 +74,8 @@ export class ModalMovieInfoComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl('');
   }
 
-
-  // showFunctionHour(schedule_id: string, date: any): void {
-  //   this.schedule_id = schedule_id;
-  //   this._schedule.getMovieSchedule(schedule_id, date).subscribe({
-  //     next: (data) => {
-  //       console.log(data);
-  //       this.schedule_price = data[0].movie_schedule_price;
-  //       this.dataHourMovie = data;
-  //       this._schedule.setScheduleId(this.schedule_id);
-  //       this._schedule.setPriceMovieSchedule(this.schedule_price)
-  //     }
-  //   })
-  // }
-
   showFunctionHour(date: any): void {
-    this.dataHourMovie= []
+    this.dataHourMovie = []
     date.forEach((item: any) => {
       this.schedule_id_array.push(item.movie_schedule_id)
 
@@ -102,22 +87,12 @@ export class ModalMovieInfoComponent implements OnInit {
       })
     })
 
-
-    // this._schedule.getMovieSchedule(d, date).subscribe({
-    //       next: (data) => {
-    //         console.log(data);
-    //         this.schedule_price = data[0].movie_schedule_price;
-    //         this.dataHourMovie = data;
-    //         this._schedule.setScheduleId(this.schedule_id);
-    //         this._schedule.setPriceMovieSchedule(this.schedule_price)
-    //       }
-    //     })
   }
 
   openCheckout(price: number, index: number): void {
     this._router.navigate(['/purchase']).then();
     this._schedule.setScheduleId(this.schedule_id_array[index]);
-    this._schedule.setPriceMovieSchedule(price)
+    this._schedule.setSchedulePrice(price)
   }
 
   countStartMovie(rating: number): string[] {

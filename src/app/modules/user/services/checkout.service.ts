@@ -15,4 +15,8 @@ export class CheckoutService {
     return this._http.post(EndPoints.CHECKOUT, data, false);
   }
 
+  public getInfoCheckout(id: string): Observable<any> {
+    return this._http.get<any>(EndPoints.CHECKOUT + id)
+  }
+
 }

@@ -10,11 +10,13 @@ import {MovieSchedule} from "@app/modules/administration/pages/movies/interfaces
 import {Router} from "@angular/router";
 import {Select} from "@app/core/interfaces/select.interface";
 import {MovieScheduleInterface} from "@app/modules/administration/interfaces/movie-schedule.interface";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-movie-schedule-table',
   templateUrl: './movie-schedule-table.component.html',
-  styleUrls: ['./movie-schedule-table.component.scss']
+  styleUrls: ['./movie-schedule-table.component.scss'],
+  providers: [DatePipe]
 })
 export class MovieScheduleTableComponent implements OnInit {
 
@@ -38,8 +40,8 @@ export class MovieScheduleTableComponent implements OnInit {
 
   columnsTable: TableColumn[] = [
     {name: 'Nombre', isFilterable: true, key: 'movie_name', type: 'text'},
-    {name: 'Fecha de presentacion', isFilterable: true, key: 'movie_schedule_presentation_date', type: 'date'},
-    {name: 'Hora de presentacion', isFilterable: true, key: 'movie_schedule_presentation_time', type: 'dateTime'},
+    {name: 'Fecha de presentacion', isFilterable: true, key: 'movie_schedule_presentation_date', type: 'text'},
+    {name: 'Hora de presentacion', isFilterable: true, key: 'movie_schedule_presentation_time', type: 'text'},
     {name: 'Precio', isFilterable: true, key: 'movie_schedule_price', type: 'text'},
     {name: 'Estado', isFilterable: true, key: 'movie_schedule_status', type: 'status'},
   ];
@@ -83,9 +85,8 @@ export class MovieScheduleTableComponent implements OnInit {
   getScheduleMovie(params: HttpParams): void {
     this._movieSchedule.getDataTableMovieSchedule(params).subscribe({
       next: (data: any) => {
-        console.log(data)
+        console.log(data);
         this.dataTable = data.content;
-        console.log(this.dataTable)
         this._loader.hide();
       }, error: (e): void => {
         this._loader.hide();

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "@app/core/services/http.service";
 import {HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {EndPoints} from "@app/core/utils/end-points";
 import {MovieSchedule} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 
@@ -10,27 +10,23 @@ import {MovieSchedule} from "@app/modules/administration/pages/movies/interfaces
 })
 export class MovieScheduleService {
 
-  private scheduleId: string = '';
-  private priceMovieSchedule: number = 0;
 
   constructor(private _http: HttpService) {
   }
 
 
-  setScheduleId(id: string) {
-    this.scheduleId = id;
+  public _schedulePrice = new BehaviorSubject<number | null>(null);
+  schedulePrice = this._schedulePrice.asObservable();
+
+  public setSchedulePrice(schedulePrice: number | null): void {
+    this._schedulePrice.next(schedulePrice);
   }
 
-  getScheduleId(): string {
-    return this.scheduleId;
-  }
+  public _scheduleId = new BehaviorSubject<string | null>(null);
+  scheduleId = this._scheduleId.asObservable();
 
-  setPriceMovieSchedule(price: number) {
-    this.priceMovieSchedule = price;
-  }
-
-  getPriceMovieSchedule(): number {
-    return this.priceMovieSchedule;
+  public setScheduleId(scheduleId: string | null): void {
+    this._scheduleId.next(scheduleId);
   }
 
   public getDataSchedule(params: HttpParams): Observable<any> {

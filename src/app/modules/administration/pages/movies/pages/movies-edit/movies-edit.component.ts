@@ -49,7 +49,7 @@ export class MoviesEditComponent implements OnInit {
     this.getGenderMovie();
     this.getCountryMovie();
     this.getLanguageMovie();
-    this._movie.movideId.subscribe(value => {
+    this._movie._movieId.subscribe(value => {
       if (value !== null) {
         this.movie_id = value;
         this._movie.getMovieId(value).subscribe({

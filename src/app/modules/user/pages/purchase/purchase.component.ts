@@ -9,6 +9,7 @@ import {VideoScreenComponent} from "@app/shared/layouts/video-screen/video-scree
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {FoodService} from "@app/modules/user/services/food.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-purchase',
@@ -20,7 +21,7 @@ export class PurchaseComponent implements OnInit {
   //FOOD
   quantityFood: number = 0;
   //ID PARA LAS SILLAS
-  scheduleId: string = '';
+  scheduleId: string | null = '';
 
   //Datos de la pelicula
   movieId: any = '';
@@ -44,6 +45,7 @@ export class PurchaseComponent implements OnInit {
   isFirstRow: boolean = false;
 
   constructor(
+    private router: Router,
     private _food: FoodService,
     private _dialog: MatDialog,
     private _alert: AlertService,
@@ -59,10 +61,24 @@ export class PurchaseComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       //Obtener los datos de la pelicula
-      this.scheduleId = this._schedule.getScheduleId();
-      this.movieId = this._movie.getMovieIdPurchase();
+      this._movie._movieId.subscribe({
+        next: (id) => {
+          this.movieId = id;
+        }
+      });
+      this._schedule._scheduleId.subscribe({
+        next: (schedule_id) => {
+          this.scheduleId = schedule_id;
+        }
+      })
+
       this.getMovieId();
       this.getDataChair();
+      this._loader.hide();
+      if (this.movieId == null) {
+        this.router.navigateByUrl('home').then();
+        this._alert.warning('Debes volver a realizar el proceso de la compra')
+      }
     })
   }
 
@@ -70,16 +86,14 @@ export class PurchaseComponent implements OnInit {
     this._movie.getMovieId(this.movieId).subscribe({
       next: (data) => {
         this.dataMovie = data;
-        this._loader.hide();
       }
     })
   }
 
   getFood(): void {
-    this._food.getFoodAll().subscribe({
-      next: (data):void => {
+    this._food.getFoodSale().subscribe({
+      next: (data): void => {
         this.dataFood = data;
-        console.log(this.dataFood)
       }
     })
   }
@@ -120,18 +134,20 @@ export class PurchaseComponent implements OnInit {
 
   //OBTENER LA DATA DE LAS SILLAS
   getDataChair() {
-    this._purchase.getDAtaChairIdSchedule(this.scheduleId).subscribe({
-      next: (data: Chairs[]) => {
-        this.chairs = data;
-        this.chairsA = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'A'));
-        this.chairsB = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'B'));
-        this.chairsC = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'C'));
-        this.chairsD = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'D'));
-        this.chairsE = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'E'));
-        this.chairsF = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'F'));
-        this.chairsG = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'G'));
-      }
-    });
+    if (this.scheduleId != null) {
+      this._purchase.getDAtaChairIdSchedule(this.scheduleId).subscribe({
+        next: (data: Chairs[]) => {
+          this.chairs = data;
+          this.chairsA = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'A'));
+          this.chairsB = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'B'));
+          this.chairsC = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'C'));
+          this.chairsD = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'D'));
+          this.chairsE = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'E'));
+          this.chairsF = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'F'));
+          this.chairsG = this.sortByColumn(this.chairs.filter(chair => chair.row.charAt(0) === 'G'));
+        }
+      });
+    }
   }
 
   //ORDENAR LAS SILLAS
