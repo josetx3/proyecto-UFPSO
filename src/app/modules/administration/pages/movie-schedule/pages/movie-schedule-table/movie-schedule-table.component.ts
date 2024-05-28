@@ -85,7 +85,6 @@ export class MovieScheduleTableComponent implements OnInit {
   getScheduleMovie(params: HttpParams): void {
     this._movieSchedule.getDataTableMovieSchedule(params).subscribe({
       next: (data: any) => {
-        console.log(data);
         this.dataTable = data.content;
         this._loader.hide();
       }, error: (e): void => {

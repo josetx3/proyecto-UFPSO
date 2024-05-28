@@ -148,6 +148,12 @@ app-request {
   flex-direction: column;
   height: 100%;
   margin-top: 0;
+
+  .title-module {
+    font-size: 20px;
+    font-weight: 500;
+    color: whitesmoke;
+  }
 }
 
 .w-100 {
@@ -174,7 +180,7 @@ app-request {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.margin-t{
+.margin-t {
   margin-top: 20px !important;
 }
 
