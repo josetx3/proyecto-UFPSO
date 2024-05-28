@@ -1,11 +1,21 @@
 <div class="wrapper-main-home">
   <div class="home-content--left">
     <div class="content-left--top">
-      <img src="{{trailer}}" alt="Kunfu panda">
+      <img [src]="trailer" alt="Trailer de la película">
       <span>Mira el Trailer <em class="icon-play-circle-f"></em></span>
     </div>
     <div class="content-left--center">
-      <app-card-movie></app-card-movie>
+      <div class="content-card-movie" routerLink="../movie/{{movie.movie_id}}" *ngFor="let movie of movies">
+        <div class="left-center--card__img">
+          <img [src]="movie.movie_image" [alt]="movie.movie_name_spanish">
+        </div>
+        <div class="left-center--card__text">
+          <span class="card-text--title">{{ movie.movie_name_spanish }}</span>
+          <div class="content-card-text--category">
+            <span class="card-text--category" *ngFor="let category of movie.movie_gender">{{ category }}</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="content-left--bottom">
       <app-card-food></app-card-food>
