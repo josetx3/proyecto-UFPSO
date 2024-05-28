@@ -62,20 +62,22 @@
         <button (click)="nextScreen(1)"><em class="icon-arrow-left"></em></button>
       </div>
       <div class="main-purchase-content--food">
+
         <div class="card-food" *ngFor="let food of dataFood">
           <img src="{{food.food_img}}" alt="{{food.food_name}}">
           <h2>{{ food.food_name }}</h2>
-<!--          <span>Comida salada</span>-->
+          <span>{{food.food_variant}}</span>
           <div class="stock-food">
-            <button (click)="decrement()">-</button>
-            <span>{{ quantityFood }}</span>
-            <button (click)="increment()">+</button>
+            <button (click)="decrement(food)">-</button>
+            <span>{{ food.food_quantity }}</span>
+            <button (click)="increment(food)">+</button>
           </div>
           <div class="price-food">
-            <span>${{food.food_price}}</span>
-            <button>Agregar</button>
+            <span>$ {{food.food_price}}</span>
+            <button (click)="addFoodCheckout(food)" >Agregar</button>
           </div>
         </div>
+
       </div>
     </div>
   </div>

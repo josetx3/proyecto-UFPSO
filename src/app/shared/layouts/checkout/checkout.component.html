@@ -17,14 +17,14 @@
     </div>
 
 
-    <div class="content-main-info--food">
+    <div class="content-main-info--food" *ngFor="let food of selectedFoods">
       <div class="content-main-info-food--left">
-        <img src="assets/img/food/palomitas.png" alt="Palomitas">
+        <img src="{{food.food_img}}" alt="{{food.food_name}}">
       </div>
       <div class="content-main-info-food--right">
-        <span class="food-name">Palomitas de maiz con caramelo</span>
-        <span class="food-amount">Cant:<em>2</em></span>
-        <span class="food-price">$16.000</span>
+        <span class="food-name">{{ food.food_name }}</span>
+        <span class="food-amount">Cant:<em>{{ food.food_quantity }}</em></span>
+        <span class="food-price">$ {{ food.food_price * food.food_quantity }}</span>
       </div>
     </div>
 

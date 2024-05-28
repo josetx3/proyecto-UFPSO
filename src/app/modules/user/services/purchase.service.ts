@@ -4,7 +4,7 @@ import {HttpService} from "@app/core/services/http.service";
 import {StorageService} from "@app/core/services/storage.service";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {EndPoints} from "@app/core/utils/end-points";
-import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
+import {Chairs, Foods} from "@app/modules/user/interfaces/purchase.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +33,12 @@ export class PurchaseService {
     this.selectedChairsSource.next(chairs);
   }
 
+  //PASAR LA INFORMACION DE LA COMIDA DESDE PURCHASE - CHECKOUT
+  private selectedFoodSource = new Subject<Foods[]>();
+  selectedFoods$ = this.selectedFoodSource.asObservable();
+
+  updateSelectedFoods(food: Foods[]) {
+    this.selectedFoodSource.next(food);
+  }
 
 }

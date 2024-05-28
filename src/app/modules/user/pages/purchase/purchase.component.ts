@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {PurchaseService} from "@app/modules/user/services/purchase.service";
-import {Chairs} from "@app/modules/user/interfaces/purchase.interface";
+import {Chairs, Foods} from "@app/modules/user/interfaces/purchase.interface";
 import {AlertService} from "@app/core/services/alert.service";
 import {MovieScheduleService} from "@app/modules/administration/pages/movie-schedule/services/movie-schedule.service";
 import {LoadingService} from "@app/core/services/loading.service";
@@ -19,7 +19,6 @@ import {Router} from "@angular/router";
 export class PurchaseComponent implements OnInit {
   screen: number = 1;
   //FOOD
-  quantityFood: number = 0;
   //ID PARA LAS SILLAS
   scheduleId: string | null = '';
 
@@ -39,6 +38,7 @@ export class PurchaseComponent implements OnInit {
   chairsF: Chairs[] = [];
   chairsG: Chairs[] = [];
   selectedChairs: Chairs[] = [];
+  selectedFoods: any[] = [];
 
   //TOOLTIP PARA LAS SILLAS Y VALIDAR LA CLASE DE LAS PRIMEARS SILLAS
   tooltipChairId: string | null = null;
@@ -93,9 +93,12 @@ export class PurchaseComponent implements OnInit {
   getFood(): void {
     this._food.getFoodSale().subscribe({
       next: (data): void => {
-        this.dataFood = data;
+        this.dataFood = data.map((food: any) => ({
+          ...food,
+          food_quantity: 0
+        }));
       }
-    })
+    });
   }
 
   getTrailerUrl(): SafeResourceUrl {
@@ -109,13 +112,13 @@ export class PurchaseComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl('');
   }
 
-  increment() {
-    this.quantityFood++;
+  increment(food: any) {
+    food.food_quantity++;
   }
 
-  decrement() {
-    if (this.quantityFood > 0) {
-      this.quantityFood--;
+  decrement(food: any) {
+    if (food.food_quantity > 0) {
+      food.food_quantity--;
     }
   }
 
@@ -196,6 +199,20 @@ export class PurchaseComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       console.log('El diálogo se ha cerrado y se ha salido de pantalla completa.');
     });
+  }
+
+  addFoodCheckout(food: Foods): void {
+    if (food.food_quantity > 0) {
+      const exists = this.selectedFoods.find(item => item.food_id == food.food_id)
+      if (exists) {
+        exists.food_quantity = food.food_quantity
+      } else {
+        this.selectedFoods.push(food);
+      }
+      this._purchase.updateSelectedFoods(this.selectedFoods);
+    } else {
+      this._alert.warning('Debes agregar primero una cantidad antes de agregar');
+    }
   }
 
 

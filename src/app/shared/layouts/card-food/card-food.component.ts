@@ -25,7 +25,6 @@ export class CardFoodComponent implements OnInit {
     this._food.getFoodSale().subscribe({
       next: (data) => {
         this.Food = data;
-        console.log(data)
       }
     })
   }

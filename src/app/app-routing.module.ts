@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate: [adminGuard]
   },
   {
-    path: 'order-summary',
+    path: 'order-summary/:id',
     component: OrderSummaryComponent
   },
   {
