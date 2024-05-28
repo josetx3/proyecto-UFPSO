@@ -63,7 +63,6 @@ export class PurchaseComponent implements OnInit {
       this.movieId = this._movie.getMovieIdPurchase();
       this.getMovieId();
       this.getDataChair();
-      this.getFood();
     })
   }
 
@@ -78,7 +77,7 @@ export class PurchaseComponent implements OnInit {
 
   getFood(): void {
     this._food.getFoodAll().subscribe({
-      next: (data) => {
+      next: (data):void => {
         this.dataFood = data;
         console.log(this.dataFood)
       }
@@ -114,6 +113,7 @@ export class PurchaseComponent implements OnInit {
         break;
       case 2:
         this.screen = screen;
+        this.getFood();
         break;
     }
   }

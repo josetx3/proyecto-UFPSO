@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MovieSchedule} from "@app/modules/administration/pages/movies/interfaces/movie.interface";
 import {Router} from "@angular/router";
 import {Select} from "@app/core/interfaces/select.interface";
+import {MovieScheduleInterface} from "@app/modules/administration/interfaces/movie-schedule.interface";
 
 @Component({
   selector: 'app-movie-schedule-table',
@@ -34,7 +35,14 @@ export class MovieScheduleTableComponent implements OnInit {
   pageIndex: number = 0;
   totalElements: number = 0;
   isPageable: boolean = false;
-  dataTable: any[] = [];
+
+  columnsTable: TableColumn[] = [
+    {name: 'Nombre', isFilterable: true, key: 'movie_name', type: 'text'},
+    {name: 'Fecha de presentacion', isFilterable: true, key: 'movie_schedule_presentation_date', type: 'date'},
+    {name: 'Hora de presentacion', isFilterable: true, key: 'movie_schedule_presentation_time', type: 'dateTime'},
+    {name: 'Precio', isFilterable: true, key: 'movie_schedule_price', type: 'text'},
+    {name: 'Estado', isFilterable: true, key: 'movie_schedule_status', type: 'status'},
+  ];
 
   tableActions: TableActions = {
     add: true,
@@ -51,17 +59,11 @@ export class MovieScheduleTableComponent implements OnInit {
     }
   }
 
-  columnsTable: TableColumn[] = [
-    {name: 'Nombre', isFilterable: true, key: 'movie_name_spanish', type: 'text'},
-    {name: 'Duracion', isFilterable: true, key: 'movie_duration', type: 'text'},
-    {name: 'Fecha', isFilterable: true, key: 'movie_release_date', type: 'text'},
-  ];
-
   /**
    *PARTE DEL FORMULARIO
    */
   public formMovieSchedule: FormGroup = new FormGroup({});
-
+  dataTable: any[] = [];
 
   constructor(
     private router: Router,
@@ -70,6 +72,7 @@ export class MovieScheduleTableComponent implements OnInit {
     private _loader: LoadingService,
     private _movieSchedule: MovieScheduleService,
   ) {
+    this._loader.show();
   }
 
   ngOnInit() {
@@ -78,10 +81,11 @@ export class MovieScheduleTableComponent implements OnInit {
 
   //OBTENER LOS DATOS PARA LISTARLOS EN LA TABLA
   getScheduleMovie(params: HttpParams): void {
-    this._loader.show();
-    this._movieSchedule.getDataSchedule(params).subscribe({
-      next: (data): void => {
-        this.dataTable = data;
+    this._movieSchedule.getDataTableMovieSchedule(params).subscribe({
+      next: (data: any) => {
+        console.log(data)
+        this.dataTable = data.content;
+        console.log(this.dataTable)
         this._loader.hide();
       }, error: (e): void => {
         this._loader.hide();

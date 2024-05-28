@@ -27,12 +27,9 @@ export class FoodsTableComponent implements OnInit {
    */
   columnsTable: TableColumn[] = [
     {name: 'Nombre', isFilterable: true, key: 'food_name', type: 'text'},
-    {name: 'Referencia', isFilterable: true, key: 'food_reference', type: 'text'},
     {name: 'Stock', isFilterable: true, key: 'food_stock', type: 'text'},
     {name: 'Precio', isFilterable: true, key: 'food_price', type: 'text'},
-    {name: 'Vendidos', isFilterable: true, key: 'food_selling', type: 'text'},
-    {name: 'Categoria', isFilterable: true, key: 'food_category', type: 'text'},
-    {name: 'Estado', isFilterable: true, key: 'food_status', type: 'statusName'},
+    {name: 'Estado', isFilterable: true, key: 'food_status', type: 'status'},
   ];
 
   tableActions: TableActions = {
@@ -49,40 +46,6 @@ export class FoodsTableComponent implements OnInit {
       can: false
     }
   }
-
-  // ELIMINAR CUANDO SE TRAIGAN LAS COMIDAS
-  foods: any[] = [
-    {
-      food_id: '1',
-      food_name: 'Palomitas',
-      food_reference: 'P001S',
-      food_stock: 100,
-      food_price: 5000,
-      food_status: 'Activo',
-      food_Categoria: 'Confiteria',
-      food_selling: 20,
-    },
-    {
-      food_id: '2',
-      food_name: 'Hamburguea doble carne',
-      food_reference: 'H001A',
-      food_stock: 20,
-      food_price: 12000,
-      food_status: 'Activo',
-      food_Categoria: 'Comida rapida',
-      food_selling: 34,
-    },
-    {
-      food_id: '3',
-      food_name: 'Perro caliente',
-      food_reference: 'P001A',
-      food_stock: 50,
-      food_price: 9000,
-      food_status: 'Inactivo',
-      food_category: 'Comida rapida',
-      food_selling: 45,
-    },
-  ]
 
   showRegisterFood: boolean = false;
   menuEditFood: boolean = false;
@@ -159,6 +122,7 @@ export class FoodsTableComponent implements OnInit {
     this._loader.show();
     this._food.getFoodTable(params).subscribe({
       next: (data) => {
+        console.log(data);
         this.dataTable = data.content;
         this._loader.hide();
       }, error: (e): void => {

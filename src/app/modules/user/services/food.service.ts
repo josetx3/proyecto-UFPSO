@@ -11,8 +11,8 @@ export class FoodService {
   constructor(private _http: HttpService) {
   }
 
-  getFoodAll(): Observable<any[]> {
-    return this._http.get(EndPoints.GET_FOOD_SALE);
+  public getFoodAll(): Observable<any> {
+    return this._http.get<any>(EndPoints.GET_FOOD_SALE, false);
   }
 
 }
