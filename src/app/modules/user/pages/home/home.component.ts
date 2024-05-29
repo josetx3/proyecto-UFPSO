@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Food, Movie, MovieCard} from "@app/modules/user/interfaces/home.interface";
+import {MovieCard} from "@app/modules/user/interfaces/home.interface";
 import {MovieService} from "@app/modules/user/services/movie.service";
 import {Subscription} from "rxjs";
 import {LoadingService} from "@app/core/services/loading.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private _movie: MovieService,
     private _loader: LoadingService,
+    private sanitizer: DomSanitizer,
   ) {
+    _loader.show();
   }
 
   ngOnInit() {
@@ -35,9 +38,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.movies = data;
         if (this.movies.length > 0) {
           this.trailerIndex = 0;
-          this.trailer = data.movie_image; // Mostrar el primer tráiler
+          this.trailer = data[0].movie_trailer; // Mostrar el primer tráiler
           console.log(this.trailer)
           this.startTrailerRotation();
+          this._loader.hide();
         }
       }
     });
@@ -45,13 +49,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   startTrailerRotation(): void {
     if (this.trailerInterval) {
-      clearInterval(this.trailerInterval); // Limpiar cualquier intervalo existente
+      clearInterval(this.trailerInterval);
     }
-
     this.trailerInterval = setInterval(() => {
       this.trailerIndex = (this.trailerIndex + 1) % this.movies.length;
-      this.trailer = this.movies[this.trailerIndex].movie_image;
-    }, 2000);
+      this.trailer = this.movies[this.trailerIndex].movie_trailer;
+    }, 8000);
+  }
+
+  getTrailer() {
+    if (this.trailer) {
+      const videoUrl = this.trailer.split('v=')[1];
+      if (videoUrl) {
+        const url = `https://www.youtube.com/embed/${videoUrl}`;
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      }
+    }
+    return this.sanitizer.bypassSecurityTrustResourceUrl('');
+  }
+
+  public getTrailer2() {
+    const url = "https://www.youtube.com/embed/jJ0wXV-P998";
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   ngOnDestroy() {

@@ -1,8 +1,10 @@
 <div class="wrapper-main-home">
   <div class="home-content--left">
     <div class="content-left--top">
-      <img [src]="trailer" alt="Trailer de la película">
-      <span>Mira el Trailer <em class="icon-play-circle-f"></em></span>
+      <iframe [src]="getTrailer()" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
     </div>
     <div class="content-left--center">
       <div class="content-card-movie" routerLink="../movie/{{movie.movie_id}}" *ngFor="let movie of movies">
