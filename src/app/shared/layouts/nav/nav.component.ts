@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CheckoutService} from "@app/modules/user/services/checkout.service";
+import {StorageService} from "@app/core/services/storage.service";
 
 @Component({
   selector: 'app-nav',
@@ -7,10 +9,16 @@ import {Component} from '@angular/core';
 })
 export class NavComponent {
 
+  user: any;
+  dataCheckout: any[] = []
   isFullScreen: boolean = false;
   viewScreenPayments: boolean = false;
 
-  constructor() {
+  constructor(
+    private _checkout: CheckoutService,
+    private _storage: StorageService,
+  ) {
+    this.user = _storage.getItem('user_data');
   }
 
   toggleFullScreen(): void {
@@ -36,6 +44,13 @@ export class NavComponent {
 
   openInfoPayments(): void {
     this.viewScreenPayments = !this.viewScreenPayments;
+    this._checkout.getCheckoutOrders().subscribe({
+      next: (data_checkout) => {
+        console.log(data_checkout.content)
+        this.dataCheckout = data_checkout.content;
+        console.log(this.dataCheckout)
+      }
+    })
   }
 
 

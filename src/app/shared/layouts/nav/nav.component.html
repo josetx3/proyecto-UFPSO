@@ -12,13 +12,18 @@
     <span>
       <em class="icon-screen" (click)="toggleFullScreen()"></em>
     </span>
-    <span (click)="openInfoPayments()">
+    <span (click)="openInfoPayments()" *ngIf="user">
       <em class="icon-coin"></em>
     </span>
   </div>
   <ng-container *ngIf="viewScreenPayments">
     <div class="content-info-payments">
-      <span>as</span>
+      <div class="data-checkout" *ngFor="let dataChe of dataCheckout">
+        <span>{{ dataChe.checkout_reference }}</span>
+        <span>{{ dataChe.checkout_create_date | date }}</span>
+        <span>{{ dataChe.checkout_status }}</span>
+        <span>$ {{ dataChe.checkout_price }}</span>
+      </div>
     </div>
   </ng-container>
 </div>

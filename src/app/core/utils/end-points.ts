@@ -38,4 +38,5 @@ export const enum EndPoints {
 
   //CHECKOUT
   CHECKOUT = 'security/checkout/',
+  CHECKOUT_ORDERS = 'security/checkout/orders',
 }

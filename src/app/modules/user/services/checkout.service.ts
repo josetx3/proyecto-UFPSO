@@ -16,7 +16,11 @@ export class CheckoutService {
   }
 
   public getInfoCheckout(id: string): Observable<any> {
-    return this._http.get<any>(EndPoints.CHECKOUT + id)
+    return this._http.get<any>(EndPoints.CHECKOUT + id);
+  }
+
+  public getCheckoutOrders(): Observable<any> {
+    return this._http.get<any>(EndPoints.CHECKOUT_ORDERS);
   }
 
 }
