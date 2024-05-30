@@ -197,7 +197,6 @@ export class PurchaseComponent implements OnInit {
     console.log('Opción B seleccionada para la silla:', chair);
     const dialogRef = this._dialog.open(VideoScreenComponent, {});
     dialogRef.afterClosed().subscribe(() => {
-      console.log('El diálogo se ha cerrado y se ha salido de pantalla completa.');
     });
   }
 

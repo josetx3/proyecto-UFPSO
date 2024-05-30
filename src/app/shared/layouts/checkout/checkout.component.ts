@@ -104,9 +104,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       checkout_foods: this.sendFoodCheckout,
       checkout_combos: [],
     }
-    console.log('=============================')
-    console.log(sendCheckout)
-    console.log('=============================')
     this._checkout.sendCheckout(sendCheckout).subscribe({
       next: (data) => {
         this._loader.hide();

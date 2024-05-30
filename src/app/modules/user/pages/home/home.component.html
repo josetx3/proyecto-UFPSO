@@ -25,11 +25,26 @@
   </div>
   <div class="home-content--right">
     <div class="content-right--carrousel">
-      <div class="content-right--main">
-        <img src="assets/img/Sillas/silla-normal.svg" alt="Silla normal">
-        <img src="assets/img/Sillas/silla-seleccionada.svg" alt="Silla seleccionada">
-        <img src="assets/img/Sillas/silla-ocupada.svg" alt="Silla ocupada">
-        <img src="assets/img/Sillas/silla-desactivada.svg" alt="Silla desactivada">
+      <div class="content-right--main" *ngIf="status_chair">
+        <span>{{ movie_name }}</span>
+        <span>{{ movie_date_schedule }}</span>
+        <div class="chair-row"
+             *ngFor="let row of [chairsA, chairsB, chairsC, chairsD, chairsE, chairsF, chairsG]; let i = index">
+          <ng-container *ngFor="let chair of row">
+            <div class="main-chair">
+              <img *ngIf="chair.status_place_to_sit && !chair.occupied_place_to_sit"
+                   src="assets/img/Sillas/silla-normal.svg" alt="{{chair.place_to_sit_id}}">
+              <img *ngIf="!chair.status_place_to_sit" src="assets/img/Sillas/silla-desactivada.svg"
+                   alt="{{chair.place_to_sit_id}}">
+              <img *ngIf="chair.occupied_place_to_sit" src="assets/img/Sillas/silla-ocupada.svg"
+                   alt="{{chair.place_to_sit_id}}">
+              <span>{{ chair.row }} {{ chair.column }}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="content-right--main__img" *ngIf="!status_chair">
+        <img src="assets/img/logo.png" alt="img">
       </div>
     </div>
   </div>

@@ -83,8 +83,10 @@
       overflow: scroll;
 
       .content-right--main {
+        overflow: auto;
         display: flex;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
         gap: 12px;
         width: 100%;
@@ -93,9 +95,102 @@
         border-radius: 12px;
         background-color: theme-palette-color('background', 'translucidTwo');
 
+        span {
+          width: 100%;
+          text-align: center;
+          font-size: 18px;
+          color: theme-palette-color('font', 'span');
+        }
+
+        .chair-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          height: 50px;
+
+          .main-chair {
+            position: relative;
+            width: 38px;
+            height: 38px;
+
+            img {
+              width: 100%;
+              height: 100%;
+
+              &:hover {
+                cursor: pointer;
+                border-radius: 6px;
+                background-color: theme-palette-color('background', 'translucidBorder');
+                border: 1px solid theme-palette-color('color', 'primary');
+              }
+            }
+
+            span {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              font-size: 10px;
+              color: theme-palette-color('font', 'span');
+            }
+
+            .tooltip {
+              display: flex;
+              position: absolute;
+              flex-direction: column;
+              z-index: 10;
+              padding: 4px;
+              border-radius: 6px;
+              border: 1px solid white;
+              color: theme-palette-color('font', 'span');
+              background-color: theme-palette-color('background', 'pardo');
+
+              &.tooltip-top {
+                left: 50%;
+                top: -70px;
+                transform: translateX(-50%);
+              }
+
+              &.tooltip-bottom {
+                left: 50%;
+                top: 35px;
+                transform: translateX(-50%);
+              }
+
+              button {
+                border: none;
+                padding: 4px;
+                margin: 2px 0;
+                cursor: pointer;
+                color: theme-palette-color('font', 'span');
+                background-color: theme-palette-color('background', 'pardo');
+
+                &:hover {
+                  border-radius: 4px;
+                  color: theme-palette-color('font', 'subtitle');
+                  background-color: theme-palette-color('color', 'primary');
+                }
+              }
+            }
+          }
+        }
+
         img {
           width: 26px;
           height: 26px;
+        }
+      }
+
+      .content-right--main__img {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 90%;
         }
       }
     }

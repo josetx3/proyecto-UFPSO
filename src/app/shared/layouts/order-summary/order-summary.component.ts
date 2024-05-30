@@ -30,7 +30,6 @@ export class OrderSummaryComponent implements OnInit {
       this._checkout.getInfoCheckout(this.checkoutId).subscribe({
         next: (data) => {
           this.dataCheckout = data;
-          console.log(this.dataCheckout)
         }
       })
     }
