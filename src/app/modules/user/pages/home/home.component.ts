@@ -61,6 +61,9 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.startTrailerRotation();
           this._loader.hide();
         }
+      }, error: (error) => {
+        console.log(error)
+        this._loader.hide();
       }
     });
   }
