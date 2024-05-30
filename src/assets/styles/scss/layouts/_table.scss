@@ -24,6 +24,10 @@ app-table {
   overflow: hidden;
 }
 
+.mdc-data-table__cell{
+  overflow: visible !important;
+}
+
 .loading-shade {
   position: absolute;
   bottom: 0;

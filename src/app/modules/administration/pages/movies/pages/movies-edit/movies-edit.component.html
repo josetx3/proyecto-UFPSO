@@ -13,13 +13,13 @@
     <div class="col-12 md:col-6 lg:col-6">
       <div class="form-container form-rounded">
         <div class="form-group">
-          <div class="form-image" (change)="uploadImages($event)">
+          <div class="form-image" (change)="uploadImage($event)">
             <label for="img-upload" class="form-upload-image"><a>Sube tu imagen</a>, el peso maximo es de 10MB</label>
             <input id="img-upload" type="file">
           </div>
-          <div class="form-control-image" *ngFor="let base64Img of fileImageProduct; let i = index">
-            <img [src]="base64Img" alt="img">
-            <span>{{ fileNameProduct[i] }}</span>
+          <div class="form-control-image" *ngIf="fileImageProduct">
+            <img [src]="fileImageProduct" alt="img">
+            <span>{{ fileNameProduct }}</span>
           </div>
         </div>
       </div>
@@ -63,8 +63,8 @@
     <div class="col-12 md:col-6 log:col-6">
       <div class="form-container form-rounded">
         <div class="form-group">
-          <label for="movie_actors">Actores</label>
-          <input type="text" id="movie_actors" formControlName="movie_actors" class="form-input"
+          <label for="movie_actor">Actores</label>
+          <input type="text" id="movie_actor" formControlName="movie_actor" class="form-input"
                  placeholder="Ingresa los actores separados por ," appValidateErrors>
         </div>
       </div>
@@ -125,63 +125,6 @@
           <label for="movie_director">Director de la pelicula</label>
           <input type="text" id="movie_director" formControlName="movie_director" class="form-input"
                  placeholder="Director de la pelicula" appValidateErrors>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 md:col-12 lg:col-6">
-      <div class="form-container form-rounded">
-        <div class="form-group">
-          <label class="form-label">Pais de la pelicula</label>
-          <ng-select (change)="changeCountry($event)"
-                     [items]="dataCountryMovie"
-                     bindLabel="label"
-                     bindValue="value"
-                     [clearable]="false"
-                     [searchable]="false"
-                     appValidateErrors
-                     class="custom-two form-ng-select"
-                     formControlName="origin_country"
-                     placeholder="Seleccione una opción">
-          </ng-select>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 md:col-12 lg:col-6">
-      <div class="form-container form-rounded">
-        <div class="form-group">
-          <label class="form-label">Genero</label>
-          <ng-select (change)="changeGender($event)"
-                     [items]="dataGenderMovie"
-                     [multiple]=true
-                     bindLabel="label"
-                     bindValue="value"
-                     [clearable]="false"
-                     [searchable]="false"
-                     appValidateErrors
-                     class="custom-two form-ng-select"
-                     formControlName="gender_movie"
-                     placeholder="Seleccione una opción">
-          </ng-select>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 md:col-12 lg:col-6">
-      <div class="form-container form-rounded">
-        <div class="form-group">
-          <label class="form-label">Lenguaje</label>
-          <ng-select (change)="changeLanguage($event)"
-                     [items]="dataLanguageMovie"
-                     [multiple]=true
-                     bindLabel="label"
-                     bindValue="value"
-                     [clearable]="false"
-                     [searchable]="false"
-                     appValidateErrors
-                     class="custom-two form-ng-select"
-                     formControlName="language_movie"
-                     appInputMask="integer"
-                     placeholder="Seleccione una opción">
-          </ng-select>
         </div>
       </div>
     </div>

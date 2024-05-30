@@ -31,14 +31,16 @@
             <em class="icon-pin"></em>
           </button>
           <button (click)="unlockItem(element);"
-                  *ngIf="action.unlock && element.movie_status == true"
+                  *ngIf="action.unlock && element.movie_status_home == true"
                   class="tooltip-c btn-actions">
-            <em class="icon-bookmark-remove"></em>
+            <em style="color: red" class="icon-bookmark-remove"></em>
+            <span class="tooltip-text bottom">Activar home</span>
           </button>
           <button (click)="MovieHome(element);"
-                  *ngIf="action.movieHome && element.movie_status == false"
-                  class="btn-actions">
-            <em class="icon-bookmark-plus"></em>
+                  *ngIf="action.movieHome && element.movie_status_home == false"
+                  class=" tooltip-c btn-actions">
+            <em style="color:green " class="icon-bookmark-plus"></em>
+            <span class="tooltip-text bottom">Desactivar home</span>
           </button>
           <button (click)="editItem(element); $event.stopPropagation();"
                   *ngIf="action.edit.can && ((action.edit.can_when_status) ? validateOptionByStatus(element, action.edit) : true)"

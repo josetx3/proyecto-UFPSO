@@ -22,6 +22,7 @@ export interface DataMovieTable {
   movie_duration: number;
   movie_name_spanish: string;
   movie_classification: string;
+  movie_status_home: string;
 }
 
 
