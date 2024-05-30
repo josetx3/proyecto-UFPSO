@@ -12,6 +12,7 @@ import {AuthService} from "@app/core/services/auth.service";
 export class NavbarComponent {
 
   user: any;
+  admin: any;
 
   constructor(
     private dialog: MatDialog,
@@ -19,6 +20,7 @@ export class NavbarComponent {
     private _auth: AuthService
   ) {
     this.user = this._storage.getItem('user_data')
+    this.admin = _storage.getItem('administrator')
   }
 
   loginModal(): void {

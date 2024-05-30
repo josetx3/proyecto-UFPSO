@@ -29,6 +29,9 @@
     </div>
     <div class="navbar-routes-bottom">
       <span (click)="loginModal()" *ngIf="!user"><em class="icon-power"></em> Ingresar</span>
+      <ng-container *ngIf="admin">
+        <span routerLink="administration"><em class="icon-cog"></em>Administracion</span>
+      </ng-container>
       <ng-container *ngIf="user">
         <span (click)="Logout()"><em class="icon-power"></em>Cerrar sesión</span>
       </ng-container>
