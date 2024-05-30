@@ -43,7 +43,11 @@ export class FoodsEditComponent implements OnInit {
         this.movieFoodId = value;
         this._food.getFoodId(this.movieFoodId).subscribe({
           next: (data_food) => {
+            this.fileImageProduct = data_food.food_img
+            this.setValueFood(data_food)
             this.dataFood = data_food;
+            this._loader.hide()
+          }, error: (error) => {
             this._loader.hide()
           }
         })
@@ -53,6 +57,13 @@ export class FoodsEditComponent implements OnInit {
         this._loader.hide();
       }
     })
+  }
+
+  setValueFood(data: any): void {
+    this.formFood.get('food_name')?.setValue(data.food_name);
+    this.formFood.get('food_price')?.setValue(data.food_price);
+    this.formFood.get('food_description')?.setValue(data.food_description);
+    this.formFood.get('food_stock')?.setValue(data.food_stock);
   }
 
   uploadImage(event: any): void {
@@ -79,8 +90,16 @@ export class FoodsEditComponent implements OnInit {
     })
   }
 
-  sendFormUpdateFood() {
-
+  sendFormUpdateFood(): void {
+    this._loader.show();
+    const dataFood: any = {
+      food_name: this.formFood.get('')?.value,
+      food_description: this.formFood.get('')?.value,
+      food_price: this.formFood.get('')?.value,
+      food_img: this.fileImageProduct,
+      food_stock: this.formFood.get('')?.value,
+    }
+    console.log(dataFood)
   }
 
 }
