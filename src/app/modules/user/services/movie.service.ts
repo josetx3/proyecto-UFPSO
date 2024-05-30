@@ -22,6 +22,21 @@ export class MovieService {
     this._movieId.next(movieId);
   }
 
+  public _movie_name = new BehaviorSubject<string | null>(null);
+  movieName = this._movie_name.asObservable();
+
+  public setMovieName(movie_name: string | null): void {
+    this._movie_name.next(movie_name);
+  }
+
+  public _movie_date = new BehaviorSubject<string | null>(null);
+  movieDate = this._movie_date.asObservable();
+
+  public setMovieDate(movie_date: string | null): void {
+    this._movie_date.next(movie_date);
+  }
+
+
   public getMovieTable(params: HttpParams): Observable<any> {
     const defaultOptions = this._http.addParams(params);
     return this._http.get<any>(EndPoints.GET_ALL_MOVIES, false, defaultOptions);

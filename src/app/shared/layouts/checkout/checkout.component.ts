@@ -7,6 +7,7 @@ import {CheckoutService} from "@app/modules/user/services/checkout.service";
 import {LoadingService} from "@app/core/services/loading.service";
 import {AlertService} from "@app/core/services/alert.service";
 import {Router} from "@angular/router";
+import {MovieService} from "@app/modules/user/services/movie.service";
 
 @Component({
   selector: 'app-checkout',
@@ -17,6 +18,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   selectedChairs: Chairs[] = [];
   chairsId: string[] = [];
+
+  movieName: string | null = '';
+  movieDate: string | null = '';
 
   selectedFoods: Foods[] = [];
   food_id: string[] = [];
@@ -33,12 +37,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private dataFoods: Subscription = new Subscription();
 
   constructor(
-    private _purchase: PurchaseService,
-    private _schedule: MovieScheduleService,
-    private _checkout: CheckoutService,
-    private _loader: LoadingService,
-    private _alert: AlertService,
     private router: Router,
+    private _alert: AlertService,
+    private _movie: MovieService,
+    private _loader: LoadingService,
+    private _purchase: PurchaseService,
+    private _checkout: CheckoutService,
+    private _schedule: MovieScheduleService,
   ) {
   }
 
@@ -55,6 +60,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.scheduleMovieId = schedule_id
       }
     });
+    //OBTENER EL NOMBRE DE LA PELICULA
+    this._movie._movie_name.subscribe({
+      next: (movie_name) => {
+        this.movieName = movie_name;
+      }
+    })
+    this._movie._movie_date.subscribe({
+      next: (movie_date) => {
+        this.movieDate = movie_date;
+      }
+    })
 
     if (this.scheduleMovieId != "") {
       this.subscription = this._purchase.selectedChairs$.subscribe(chairs => {

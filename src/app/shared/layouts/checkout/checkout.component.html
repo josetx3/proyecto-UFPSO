@@ -1,7 +1,7 @@
 <div class="wrapper-main-checkout">
   <div class="main-checkout--top">
-    <span class="movie-name">Shazam la furia de los dioses</span>
-    <span class="movie-info">17-04 18:30</span>
+    <span class="movie-name">{{ movieName }}</span>
+    <span class="movie-info">{{ movieDate }}</span>
   </div>
   <div class="main-checkout--content">
     <div class="content-main-info--chair" *ngFor="let chair of selectedChairs">

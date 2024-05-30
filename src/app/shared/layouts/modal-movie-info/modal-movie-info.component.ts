@@ -13,6 +13,9 @@ import {MovieScheduleService} from "@app/modules/administration/pages/movie-sche
 })
 export class ModalMovieInfoComponent implements OnInit {
 
+  name_movie: string = '';
+  date_movie: string = '';
+
   movieId: string | any = '';
   //CAmbiar el tipado por | MovieInfoId |
   dataMovie: any = [];
@@ -39,7 +42,9 @@ export class ModalMovieInfoComponent implements OnInit {
       this._movie.setMovieId(this.movieId);
       this._movie.getMovieId(this.movieId).subscribe({
         next: (data) => {
-
+          //Setear el nombre para pasarlo al checkout
+          this.name_movie = data.movie_name_spanish;
+          this._movie.setMovieName(this.name_movie)
           const reducedSchedule = data.movie_schedule.reduce((acc: any, current: any) => {
             const date = current.movie_presentation_date;
             if (!acc[date]) {
@@ -48,8 +53,6 @@ export class ModalMovieInfoComponent implements OnInit {
             acc[date].push(current);
             return acc;
           }, {} as { [key: string]: typeof data.movie_schedule });
-
-
           this.fechas = reducedSchedule;
           this.dataMovie = data;
           this._loader.hide();
@@ -90,6 +93,9 @@ export class ModalMovieInfoComponent implements OnInit {
   }
 
   openCheckout(price: number, index: number): void {
+    this.date_movie = this.dataHourMovie[index].movie_schedule_presentation_time;
+    this._movie.setMovieDate(this.date_movie);
+
     this._router.navigate(['/purchase']).then();
     this._schedule.setScheduleId(this.schedule_id_array[index]);
     this._schedule.setSchedulePrice(price)
