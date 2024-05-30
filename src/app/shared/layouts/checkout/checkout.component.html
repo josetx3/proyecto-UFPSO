@@ -4,8 +4,6 @@
     <span class="movie-info">17-04 18:30</span>
   </div>
   <div class="main-checkout--content">
-
-
     <div class="content-main-info--chair" *ngFor="let chair of selectedChairs">
       <div class="content-main-info-chair--left">
         <img src="assets/img/Sillas/silla-seleccionada.svg" alt="Silla seleccionada">
@@ -15,8 +13,6 @@
         <span class="chair-cost">${{ schedulePrice }}</span>
       </div>
     </div>
-
-
     <div class="content-main-info--food" *ngFor="let food of selectedFoods">
       <div class="content-main-info-food--left">
         <img src="{{food.food_img}}" alt="{{food.food_name}}">
@@ -27,8 +23,6 @@
         <span class="food-price">$ {{ food.food_price * food.food_quantity }}</span>
       </div>
     </div>
-
-
   </div>
   <div class="main-checkout--bottom">
     <span class="total-checkout">Total:<em>${{ totalCheckout }}</em></span>

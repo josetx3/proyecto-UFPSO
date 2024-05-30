@@ -46,9 +46,7 @@ export class NavComponent {
     this.viewScreenPayments = !this.viewScreenPayments;
     this._checkout.getCheckoutOrders().subscribe({
       next: (data_checkout) => {
-        console.log(data_checkout.content)
         this.dataCheckout = data_checkout.content;
-        console.log(this.dataCheckout)
       }
     })
   }

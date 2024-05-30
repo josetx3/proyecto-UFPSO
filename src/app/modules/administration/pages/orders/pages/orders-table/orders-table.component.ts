@@ -61,7 +61,6 @@ export class OrdersTableComponent implements OnInit {
   getOrderTable(): void {
     this._checkout.getCheckoutOrders().subscribe({
       next: (data_checkout) => {
-        console.log(data_checkout);
         this.dataTable = data_checkout.content;
         this._loader.hide();
       }, error: (e): void => {
