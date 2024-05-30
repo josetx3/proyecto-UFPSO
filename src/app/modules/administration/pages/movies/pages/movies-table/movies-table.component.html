@@ -3,7 +3,7 @@
   <app-table
     (add)="showCreateMovie()"
     (edit)="edit($event)"
-    (unlock)="unlockMovie($event)"
+    (view)="statusHome($event)"
     (filter)="getMovieTable($event)"
     [pageIndex]="pageIndex"
     [pageSize]="size"

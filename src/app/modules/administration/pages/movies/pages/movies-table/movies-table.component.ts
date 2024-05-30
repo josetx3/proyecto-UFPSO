@@ -50,7 +50,7 @@ export class MoviesTableComponent implements OnInit {
   tableActions: TableActions = {
     add: true,
     search: false,
-    unlock: true,
+    unlock: false,
     edit: {
       can: true
     },
@@ -58,7 +58,7 @@ export class MoviesTableComponent implements OnInit {
       can: false
     },
     view: {
-      can: false
+      can: true
     }
   }
 
@@ -87,6 +87,7 @@ export class MoviesTableComponent implements OnInit {
     this._loader.show();
     this._movie.getMovieTable(params).subscribe({
       next: (data) => {
+        console.log(data);
         this.dataTable = data.content;
         this._loader.hide();
       }, error: (e): void => {
@@ -111,7 +112,7 @@ export class MoviesTableComponent implements OnInit {
 
   edit(data: any): void {
     this._movie.setMovieId(data.movie_id);
-    this.showEditMovie = true;
+    // this.showEditMovie = true;
     this.router.navigateByUrl('administration/movies/' + data.movie_id).then();
   }
 
@@ -120,7 +121,13 @@ export class MoviesTableComponent implements OnInit {
     this.getMovieTable(new HttpParams());
   }
 
-  unlockMovie(user: any): void {
+  statusHome(data: any): void {
+    console.log(data.movie_id)
+    this._movie.editStatusHomeMovie(data.movie_id, true).subscribe({
+      next: () => {
+        this._alert.success('El estado de la pelicula ' + data.movie_name_spanish + ' cambio con exito')
+      }
+    })
   }
 
   initFormMovie(): void {

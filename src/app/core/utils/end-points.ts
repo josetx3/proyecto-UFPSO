@@ -22,6 +22,7 @@ export const enum EndPoints {
   MOVIE_SCHEDULE = 'security/movie_schedule/',
   GET_MOVIE_SCHEDULE = 'security/movie_schedule/',
   GET_MOVIE_INFO_BASIC = 'security/movie/info_basic',
+  UPDATE_HOME_MOVIE = 'security/movie/update_home/',
 
   //FOOD
   FOOD = 'security/food/',

@@ -42,6 +42,7 @@ export class MoviesEditComponent implements OnInit {
     private _select: SelectService,
     private _loader: LoadingService,
   ) {
+    _loader.show();
   }
 
   ngOnInit() {
@@ -57,8 +58,11 @@ export class MoviesEditComponent implements OnInit {
             this.movie_id = data.movie_id;
             this.setValueMovie(data);
             this.edit = true;
+            this._loader.hide();
           }
         })
+      } else {
+        this.router.navigateByUrl('administration/movies').then();
       }
     })
   }
@@ -174,11 +178,37 @@ export class MoviesEditComponent implements OnInit {
 
   //Editar los datos de la pelicula
   sendEditMovie(): void {
-  }
-
-  //Agregar la parte de las fechas en la pelicula
-  sendDatesMovie(): void {
-
+    this._loader.show();
+    const movieReleaseDate: Date = this.FormMovie.get('movie_release_date')?.value;
+    let formattedDate: string = '';
+    if (movieReleaseDate) {
+      const isoDateString: string = movieReleaseDate.toISOString();
+      const isoDate: string = isoDateString.split('T')[0];
+      const [year, month, day] = isoDate.split('-');
+      formattedDate = `${year}-${month}-${day}`;
+    }
+    const dataEditMovie: any = {
+      movie_name_spanish: this.FormMovie.get('movie_name_spanish')?.value,
+      movie_name_english: this.FormMovie.get('movie_name_english')?.value,
+      movie_description: this.FormMovie.get('movie_description')?.value,
+      movie_trailer: this.FormMovie.get('movie_trailer')?.value,
+      movie_release_date: formattedDate,
+      movie_duration: this.FormMovie.get('movie_duration')?.value,
+      movie_classification: this.FormMovie.get('movie_classification')?.value,
+      movie_director: this.FormMovie.get('movie_director')?.value,
+      movie_availability: this.FormMovie.get('movie_availability')?.value,
+      movie_image: this.fileImageProduct
+    }
+    this._movie.putMovieData(this.movie_id, dataEditMovie).subscribe({
+      next: () => {
+        this._alert.success('Producto actualizado con exito');
+        this._loader.hide();
+      }, error: (error) => {
+        this._alert.warning('Ocurrio un problema al intentar actualizar el producto')
+        this._loader.hide();
+      }
+    })
+    this.router.navigateByUrl('administration/movies').then();
   }
 
 

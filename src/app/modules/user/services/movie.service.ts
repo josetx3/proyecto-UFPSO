@@ -39,4 +39,12 @@ export class MovieService {
     return this._http.get<any>(EndPoints.GET_MOVIE_INFO_BASIC, false);
   }
 
+  public putMovieData(id_movie: string, data_movie: any): Observable<any> {
+    return this._http.put<any, any>(EndPoints.MOVIE + id_movie, data_movie);
+  }
+
+  public editStatusHomeMovie(id_movie: string, data_home: boolean): Observable<any> {
+    return this._http.put<any, any>(EndPoints.UPDATE_HOME_MOVIE + id_movie, data_home)
+  }
+
 }

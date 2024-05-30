@@ -28,7 +28,7 @@
           <button (click)="viewItem(element); $event.stopPropagation();"
                   *ngIf="action.view.can && ((action.view.can_when_status) ? validateOptionByStatus(element, action.view) : true)"
                   class="btn-actions">
-            <em class="icon-eye-f"></em>
+            <em class="icon-pin"></em>
           </button>
           <button (click)="editItem(element); $event.stopPropagation();"
                   *ngIf="action.edit.can && ((action.edit.can_when_status) ? validateOptionByStatus(element, action.edit) : true)"
