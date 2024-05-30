@@ -3,7 +3,8 @@
   <app-table
     (add)="showCreateMovie()"
     (edit)="edit($event)"
-    (view)="statusHome($event)"
+    (unlock)="statusHome($event)"
+    (movieHome)="statusHome($event)"
     (filter)="getMovieTable($event)"
     [pageIndex]="pageIndex"
     [pageSize]="size"
@@ -11,6 +12,7 @@
     [totalElements]="totalElements"
     [tableColumns]="columnsTable"
     [tableData]="dataTable"
+
     [isSearchQuick]="true"
     [isPageable]="isPageable"
     addActionName="Nueva pelicula"

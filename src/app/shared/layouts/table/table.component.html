@@ -30,15 +30,20 @@
                   class="btn-actions">
             <em class="icon-pin"></em>
           </button>
+          <button (click)="unlockItem(element);"
+                  *ngIf="action.unlock && element.movie_status == true"
+                  class="tooltip-c btn-actions">
+            <em class="icon-bookmark-remove"></em>
+          </button>
+          <button (click)="MovieHome(element);"
+                  *ngIf="action.movieHome && element.movie_status == false"
+                  class="btn-actions">
+            <em class="icon-bookmark-plus"></em>
+          </button>
           <button (click)="editItem(element); $event.stopPropagation();"
                   *ngIf="action.edit.can && ((action.edit.can_when_status) ? validateOptionByStatus(element, action.edit) : true)"
                   class="btn-actions">
             <em class="icon-pencil-f"></em>
-          </button>
-          <button (click)="unlockItem(element); $event.stopPropagation();"
-                  *ngIf="action.unlock && element.user_status == 'Bloqueado'"
-                  class="tooltip-c btn-actions">
-            <em class="icon-padlock-open"></em>
           </button>
           <button (click)="activeItem(element);  $event.stopPropagation();"
                   *ngIf="action.active && (element.commerce_status == 'SUSPENDED' || element.commerce_status == 'CANCELED')"

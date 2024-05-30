@@ -39,6 +39,7 @@ export enum typeOffer {
 export const TABLE_ACTIONS: TableActions = {
   add: false,
   search: false,
+  movieHome: false,
   edit: {
     can: false,
   },

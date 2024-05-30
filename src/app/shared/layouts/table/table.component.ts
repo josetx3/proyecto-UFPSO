@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 /*--- Material ---*/
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Filter, Order, Pagination, TableActions, TableColumn } from '@app/core/interfaces/table.interface';
-import { ORDER, TABLE_ACTIONS } from '@app/core/utils/const';
-import { HttpParams } from '@angular/common/http';
-import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
-import { Actions } from '@app/modules/administration/interfaces/configuration.interface';
-import { LoadingService } from '@app/core/services/loading.service';
+import {MatSort, Sort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {Filter, Order, Pagination, TableActions, TableColumn} from '@app/core/interfaces/table.interface';
+import {ORDER, TABLE_ACTIONS} from '@app/core/utils/const';
+import {HttpParams} from '@angular/common/http';
+import {MatPaginator, MatPaginatorIntl, PageEvent} from '@angular/material/paginator';
+import {Actions} from '@app/modules/administration/interfaces/configuration.interface';
+import {LoadingService} from '@app/core/services/loading.service';
 
 @Component({
   selector: 'app-table',
@@ -32,8 +32,8 @@ export class TableComponent implements OnInit {
   //============ COLUMNS ============\\
   public displayedColumns: string[] = [];
 
-  @ViewChild(MatPaginator, { static: false }) matPaginator!: MatPaginator;
-  @ViewChild(MatSort, { static: true }) matSort!: MatSort;
+  @ViewChild(MatPaginator, {static: false}) matPaginator!: MatPaginator;
+  @ViewChild(MatSort, {static: true}) matSort!: MatSort;
 
   //============ ACTIONS ============\\
   @Input() action: TableActions = TABLE_ACTIONS;
@@ -54,6 +54,7 @@ export class TableComponent implements OnInit {
   @Output() filter: EventEmitter<any> = new EventEmitter<any>();
   @Output() unlock: EventEmitter<any> = new EventEmitter<any>();
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() movieHome: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() active: EventEmitter<any> = new EventEmitter<any>();
   @Output() suspended: EventEmitter<any> = new EventEmitter<any>();
@@ -169,6 +170,10 @@ export class TableComponent implements OnInit {
 
   viewItem(value: string): void {
     this.view.emit(value);
+  }
+
+  MovieHome(value: any): void {
+    this.movieHome.emit(value);
   }
 
   editItem(value: string): void {

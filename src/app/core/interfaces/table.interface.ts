@@ -12,6 +12,7 @@ export interface TableActions {
   add: boolean,
   search: boolean,
   edit: Action,
+  movieHome?: boolean,
   delete: Action,
   view: Action,
   unlock?: boolean,
