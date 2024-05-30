@@ -35,4 +35,8 @@ export class FoodService {
     return this._http.post(EndPoints.FOOD, data);
   }
 
+  public putFood(id_food: string, data_food: any): Observable<any> {
+    return this._http.put<any, any>(EndPoints.FOOD + id_food, data_food);
+  }
+
 }

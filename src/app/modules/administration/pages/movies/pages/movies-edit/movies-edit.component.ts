@@ -142,7 +142,6 @@ export class MoviesEditComponent implements OnInit {
       movie_image: this.fileImageProduct,
       movie_status: true,
     }
-    console.log(dataEditMovie)
     this._movie.putMovieData(this.movie_id, dataEditMovie).subscribe({
       next: () => {
         this._alert.success('Producto actualizado con exito');

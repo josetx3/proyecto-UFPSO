@@ -5,7 +5,7 @@ import {LoadingService} from "@app/core/services/loading.service";
 import {SelectService} from "@app/core/services/select.service";
 import {ImageService} from "@app/core/services/image.service";
 import {AlertService} from "@app/core/services/alert.service";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Select} from "@app/core/interfaces/select.interface";
 
 @Component({
@@ -19,6 +19,7 @@ export class FoodsEditComponent implements OnInit {
 
   movieFoodId: string = '';
   dataFood: any = '';
+  food_id: any = '';
 
   dataTypeFood: Select[] = [];
   dataVariantFood: Select[] = [];
@@ -38,14 +39,16 @@ export class FoodsEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initFormFood();
     this._food._foodId.subscribe(value => {
       if (value !== null) {
         this.movieFoodId = value;
         this._food.getFoodId(this.movieFoodId).subscribe({
           next: (data_food) => {
+            this.food_id = data_food.food_id;
             this.fileImageProduct = data_food.food_img
-            this.setValueFood(data_food)
             this.dataFood = data_food;
+            this.setValueFood(data_food)
             this._loader.hide()
           }, error: (error) => {
             this._loader.hide()
@@ -56,6 +59,15 @@ export class FoodsEditComponent implements OnInit {
         this._alert.warning('Ocurrio un error al momento de obtener los datos de la comida para editarlos, reintenta mas tarde')
         this._loader.hide();
       }
+    })
+  }
+
+  initFormFood(): void {
+    this.formFood = new FormGroup<any>({
+      food_name: new FormControl('', [Validators.required]),
+      food_price: new FormControl('', [Validators.required]),
+      food_description: new FormControl('', [Validators.required]),
+      food_stock: new FormControl('', [Validators.required]),
     })
   }
 
@@ -93,13 +105,23 @@ export class FoodsEditComponent implements OnInit {
   sendFormUpdateFood(): void {
     this._loader.show();
     const dataFood: any = {
-      food_name: this.formFood.get('')?.value,
-      food_description: this.formFood.get('')?.value,
-      food_price: this.formFood.get('')?.value,
+      food_name: this.formFood.get('food_name')?.value,
+      food_description: this.formFood.get('food_description')?.value,
+      food_price: this.formFood.get('food_price')?.value,
       food_img: this.fileImageProduct,
-      food_stock: this.formFood.get('')?.value,
+      food_stock: this.formFood.get('food_stock')?.value,
+      food_status: true
     }
-    console.log(dataFood)
+    this._food.putFood(this.food_id, dataFood).subscribe({
+      next: () => {
+        this._alert.success('Comida actualizada con extio');
+        this._loader.hide();
+      }, error: (error) => {
+        this._alert.warning('Ocurrio un problema al intentar actualizar la comida, reintentalo mas tarde')
+        this._loader.hide();
+      }
+    })
+    this.route.navigateByUrl('administration/food').then();
   }
 
 }

@@ -1,61 +1,63 @@
-<form [formGroup]="formFood" class="form-grid grid form-movie">
-  <div class="col-12 md:col-6 lg:col-6">
-    <div class="form-container form-rounded">
-      <div class="form-group">
-        <div class="form-image" (change)="uploadImage($event)">
-          <label for="food_image" class="form-upload-image"><a>Sube tu imagen</a>, el peso maximo es de 10MB</label>
-          <input id="food_image" type="file">
-        </div>
-        <div class="form-control-image" *ngFor="let base64Img of fileImageProduct; let i = index">
-          <img [src]="base64Img" alt="img">
-          <span>{{ fileNameProduct[i] }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 md:col-6 log:col-6">
-    <div class="form-container form-rounded">
-      <div class="form-group">
-        <label for="food_name">Nombre</label>
-        <input type="text" id="food_name" formControlName="food_name" class="form-input"
-               placeholder="Ingresa el nombre de la ocmida" appValidateErrors>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 md:col-6 log:col-6">
-    <div class="form-container form-rounded">
-      <div class="form-group">
-        <label for="food_description">Descripcion</label>
-        <input type="text" id="food_description" formControlName="food_description" class="form-input"
-               placeholder="Ingresa una descripcion" appValidateErrors>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 md:col-6 log:col-6">
-    <div class="form-container form-rounded">
-      <div class="form-group">
-        <label for="food_price">Precio</label>
-        <input type="text" id="food_price" formControlName="food_price" class="form-input"
-               placeholder="Ingresa un precio" appValidateErrors appInputMask="float">
-      </div>
-    </div>
-  </div>
-  <div class="col-12 md:col-6 log:col-6">
-    <div class="form-container form-rounded">
-      <div class="form-group">
-        <label for="food_stock">Stock</label>
-        <input type="text" id="food_stock" formControlName="food_stock" class="form-input"
-               placeholder="Agrega un stock inicial" appValidateErrors appInputMask="integer">
-      </div>
-    </div>
-  </div>
-  <div class="col-12 md:col-12 lg:col-12">
-    <div class="form-container form-rounded">
-      <div class="form-group">
-        <div class="form-btn">
-          <button class="btn-form" (click)="sendFormUpdateFood()">Agregar comida</button>
+<div class="wrapper-main-movie-create">
+  <form [formGroup]="formFood" class="form-grid grid form-movie">
+    <div class="col-12 md:col-6 lg:col-6">
+      <div class="form-container form-rounded">
+        <div class="form-group">
+          <div class="form-image" (change)="uploadImage($event)">
+            <label for="img-upload" class="form-upload-image"><a>Sube tu imagen</a>, el peso maximo es de 10MB</label>
+            <input id="img-upload" type="file">
+          </div>
+          <div class="form-control-image" *ngIf="fileImageProduct">
+            <img [src]="fileImageProduct" alt="img">
+            <span>{{ fileNameProduct }}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</form>
+    <div class="col-12 md:col-6 log:col-6">
+      <div class="form-container form-rounded">
+        <div class="form-group">
+          <label for="food_name">Nombre</label>
+          <input type="text" id="food_name" formControlName="food_name" class="form-input"
+                 placeholder="Ingresa el nombre de la ocmida" appValidateErrors>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 log:col-6">
+      <div class="form-container form-rounded">
+        <div class="form-group">
+          <label for="food_description">Descripcion</label>
+          <input type="text" id="food_description" formControlName="food_description" class="form-input"
+                 placeholder="Ingresa una descripcion" appValidateErrors>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 log:col-6">
+      <div class="form-container form-rounded">
+        <div class="form-group">
+          <label for="food_price">Precio</label>
+          <input type="text" id="food_price" formControlName="food_price" class="form-input"
+                 placeholder="Ingresa un precio" appValidateErrors appInputMask="float">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-6 log:col-6">
+      <div class="form-container form-rounded">
+        <div class="form-group">
+          <label for="food_stock">Stock</label>
+          <input type="text" id="food_stock" formControlName="food_stock" class="form-input"
+                 placeholder="Agrega un stock inicial" appValidateErrors appInputMask="integer">
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-12 lg:col-12">
+      <div class="form-container form-rounded">
+        <div class="form-group">
+          <div class="form-btn">
+            <button class="btn-form" (click)="sendFormUpdateFood()">Agregar comida</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
