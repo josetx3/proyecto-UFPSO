@@ -69,8 +69,8 @@ export class MoviesTableComponent implements OnInit {
   dataTable: DataMovieTable[] = [];
 
   constructor(
-    private _alert: AlertService,
     private router: Router,
+    private _alert: AlertService,
     private _movie: MovieService,
     private _image: ImageService,
     private _select: SelectService,
@@ -112,7 +112,6 @@ export class MoviesTableComponent implements OnInit {
 
   edit(data: any): void {
     this._movie.setMovieId(data.movie_id);
-    // this.showEditMovie = true;
     this.router.navigateByUrl('administration/movies/' + data.movie_id).then();
   }
 

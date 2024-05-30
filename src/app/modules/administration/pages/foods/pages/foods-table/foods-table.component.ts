@@ -10,6 +10,7 @@ import {HttpParams} from "@angular/common/http";
 import {ImageService} from "@app/core/services/image.service";
 import {Select} from "@app/core/interfaces/select.interface";
 import {SelectService} from "@app/core/services/select.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-foods-table',
@@ -69,11 +70,12 @@ export class FoodsTableComponent implements OnInit {
   fileImageProduct: string[] = [];
 
   constructor(
-    private _alert: AlertService,
-    private _loader: LoadingService,
+    private router: Router,
     private _food: FoodService,
     private _image: ImageService,
+    private _alert: AlertService,
     private _select: SelectService,
+    private _loader: LoadingService,
   ) {
   }
 
@@ -132,6 +134,8 @@ export class FoodsTableComponent implements OnInit {
   }
 
   edit(data: any): void {
+    this._food.setFoodId(data.food_id)
+    this.router.navigateByUrl('administration/food/' + data.movie_id).then();
   }
 
   unlockFood(user: any): void {
