@@ -13,7 +13,7 @@ import {LoadingService} from "@app/core/services/loading.service";
 })
 export class OrdersTableComponent implements OnInit {
 
-  title: string = 'Nueva pelicula';
+  title: string = '';
   image: string = './assets/img/profile-user.png';
 
   columnsTable: TableColumn[] = [
@@ -25,11 +25,11 @@ export class OrdersTableComponent implements OnInit {
   ];
 
   tableActions: TableActions = {
-    add: true,
+    add: false,
     search: false,
     unlock: true,
     edit: {
-      can: true
+      can: false
     },
     delete: {
       can: false
