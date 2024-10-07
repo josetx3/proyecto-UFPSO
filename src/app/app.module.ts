@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -7,7 +7,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ApiPrefixInterceptor} from "@app/core/interceptors/api-prefix.interceptor";
 import {AuthInterceptor} from "@app/core/interceptors/auth.interceptor";
 import {ToastrModule} from "ngx-toastr";
-import {CodeInputModule} from "angular-code-input";
 import {SharedModule} from "@app/shared/shared.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
