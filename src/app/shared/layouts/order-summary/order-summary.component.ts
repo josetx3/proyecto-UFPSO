@@ -20,7 +20,6 @@ export class OrderSummaryComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'))
       this.checkoutId = params.get('id')
       this.getInfoCheckout();
     })
