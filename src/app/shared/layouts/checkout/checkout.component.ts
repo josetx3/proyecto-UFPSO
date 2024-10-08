@@ -124,7 +124,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       next: (data) => {
         this._loader.hide();
         this.redirectToPayment = data.link
-        window.location.href = this.redirectToPayment;
+        window.location.href = "order-summary/" + this.redirectToPayment;
       }, error: (error) => {
         this._alert.error('Tenemos problemas ' + error.error.message);
         this._loader.hide();
